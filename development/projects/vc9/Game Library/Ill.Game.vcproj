@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9,00"
+	Version="9.00"
 	Name="Ill.Game"
 	ProjectGUID="{5678901D-3C1E-4FD7-B3F3-3A4887F907BB}"
 	RootNamespace="IllSystem"
@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="$(SolutionDir)..\..\includes"
+				AdditionalIncludeDirectories="..\..\..\includes"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -87,7 +87,7 @@
 			IntermediateDirectory="$(SolutionDir)..\..\intermediate\$(ConfigurationName)\$(ProjectName)"
 			ConfigurationType="4"
 			CharacterSet="1"
-			WholeProgramOptimization="1"
+			WholeProgramOptimization="0"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -108,7 +108,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="$(SolutionDir)..\..\includes"
+				AdditionalIncludeDirectories="..\..\..\includes"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -156,6 +156,14 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
+				RelativePath="..\..\..\source\Ill\Game\Game.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\source\Ill\Game\GameApplication.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\source\Ill\Game\PrecompiledHeader.cpp"
 				>
 			</File>
@@ -167,6 +175,10 @@
 			>
 			<File
 				RelativePath="..\..\..\includes\Ill\Game\Game.hpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\includes\Ill\Game\GameApplication.h"
 				>
 			</File>
 			<File

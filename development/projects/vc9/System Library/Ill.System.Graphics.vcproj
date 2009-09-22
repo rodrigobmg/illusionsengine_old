@@ -158,6 +158,10 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
+				RelativePath="..\..\..\source\Ill\System\Graphics\Graphics.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\source\Ill\System\Graphics\GraphicsSubsystem.cpp"
 				>
 			</File>

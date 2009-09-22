@@ -43,6 +43,16 @@ namespace Ill
 
                 return true;
             }
+
+            void GrapicsSubsystem::GetProperties(const PropertyMap& properties)
+            {
+                Super::GetProperties( properties );
+
+                properties.GetValue( "PluginFilename", m_PluginFilename );
+                properties.GetValue( "ConfigFilename", m_ConfigFilename );
+                properties.GetValue( "LogFilename", m_LogFilename );
+            }
+
         }
     }
 }

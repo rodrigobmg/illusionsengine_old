@@ -1,0 +1,6 @@
+#ifndef MYGAME_TESTREFLECTION_HEADER_HPP
+#define MYGAME_TESTREFLECTION_HEADER_HPP
+
+void TestReflection();
+
+#endif 

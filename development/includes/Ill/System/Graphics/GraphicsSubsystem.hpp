@@ -11,6 +11,12 @@
 
 #include <Ill/System/Subsystem.hpp>
 
+// Forward-declaration
+namespace Ogre
+{
+    class Root;
+}
+
 namespace Ill
 {
     namespace System
@@ -32,6 +38,12 @@ namespace Ill
                 * Shutdown
                 */
                 VIRTUAL_METHOD(public,bool,Shutdown,());
+
+                /**
+                * Populate my defined properties from the passed-in property map
+                */
+                VIRTUAL_METHOD(public,void,GetProperties,(const PropertyMap& properties) );
+
 
                 PROPERTY(const std::string&, PluginFilename );
                 PROPERTY(const std::string&, ConfigFilename );
@@ -75,6 +87,8 @@ namespace Ill
 
                 Ogre::Root*     m_pOgreRoot;
             };
+
+            typedef boost::intrusive_ptr<GrapicsSubsystem> GraphicsSubsystemPtr;
         }
     }
 }
