@@ -62,7 +62,8 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="wxmsw28ud.lib SDLmain.lib SDL.lib winmm.lib comctl32.lib rpcrt4.lib"
+				AdditionalDependencies="SDLmain.lib SDL.lib"
+				OutputFile="$(OutDir)\$(ProjectName)_d.exe"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="..\..\libs;..\..\..\..\libs"
 				IgnoreDefaultLibraryNames="msvcrt.lib"
@@ -139,7 +140,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="wxmsw28u.lib SDLmain.lib SDL.lib winmm.lib comctl32.lib rpcrt4.lib"
+				AdditionalDependencies="SDLmain.lib SDL.lib"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="..\..\libs;..\..\..\..\libs"
 				IgnoreDefaultLibraryNames=""

@@ -11,10 +11,13 @@
 
 #include <Ill/System/Subsystem.hpp>
 
-// Forward-declaration
+// Forward-declaration of Ogre types
 namespace Ogre
 {
     class Root;
+    class SceneManager;
+    class Camera;
+    class RenderWindow;
 }
 
 namespace Ill
@@ -30,7 +33,7 @@ namespace Ill
                 CONSTRUCTOR(public,GrapicsSubsystem,());
 
                 /**
-                * Startup
+                * Startup the graphics subsystem.
                 */
                 VIRTUAL_METHOD(public,bool,Startup,( const PropertyMap& startupOptions ));
 
@@ -39,17 +42,35 @@ namespace Ill
                 */
                 VIRTUAL_METHOD(public,bool,Shutdown,());
 
+
+                PROPERTY(const std::string&, PluginFilename );
+                PROPERTY(const std::string&, ConfigFilename );
+                PROPERTY(const std::string&, ResourceFilename );
+                PROPERTY(const std::string&, LogFilename );
+
+            protected:
+
                 /**
                 * Populate my defined properties from the passed-in property map
                 */
                 VIRTUAL_METHOD(public,void,GetProperties,(const PropertyMap& properties) );
 
+                /**
+                * Setup the resource paths.  
+                * This method is called in the @see(Startup) method.
+                */
+                VIRTUAL_METHOD(protected,void,SetupResourcesPaths,() );
 
-                PROPERTY(const std::string&, PluginFilename );
-                PROPERTY(const std::string&, ConfigFilename );
-                PROPERTY(const std::string&, LogFilename );
+                /**
+                 * Default implementation is to show a configure dialog box.
+                 * Override this method to configure the OgreSDK yourself.
+                 * This method is called directly by the @see(Startup) method.
+                 * @return true if configuration was successful, false if the user canceled the configuration
+                 * or the configuration options were not valid.
+                 */
+                VIRTUAL_METHOD(protected,bool,ConfigureRenderer,() );
 
-            protected:
+
 
             private:
                 // Getters and setters for property types
@@ -71,6 +92,15 @@ namespace Ill
                     m_ConfigFilename = configFilename;
                 }
 
+                const std::string& get_ResourceFilename() const
+                {
+                    return m_ResourceFilename;
+                }
+                void set_ResourceFilename( const std::string& resourceFilename )
+                {
+                    m_ResourceFilename = resourceFilename;
+                }
+
                 const std::string& get_LogFilename() const
                 {
                     return m_LogFilename;
@@ -82,10 +112,14 @@ namespace Ill
 
                 // Data memebers
                 std::string     m_ConfigFilename;
+                std::string     m_ResourceFilename;
                 std::string     m_PluginFilename;
                 std::string     m_LogFilename;
 
-                Ogre::Root*     m_pOgreRoot;
+                Ogre::Root*         m_pOgreRoot;
+                Ogre::Camera*       m_pOgreCamera;
+                Ogre::SceneManager* m_pOgreSceneManager;
+                Ogre::RenderWindow* m_pRenderWindow;
             };
 
             typedef boost::intrusive_ptr<GrapicsSubsystem> GraphicsSubsystemPtr;

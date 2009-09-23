@@ -32,9 +32,15 @@ int main( int argc, char* argv[] )
     // A property map to store the game options.
     Ill::System::PropertyMap gameOptions;
 
-    gameOptions.AddValue( "PluginFilename", std::string("plugins.cfg") );
-    gameOptions.AddValue( "ConfigFilename", std::string("ogre.cfg") );
-    gameOptions.AddValue( "LogFilename", std::string("Ogre.log") );
+#ifdef _DEBUG
+    gameOptions.AddValue( "PluginFilename", std::string("../Configuration/Plugins_Debug.cfg") );
+#else
+    gameOptions.AddValue(  "PluginFilename", std::string("../Configuration/Plugins.cfg") );
+#endif
+
+    gameOptions.AddValue( "ConfigFilename", std::string("../Configuration/ogre.cfg") );
+    gameOptions.AddValue( "ResourceFilename", std::string("../Configuration/resources.cfg") );
+    gameOptions.AddValue( "LogFilename", std::string("../Logs/Ogre.log") );
 
     // Create the game application class
     g_pGameApp = new Ill::Game::GameApplication();
