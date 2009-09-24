@@ -32,10 +32,12 @@ namespace Ill
 			*/
 			VIRTUAL_METHOD(public,bool,Shutdown,());
 
+        protected:
             /**
-             * Populate my defined properties from the passed-in property map
-             */
+            * Populate my defined properties from the passed-in property map
+            */
             VIRTUAL_METHOD(public,void,GetProperties,(const PropertyMap& properties) );
+
 		};
 
 		typedef boost::intrusive_ptr<Subsystem> SubsystemPtr;

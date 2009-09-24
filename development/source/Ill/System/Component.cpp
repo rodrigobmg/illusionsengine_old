@@ -12,29 +12,19 @@ namespace Ill
 		{
 		}
 
-		bool Component::Initialize() 
-		{
-			return true;
-		}
+		void Component::Initialize() 
+		{}
 
-		bool Component::Serialize()
-		{
-			return true;
-		}
+		void Component::Serialize()
+		{}
 
-		bool Component::LoadResources()
-		{
-			return true;
-		}
+		void Component::LoadResources()
+		{}
 
-		bool Component::FlushResources()
-		{
-			return true;
-		}
+		void Component::FlushResources()
+		{}
 
-		bool Component::Terminiate()
-		{
-			return true;
-		}
+		void Component::Terminiate()
+		{}
 	}
 }

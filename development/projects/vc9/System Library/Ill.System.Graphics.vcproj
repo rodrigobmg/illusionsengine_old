@@ -200,6 +200,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\includes\Ill\System\Graphics\GraphicsTypes.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\source\Ill\System\Graphics\GraphicsUtils.hpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\includes\Ill\System\Graphics\PrecompiledHeader.hpp"
 				>
 			</File>

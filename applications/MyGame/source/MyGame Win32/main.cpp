@@ -41,6 +41,7 @@ int main( int argc, char* argv[] )
     gameOptions.AddValue( "ConfigFilename", std::string("../Configuration/ogre.cfg") );
     gameOptions.AddValue( "ResourceFilename", std::string("../Configuration/resources.cfg") );
     gameOptions.AddValue( "LogFilename", std::string("../Logs/Ogre.log") );
+    gameOptions.AddValue( "DefaultSceneInstanceName", std::string("MyGameSceneInstance") );
 
     // Create the game application class
     g_pGameApp = new Ill::Game::GameApplication();

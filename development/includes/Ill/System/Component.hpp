@@ -41,7 +41,7 @@ namespace Ill
 			* 
 			* @returns true if all memory allocations were successful.
 			*/
-			VIRTUAL_METHOD(public,bool,Initialize,());
+			VIRTUAL_METHOD(public,void,Initialize,());
 			/**
 			* Serialize this component.
 			* TODO: Create the serialize class that holds the serialization 
@@ -49,7 +49,7 @@ namespace Ill
 			* 
 			* @returns true if serialization was successful.
 			*/
-			VIRTUAL_METHOD(public,bool,Serialize,());
+			VIRTUAL_METHOD(public,void,Serialize,());
 
 			/**
 			* Load any resources from disc.
@@ -58,7 +58,7 @@ namespace Ill
 			*
 			* @returns true if all resources were loaded successfully.
 			*/
-			VIRTUAL_METHOD(public,bool,LoadResources,());
+			VIRTUAL_METHOD(public,void,LoadResources,());
 
 			/**
 			* Resources should be released here.
@@ -68,14 +68,14 @@ namespace Ill
 			*
 			* @returns true if all resources were released properly.
 			*/
-			VIRTUAL_METHOD(public,bool,FlushResources,());
+			VIRTUAL_METHOD(public,void,FlushResources,());
 
 			/**
 			* Deallocate the memory that was allocated in Initialize.
 			*
 			* @returns true if all memory allocations were successful.
 			*/
-			VIRTUAL_METHOD(public,bool,Terminiate,());
+			VIRTUAL_METHOD(public,void,Terminiate,());
 
 		protected:
 
