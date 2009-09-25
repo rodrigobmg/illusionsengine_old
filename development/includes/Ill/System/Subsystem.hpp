@@ -10,16 +10,16 @@
 * that can be registered and managed by the Application class.
 */
 #include <Ill/System/PropertyMap.hpp>
-#include <Ill/System/Component.hpp>
+#include <Ill/System/Object.hpp>
 
 namespace Ill
 {
 	namespace System
 	{
-		class Subsystem : public Component
+		class Subsystem : public Object
 		{
 		public:
-			CLASS(Subsystem,Component);
+			CLASS(Subsystem,Object);
 			CONSTRUCTOR(public,Subsystem,());
 
 			/**

@@ -164,6 +164,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\source\Ill\System\DynamicLib.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\source\Ill\System\NoCopyObject.cpp"
 				>
 			</File>
@@ -230,11 +234,23 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\includes\Ill\System\DynamicLib.hpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\includes\Ill\System\DynamicLibSubsystem.hpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\includes\Ill\System\NoCopyObject.hpp"
 				>
 			</File>
 			<File
 				RelativePath="..\..\..\includes\Ill\System\Object.hpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\includes\Ill\System\Platform.hpp"
 				>
 			</File>
 			<File
@@ -263,6 +279,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\includes\Ill\System\System.hpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\includes\Ill\System\SystemTypes.hpp"
 				>
 			</File>
 		</Filter>

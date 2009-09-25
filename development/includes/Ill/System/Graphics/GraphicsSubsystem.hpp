@@ -44,6 +44,13 @@ namespace Ill
                 */
                 VIRTUAL_METHOD(public,bool,Shutdown,());
 
+                /**
+                 * Retrieve a pointer to the GraphicsRenderer implementation.
+                 * @precondition The subsystem must have been initialized before
+                 * you can get a pointer to the GraphicsRenderer implementation.
+                 */
+                VIRTUAL_METHOD(public, GraphicsRenderer*, GetGraphicsRenderer, () );
+
             protected:
 
                 /**
@@ -189,10 +196,13 @@ namespace Ill
 
                 std::string     m_DefaultCameraName;
 
+
                 Ogre::Root*         m_pOgreRoot;
                 Ogre::Camera*       m_pOgreCamera;
                 Ogre::SceneManager* m_pOgreSceneManager;
                 Ogre::RenderWindow* m_pRenderWindow;
+
+                GraphicsRenderer*   m_pGraphicsRenderer;
 
             public:
                 // Define properties at the bottom of the class to avoid VAssistX getting confused and hiding 
