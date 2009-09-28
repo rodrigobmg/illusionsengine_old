@@ -17,16 +17,18 @@ namespace Ill
         namespace Graphics
         {
             GrapicsSubsystem::GrapicsSubsystem()
-                : m_ConfigFilename( "ogre.cfg" )
-                , m_ResourceFilename( "resource.cfg")
-                , m_PluginFilename( "plugins.cfg" )
-                , m_LogFilename( "Ogre.log" )
-                , m_DefaultSceneInstanceName( "DefaultSceneManager" )
+                : m_GraphicsLibName( TEXT("") )
+                , m_ConfigFilename( TEXT("ogre.cfg") )
+                , m_ResourceFilename( TEXT("resource.cfg") )
+                , m_PluginFilename( TEXT("plugins.cfg") )
+                , m_LogFilename( TEXT("Ogre.log") )
+                , m_DefaultSceneInstanceName( TEXT("DefaultSceneManager") )
                 , m_DefaultSceneType( SceneType_Generic )
                 , m_pOgreRoot ( NULL )
                 , m_pOgreCamera( NULL )
                 , m_pOgreSceneManager( NULL )
                 , m_pRenderWindow( NULL )
+                , m_pGraphicsRenderer( NULL )
             {}
 
             bool GrapicsSubsystem::Startup( const PropertyMap& startupOptions )
@@ -36,8 +38,10 @@ namespace Ill
                 // Populate our properties from our startup options.
                 GetProperties( startupOptions );
            
+                
+
                 // Create our ogre root object
-                m_pOgreRoot = OGRE_NEW Ogre::Root( m_PluginFilename, m_ConfigFilename, m_LogFilename );
+                m_pOgreRoot = OGRE_NEW Ogre::Root( ConvertString(m_PluginFilename), ConvertString(m_ConfigFilename), ConvertString(m_LogFilename) );
 
                 // Setup the resource paths
                 SetupResourcesPaths();
@@ -79,11 +83,21 @@ namespace Ill
                 return true;
             }
 
+            GraphicsRenderer* GrapicsSubsystem::GetGraphicsRenderer()
+            {
+                if ( m_pGraphicsRenderer == NULL )
+                {
+                    // Need a way to get to the DynamicLibSubsystem (singletons!)
+                }
+
+                return m_pGraphicsRenderer;
+            }
+
             void GrapicsSubsystem::SetupResourcesPaths()
             {
                 // Load the resource paths from a configuration file.
                 Ogre::ConfigFile configFile;
-                configFile.load( m_ResourceFilename );
+                configFile.load( ConvertString(m_ResourceFilename) );
 
                 Ogre::ConfigFile::SectionIterator secIter = configFile.getSectionIterator();
                 Ogre::String archiveName, sectionName, typeName;
@@ -130,7 +144,7 @@ namespace Ill
                 BOOST_ASSERT( m_pOgreRoot != NULL );
 
                 // Create the scene manager based on assigned properties.
-                m_pOgreSceneManager = m_pOgreRoot->createSceneManager( Ogre::SceneTypeMask( OgreConvert::SceneType(m_DefaultSceneType) ), m_DefaultSceneInstanceName );
+                m_pOgreSceneManager = m_pOgreRoot->createSceneManager( Ogre::SceneTypeMask( OgreConvert::SceneType(m_DefaultSceneType) ), ConvertString(m_DefaultSceneInstanceName) );
             }
 
             void GrapicsSubsystem::CreateCamera()
@@ -138,7 +152,7 @@ namespace Ill
                 BOOST_ASSERT( m_pOgreSceneManager != NULL );
 
                 // Create the default camera that will be used to render the scene
-                m_pOgreCamera = m_pOgreSceneManager->createCamera( m_DefaultCameraName );
+                m_pOgreCamera = m_pOgreSceneManager->createCamera( ConvertString(m_DefaultCameraName) );
             }
 
             void GrapicsSubsystem::SetupCamera()
@@ -179,6 +193,7 @@ namespace Ill
             {
                 Super::GetProperties( properties );
 
+                properties.GetValue( "GraphicsLibName", m_GraphicsLibName );
                 properties.GetValue( "PluginFilename", m_PluginFilename );
                 properties.GetValue( "ConfigFilename", m_ConfigFilename );
                 properties.GetValue( "ResourceFilename", m_ResourceFilename );

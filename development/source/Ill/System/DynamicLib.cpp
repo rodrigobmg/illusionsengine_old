@@ -20,7 +20,7 @@ namespace Ill
 {
     namespace System
     {
-        DynamicLib::DynamicLib( const std::string& libName )
+        DynamicLib::DynamicLib( const String& libName )
             : m_LibName( libName )
             , m_hInst ( NULL )
         {}
@@ -33,7 +33,7 @@ namespace Ill
 
         void DynamicLib::Load()
         {
-            std::string name = m_LibName;
+            String name = m_LibName;
 
 #if ILL_PLATFORM == ILL_PLATFORM_LINUX
             // dlopen() does not add .so to the filename, like windows does for .dll
@@ -47,7 +47,7 @@ namespace Ill
             if( !m_hInst ) 
             {
                 std::string msg;
-                msg = std::string( "Could not load dynamic library " ) + m_LibName + std::string( ". System Error: " ) + GetDynamicLibError();
+                msg = std::string( "Could not load dynamic library " ) + ConvertString(m_LibName) + std::string( ". System Error: " ) + GetDynamicLibError();
                 throw std::exception( msg.c_str() ); // TODO: Create a more elaborate exception classes to store more information.
             }
         }
@@ -57,16 +57,16 @@ namespace Ill
             if( DYNLIB_UNLOAD( m_hInst ) )
             {
                 std::string msg;
-                msg = std::string( "Could not unload dynamic library " ) + m_LibName + std::string( ". System Error: " ) + GetDynamicLibError();
+                msg = std::string( "Could not unload dynamic library " ) + ConvertString(m_LibName) + std::string( ". System Error: " ) + GetDynamicLibError();
                 throw std::exception(msg.c_str()); // TODO: Create a more elaborate exception classes to store more information and can accept wide character strings in UNICODE mode!.
             }
             m_hInst = NULL;
         }
 
-        void* DynamicLib::GetSymbol( const std::string& strName ) const throw()
+        void* DynamicLib::GetSymbol( const String& strName ) const throw()
         {
             BOOST_ASSERT( m_hInst != NULL );
-            return (void*)DYNLIB_GETSYM( m_hInst, strName.c_str() );
+            return (void*)DYNLIB_GETSYM( m_hInst, ConvertString(strName).c_str() );
         }
 
         std::string DynamicLib::GetDynamicLibError( void ) 
@@ -93,7 +93,7 @@ namespace Ill
 #elif ILL_PLATFORM == ILL_PLATFORM_APPLE
             return std::string(mac_errorBundle());
 #else
-            return std::string( TEXT("") );
+            return std::string( "" );
 #endif
         }
 

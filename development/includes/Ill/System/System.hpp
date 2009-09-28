@@ -5,6 +5,8 @@
 #ifndef ILL_SYSTEM_HPP
 #define ILL_SYSTEM_HPP
 
+#include <Ill/System/Platform.hpp>
+#include <Ill/System/SystemTypes.hpp>
 #include <Ill/System/NoCopyObject.hpp>
 #include <Ill/System/RefCountedObject.hpp>
 #include <Ill/System/Object.hpp>

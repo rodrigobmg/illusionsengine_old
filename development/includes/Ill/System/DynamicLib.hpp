@@ -5,7 +5,7 @@
 
 #if ILL_PLATFORM == ILL_PLATFORM_WIN32
 #    define DYNLIB_HANDLE hInstance
-#    define DYNLIB_LOAD( a ) LoadLibraryExA( a, NULL, LOAD_WITH_ALTERED_SEARCH_PATH )
+#    define DYNLIB_LOAD( a ) LoadLibraryEx( a, NULL, LOAD_WITH_ALTERED_SEARCH_PATH )
 #    define DYNLIB_GETSYM( a, b ) GetProcAddress( a, b )
 #    define DYNLIB_UNLOAD( a ) !FreeLibrary( a )
 
@@ -33,7 +33,7 @@ namespace Ill
         {
         public:
             CLASS(DynamicLib,Object);
-            CONSTRUCTOR(public,DynamicLib,( const std::string& libName ) );
+            CONSTRUCTOR(public,DynamicLib,( const String& libName ) );
             /**
              * Default destructor
              */
@@ -53,7 +53,7 @@ namespace Ill
              * Gets the address of a particular symbol defined in the Dynamic Library.
              * The symbol must be exported for the symbol to be found in the library.
              */
-            void* GetSymbol( const std::string& symbolName ) const throw();
+            void* GetSymbol( const String& symbolName ) const throw();
 
         protected:
 
@@ -64,24 +64,24 @@ namespace Ill
             std::string GetDynamicLibError();
 
             // The name of the library to load.
-            std::string m_LibName;
+            String m_LibName;
             // Handle to the loaded library.
             DYNLIB_HANDLE   m_hInst;
 
         private:
             // Private getters and setters for the properties.
-            const std::string& get_LibName() const
+            const String& get_LibName() const
             {
                 return m_LibName;
             }
-            void set_LibName( const std::string& libName )
+            void set_LibName( const String& libName )
             {
                 // Throw an exception that this variable should not be set.
                 throw std::exception("ReadOnlyError: DynamicLib::LibName can only be set in the constructor.");
             }
 
         public:
-            PROPERTY( const std::string&, LibName );
+            PROPERTY( const String&, LibName );
         };
     }
 }

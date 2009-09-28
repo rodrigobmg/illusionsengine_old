@@ -27,6 +27,8 @@ namespace Ill
     {
         namespace Graphics
         {
+            class GraphicsRenderer;
+
             class GrapicsSubsystem : public Ill::System::Subsystem
             {
             public:
@@ -122,38 +124,47 @@ namespace Ill
 
             private:
                 // Getters and setters for property types
-                const std::string& get_PluginFilename() const
+                const String& get_GraphicsLibName() const
+                {
+                    return m_GraphicsLibName;
+                }
+                void set_GraphicsLibName( const String& libName )
+                {
+                    m_GraphicsLibName = libName;
+                }
+
+                const String& get_PluginFilename() const
                 {
                     return m_PluginFilename;
                 }
-                void set_PluginFilename( const std::string& pluginFilename )
+                void set_PluginFilename( const String& pluginFilename )
                 {
                     m_PluginFilename = pluginFilename;
                 }
 
-                const std::string& get_ConfigFilename() const
+                const String& get_ConfigFilename() const
                 {
                     return m_ConfigFilename;
                 }
-                void set_ConfigFilename( const std::string& configFilename )
+                void set_ConfigFilename( const String& configFilename )
                 {
                     m_ConfigFilename = configFilename;
                 }
 
-                const std::string& get_ResourceFilename() const
+                const String& get_ResourceFilename() const
                 {
                     return m_ResourceFilename;
                 }
-                void set_ResourceFilename( const std::string& resourceFilename )
+                void set_ResourceFilename( const String& resourceFilename )
                 {
                     m_ResourceFilename = resourceFilename;
                 }
 
-                const std::string& get_LogFilename() const
+                const String& get_LogFilename() const
                 {
                     return m_LogFilename;
                 }
-                void set_LogFilename( const std::string& logFilename )
+                void set_LogFilename( const String& logFilename )
                 {
                     m_LogFilename = logFilename;
                 }
@@ -167,34 +178,36 @@ namespace Ill
                     m_DefaultSceneType = defaultSceneType;
                 }
 
-                const std::string& get_DefaultSceneInstanceName() const
+                const String& get_DefaultSceneInstanceName() const
                 {
                     return m_DefaultSceneInstanceName;
                 }
-                void set_DefaultSceneInstanceName( const std::string& defaultSceneInstanceName )
+                void set_DefaultSceneInstanceName( const String& defaultSceneInstanceName )
                 {
                     m_DefaultSceneInstanceName = defaultSceneInstanceName;
                 }
 
-                const std::string& get_DefaultCameraName() const
+                const String& get_DefaultCameraName() const
                 {
                     return m_DefaultCameraName;
                 }
-                void set_DefaultCameraName( const std::string& cameraName )
+                void set_DefaultCameraName( const String& cameraName )
                 {
                     m_DefaultCameraName = cameraName;
                 }
 
                 // Data members
-                std::string     m_ConfigFilename;
-                std::string     m_ResourceFilename;
-                std::string     m_PluginFilename;
-                std::string     m_LogFilename;
+                // The name of graphics library that is used to load the graphics renderer.
+                String      m_GraphicsLibName;
+                String      m_ConfigFilename;
+                String      m_ResourceFilename;
+                String      m_PluginFilename;
+                String      m_LogFilename;
 
-                std::string     m_DefaultSceneInstanceName;
-                SceneType       m_DefaultSceneType;
+                String      m_DefaultSceneInstanceName;
+                SceneType   m_DefaultSceneType;
 
-                std::string     m_DefaultCameraName;
+                String      m_DefaultCameraName;
 
 
                 Ogre::Root*         m_pOgreRoot;
@@ -208,15 +221,16 @@ namespace Ill
                 // Define properties at the bottom of the class to avoid VAssistX getting confused and hiding 
                 // my member variables from using code-completion.
 
-                PROPERTY(const std::string&, PluginFilename );
-                PROPERTY(const std::string&, ConfigFilename );
-                PROPERTY(const std::string&, ResourceFilename );
-                PROPERTY(const std::string&, LogFilename );
+                PROPERTY(const String&,  GraphicsLibName );
+                PROPERTY(const String&, PluginFilename );
+                PROPERTY(const String&, ConfigFilename );
+                PROPERTY(const String&, ResourceFilename );
+                PROPERTY(const String&, LogFilename );
 
                 PROPERTY( SceneType, DefaultSceneType );
-                PROPERTY( const std::string&, DefaultSceneInstanceName );
+                PROPERTY( const String&, DefaultSceneInstanceName );
 
-                PROPERTY( const std::string&, DefaultCameraName );
+                PROPERTY( const String&, DefaultCameraName );
             };
 
             typedef boost::intrusive_ptr<GrapicsSubsystem> GraphicsSubsystemPtr;

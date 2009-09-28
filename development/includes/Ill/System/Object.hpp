@@ -28,8 +28,6 @@ namespace Ill
 			CLASS(Object,RefCountedObject);
 			CONSTRUCTOR(public,Object,() );
 
-            PROPERTY( const std::string&, Name );
-
 			// TODO: Implement object serialization methods (see boost/Serialization)
 		protected:
 		private:
@@ -41,6 +39,8 @@ namespace Ill
             // Data members
             std::string     m_Name;
 
+        public:
+            PROPERTY( const std::string&, Name );
 
 		};
 

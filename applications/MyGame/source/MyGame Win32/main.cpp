@@ -1,5 +1,5 @@
 #include <PrecompiledHeader.hpp>
-#include <SDL.h>
+#include <SDL_main.h>
 
 // Include the game library.
 #include <Ill/Game/Game.hpp>
@@ -20,6 +20,9 @@ void InstantiateTypes()
 // Gloabals
 Ill::Game::GameApplicationPtr g_pGameApp;
 
+// Typedefs
+typedef Ill::System::String String;
+
 int main( int argc, char* argv[] )
 {
     InstantiateTypes();
@@ -33,15 +36,18 @@ int main( int argc, char* argv[] )
     Ill::System::PropertyMap gameOptions;
 
 #ifdef _DEBUG
-    gameOptions.AddValue( "PluginFilename", std::string("../Configuration/Plugins_Debug.cfg") );
+    gameOptions.AddValue( "PluginFilename", String( TEXT("../Configuration/Plugins_Debug.cfg") ) );
+    gameOptions.AddValue( "GraphicsLibName", String( TEXT("Ill.System.OgreGraphics_d") ) );
 #else
-    gameOptions.AddValue(  "PluginFilename", std::string("../Configuration/Plugins.cfg") );
+    gameOptions.AddValue( "PluginFilename", String( TEXT("../Configuration/Plugins.cfg") ) );
+    gameOptions.AddValue( "GraphicsLibName", String( TEXT("Ill.System.OgreGraphics") ) );
 #endif
 
-    gameOptions.AddValue( "ConfigFilename", std::string("../Configuration/ogre.cfg") );
-    gameOptions.AddValue( "ResourceFilename", std::string("../Configuration/resources.cfg") );
-    gameOptions.AddValue( "LogFilename", std::string("../Logs/Ogre.log") );
-    gameOptions.AddValue( "DefaultSceneInstanceName", std::string("MyGameSceneInstance") );
+    gameOptions.AddValue( "ConfigFilename", String( TEXT("../Configuration/ogre.cfg") ) );
+    gameOptions.AddValue( "ResourceFilename", String( TEXT("../Configuration/resources.cfg") ) );
+    gameOptions.AddValue( "LogFilename", String( TEXT("../Logs/Ogre.log") ) );
+    gameOptions.AddValue( "DefaultSceneInstanceName", String( TEXT("MyGameSceneInstance") ) );
+
 
     // Create the game application class
     g_pGameApp = new Ill::Game::GameApplication();
@@ -50,6 +56,7 @@ int main( int argc, char* argv[] )
     g_pGameApp->ParseConfigurations( argc, argv, gameOptions );
 
     // Register subsystems
+    g_pGameApp->RegisterSubsystem( Class::forName( "class Ill::System::DynamicLibSubsystem") );
     g_pGameApp->RegisterSubsystem( Class::forName( "class Ill::System::Graphics::GrapicsSubsystem" ) );
 
     g_pGameApp->StartUp( gameOptions );

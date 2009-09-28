@@ -162,6 +162,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\source\Ill\System\Graphics\GraphicsRenderer.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\source\Ill\System\Graphics\GraphicsSubsystem.cpp"
 				>
 			</File>

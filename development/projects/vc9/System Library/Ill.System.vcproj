@@ -168,6 +168,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\source\Ill\System\DynamicLibSubsystem.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\source\Ill\System\NoCopyObject.cpp"
 				>
 			</File>
@@ -209,6 +213,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\source\Ill\System\System.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\source\Ill\System\SystemTypes.cpp"
 				>
 			</File>
 		</Filter>

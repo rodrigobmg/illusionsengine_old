@@ -12,11 +12,12 @@ namespace Ill
 {
     namespace System
     {
-        class _IllExport DynamicLibSubsystem : public Subsystem
+        class DynamicLibSubsystem : public Subsystem
         {
         public:
             CLASS(DynamicLibSubsystem,Subsystem);
             CONSTRUCTOR(public,DynamicLibSubsystem,());
+            virtual ~DynamicLibSubsystem();
 
             /**
             * Startup
@@ -32,7 +33,7 @@ namespace Ill
              * Loads a .DLL or an .SO by filename.
              * @returns a pointer to the loaded lib, or a NULL pointer if the lib can't be loaded.
              */
-            VIRTUAL_METHOD(public, DynamicLib*, Load,( const std::string& libName ) );
+            VIRTUAL_METHOD(public, DynamicLib*, Load,( const String& libName ) );
 
             /**
              * Unloads a dynamic loaded lib
@@ -40,8 +41,8 @@ namespace Ill
             VIRTUAL_METHOD(public,void,Unload, ( DynamicLib* lib ) );
 
         private:
-
-
+            typedef std::map<String, DynamicLib* > LibList;
+            LibList     m_LibList;
         };
     }
 }
