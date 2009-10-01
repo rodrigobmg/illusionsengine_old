@@ -63,6 +63,11 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SDLmain", "..\..\external\SDL-1.2.13\VisualC\SDLmain\SDLmain.vcproj", "{DA956FD3-E142-46F2-9DD5-C78BEBB56B7A}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ill.System.OgreGraphics", "System Library\Ill.System.OgreGraphics.vcproj", "{412E4C3A-0500-4849-BD43-5EE472100582}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0586457C-9061-4054-97A1-058B235EEB77} = {0586457C-9061-4054-97A1-058B235EEB77}
+		{A41A3F85-F15D-4AD5-8531-B1787DFFEE5D} = {A41A3F85-F15D-4AD5-8531-B1787DFFEE5D}
+		{35AFBABB-DF05-43DE-91A7-BB828A874015} = {35AFBABB-DF05-43DE-91A7-BB828A874015}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

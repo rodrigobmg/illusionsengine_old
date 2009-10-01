@@ -7,6 +7,7 @@
 
 #include <Ill/System/Subsystem.hpp>
 #include <Ill/System/DynamicLib.hpp>
+// #include <Ill/System/Singleton.hpp>
 
 namespace Ill
 {
@@ -18,6 +19,11 @@ namespace Ill
             CLASS(DynamicLibSubsystem,Subsystem);
             CONSTRUCTOR(public,DynamicLibSubsystem,());
             virtual ~DynamicLibSubsystem();
+
+			/**
+			 * Get a reference to our singleton instance.
+			 */
+			STATIC_METHOD( public, DynamicLibSubsystem&, GetSingleton, () );
 
             /**
             * Startup
@@ -43,6 +49,8 @@ namespace Ill
         private:
             typedef std::map<String, DynamicLib* > LibList;
             LibList     m_LibList;
+
+			static DynamicLibSubsystem* ms_Singleton;
         };
     }
 }

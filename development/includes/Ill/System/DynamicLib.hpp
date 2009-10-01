@@ -74,7 +74,7 @@ namespace Ill
             {
                 return m_LibName;
             }
-            void set_LibName( const String& libName )
+            void set_LibName( const String& )
             {
                 // Throw an exception that this variable should not be set.
                 throw std::exception("ReadOnlyError: DynamicLib::LibName can only be set in the constructor.");

@@ -37,10 +37,10 @@ int main( int argc, char* argv[] )
 
 #ifdef _DEBUG
     gameOptions.AddValue( "PluginFilename", String( TEXT("../Configuration/Plugins_Debug.cfg") ) );
-    gameOptions.AddValue( "GraphicsLibName", String( TEXT("Ill.System.OgreGraphics_d") ) );
+    gameOptions.AddValue( "GraphicsLibName", String( TEXT("Ill.System.OgreGraphics_d.dll") ) );
 #else
     gameOptions.AddValue( "PluginFilename", String( TEXT("../Configuration/Plugins.cfg") ) );
-    gameOptions.AddValue( "GraphicsLibName", String( TEXT("Ill.System.OgreGraphics") ) );
+    gameOptions.AddValue( "GraphicsLibName", String( TEXT("Ill.System.OgreGraphics.dll") ) );
 #endif
 
     gameOptions.AddValue( "ConfigFilename", String( TEXT("../Configuration/ogre.cfg") ) );
@@ -59,10 +59,15 @@ int main( int argc, char* argv[] )
     g_pGameApp->RegisterSubsystem( Class::forName( "class Ill::System::DynamicLibSubsystem") );
     g_pGameApp->RegisterSubsystem( Class::forName( "class Ill::System::Graphics::GrapicsSubsystem" ) );
 
-    g_pGameApp->StartUp( gameOptions );
-
-    // Kick-off the game application
-    g_pGameApp->Run();
+    if ( g_pGameApp->StartUp( gameOptions ) )
+	{
+		// Kick-off the game application
+		g_pGameApp->Run();
+	}
+	else
+	{
+		std::cerr << "The application failed to start... Shutting down." << std::endl;
+	}
     
     g_pGameApp->Shutdown();
 

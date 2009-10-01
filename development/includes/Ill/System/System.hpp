@@ -7,6 +7,7 @@
 
 #include <Ill/System/Platform.hpp>
 #include <Ill/System/SystemTypes.hpp>
+#include <Ill/System/Singleton.hpp>
 #include <Ill/System/NoCopyObject.hpp>
 #include <Ill/System/RefCountedObject.hpp>
 #include <Ill/System/Object.hpp>
@@ -14,6 +15,8 @@
 #include <Ill/System/Component.hpp>
 #include <Ill/System/Subsystem.hpp>
 #include <Ill/System/Application.hpp>
+#include <Ill/System/DynamicLib.hpp>
+#include <Ill/System/DynamicLibSubsystem.hpp>
 
 namespace Ill
 {

@@ -282,6 +282,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\includes\Ill\System\Singleton.hpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\includes\Ill\System\Subsystem.hpp"
 				>
 			</File>

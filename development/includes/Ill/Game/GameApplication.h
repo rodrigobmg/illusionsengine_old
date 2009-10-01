@@ -14,7 +14,7 @@ namespace Ill
 {
     namespace Game
     {
-        class GameApplication : public Ill::System::Application
+		class GameApplication : public Ill::System::Application
         {
         public:
             CLASS( GameApplication, Ill::System::Application );

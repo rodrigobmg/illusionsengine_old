@@ -38,7 +38,17 @@ namespace Ill
                 // Populate our properties from our startup options.
                 GetProperties( startupOptions );
            
-                
+				Ill::System::DynamicLibSubsystem& dynLibMgr = Ill::System::DynamicLibSubsystem::GetSingleton();
+				Ill::System::DynamicLib* dynLib = NULL;
+				try
+				{
+					dynLib = dynLibMgr.Load( m_GraphicsLibName );
+				}
+				catch ( std::exception& exp )
+				{
+					std::cerr << "Could not load graphics lib: " << ConvertString( m_GraphicsLibName ) << exp.what() << std::endl;
+//					return false;
+				}
 
                 // Create our ogre root object
                 m_pOgreRoot = OGRE_NEW Ogre::Root( ConvertString(m_PluginFilename), ConvertString(m_ConfigFilename), ConvertString(m_LogFilename) );

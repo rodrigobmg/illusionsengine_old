@@ -11,7 +11,9 @@ namespace Ill
 		{}
 
 		Application::~Application()
-		{}
+		{
+			BOOST_ASSERT( m_Subsystems.empty() );
+		}
 
 		bool Application::ParseConfigurations( int argc, char* argv[], PropertyMap& options )
 		{
@@ -52,7 +54,11 @@ namespace Ill
 				Subsystem* subsystem = (*iter);
 				BOOST_ASSERT( subsystem != NULL );
 
-				subsystem->Startup( options );
+				if ( !subsystem->Startup( options ) )
+				{
+					// Our subsystem failed to start...
+					return false;
+				}
 
 				++iter;
 			}

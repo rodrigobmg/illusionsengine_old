@@ -11,13 +11,26 @@ namespace Ill
 {
     namespace System
     {
+		DynamicLibSubsystem* DynamicLibSubsystem::ms_Singleton = NULL;
+
         DynamicLibSubsystem::DynamicLibSubsystem()
-        {}
+        {
+			BOOST_ASSERT( ms_Singleton == NULL );
+			ms_Singleton = this;
+		}
 
         DynamicLibSubsystem::~DynamicLibSubsystem()
         {
             BOOST_ASSERT( m_LibList.empty() );
+			BOOST_ASSERT( ms_Singleton != NULL );
+			ms_Singleton = NULL;
         }
+
+		DynamicLibSubsystem& DynamicLibSubsystem::GetSingleton()
+		{
+			BOOST_ASSERT( ms_Singleton != NULL );
+			return *ms_Singleton;
+		}
 
         bool DynamicLibSubsystem::Startup( const PropertyMap& startupOptions )
         {
@@ -61,15 +74,17 @@ namespace Ill
 
         void DynamicLibSubsystem::Unload( DynamicLib* lib )
         {
-            BOOST_ASSERT( lib != NULL );
-            LibList::iterator iter = m_LibList.find( lib->LibName );
-            if ( iter != m_LibList.end() )
-            {
-                m_LibList.erase( iter );
-            }
+			if ( lib != NULL )
+			{
+				LibList::iterator iter = m_LibList.find( lib->LibName );
+				if ( iter != m_LibList.end() )
+				{
+					m_LibList.erase( iter );
+				}
 
-            lib->Unload();
-            delete lib;
+				lib->Unload();
+				delete lib;
+			}
         }
 
     }
