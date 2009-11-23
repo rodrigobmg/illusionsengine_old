@@ -7,4 +7,7 @@
 
 #include <wx/wx.h>
 
+// System types
+#include <Ill/System/System.hpp>
+
 #endif

@@ -1,5 +1,5 @@
 /**
- * @file GraphicsTypes.h
+ * @file GraphicsTypes.hpp
  * @date September 24, 2009
  *
  * Types that are used by the graphics system.

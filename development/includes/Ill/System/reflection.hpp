@@ -763,7 +763,7 @@ template <class C, class T> struct __property__ : public __property_handler__<T>
 //declares a method
 #define __METHOD__(ACCESS_ATTR, VIRTUAL, RETURN_TYPE, METHOD_NAME, METHOD_ARGS, LINE)\
 private:\
-    struct REF_JOIN(__method_##METHOD_NAME##__,LINE) {\
+    struct _IllExport REF_JOIN(__method_##METHOD_NAME##__,LINE) {\
         REF_JOIN(__method_##METHOD_NAME##__,LINE) () {\
             typedef RETURN_TYPE (ClassType::*method_ptr_type) METHOD_ARGS;\
  method_ptr_type method_ptr = & ClassType::METHOD_NAME; \
@@ -1236,7 +1236,7 @@ _CONSTRUCTOR_LINE(ACCESS_ATTR, CLASS_NAME *, CLASS_NAME, METHOD_ARGS, NUM)
 		    
 #define _CONSTRUCTOR_LINE(ACCESS_ATTR, RETURN_TYPE, CLASS_NAME, METHOD_ARGS, LINE)\
 private:\
-    struct REF_JOIN(__constructor_##CLASS_NAME##__,LINE) {\
+    struct _IllExport REF_JOIN(__constructor_##CLASS_NAME##__,LINE) {\
         REF_JOIN(__constructor_##CLASS_NAME##__,LINE) () {\
             typedef RETURN_TYPE (*new_instance_fun_ptr) METHOD_ARGS;\
             new_instance_fun_ptr fun_ptr = & ClassType :: __new_instance__;\
@@ -1261,7 +1261,7 @@ ACCESS_ATTR :\
  */
 #define PROPERTY(TYPE, NAME)\
 private:\
-    template <class T> class __property__##NAME {\
+    template <class T> class _IllExport __property__##NAME {\
     public:\
         typedef __property__##NAME<T> Type;\
         __property__##NAME<T>() {\

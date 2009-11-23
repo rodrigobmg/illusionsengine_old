@@ -42,7 +42,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="..\..\..\includes;&quot;..\..\..\external\ogre-v1-6-3\OgreMain\include&quot;"
-				PreprocessorDefinitions="WIN32;_DEBUG;_LIB"
+				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;ILL_STATIC_LIB"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -110,7 +110,7 @@
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
 				AdditionalIncludeDirectories="..\..\..\includes;&quot;..\..\..\external\ogre-v1-6-3\OgreMain\include&quot;"
-				PreprocessorDefinitions="WIN32;NDEBUG;_LIB"
+				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;ILL_STATIC_LIB"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="2"
@@ -208,7 +208,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\includes\Ill\System\Graphics\GraphicsTypes.h"
+				RelativePath="..\..\..\includes\Ill\System\Graphics\GraphicsTypes.hpp"
 				>
 			</File>
 			<File

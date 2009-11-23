@@ -6,9 +6,14 @@
 
 #include <Ill/System/Graphics/PrecompiledHeader.hpp>
 #include <Ill/System/Graphics/GraphicsSubsystem.hpp>
+#include <Ill/System/Graphics/GraphicsRenderer.hpp>
 
 // Private includes
 #include "GraphicsUtils.hpp"
+
+// Define a function that will be used to get a pointer to our graphics renderer implementation.
+typedef Ill::System::Graphics::GraphicsRenderer* (*GET_RENDERER_FUNC)(void);
+typedef void (*DESTROY_RENDERER_FUNC)(void);
 
 namespace Ill
 {
@@ -43,6 +48,17 @@ namespace Ill
 				try
 				{
 					dynLib = dynLibMgr.Load( m_GraphicsLibName );
+                    GET_RENDERER_FUNC pFunc = (GET_RENDERER_FUNC)dynLib->GetSymbol( TEXT("GetGraphicsRenderer") );
+
+                    if ( pFunc != NULL )
+                    {
+                        m_pGraphicsRenderer = pFunc();
+
+                        BOOST_ASSERT( m_pGraphicsRenderer != NULL );
+
+                        m_pGraphicsRenderer->GetProperties( startupOptions );
+                        m_pGraphicsRenderer->Initialize();
+                    }
 				}
 				catch ( std::exception& exp )
 				{
@@ -50,34 +66,34 @@ namespace Ill
 //					return false;
 				}
 
-                // Create our ogre root object
-                m_pOgreRoot = OGRE_NEW Ogre::Root( ConvertString(m_PluginFilename), ConvertString(m_ConfigFilename), ConvertString(m_LogFilename) );
+                //// Create our ogre root object
+                //m_pOgreRoot = OGRE_NEW Ogre::Root( ConvertString(m_PluginFilename), ConvertString(m_ConfigFilename), ConvertString(m_LogFilename) );
 
-                // Setup the resource paths
-                SetupResourcesPaths();
+                //// Setup the resource paths
+                //SetupResourcesPaths();
             
-                // Load the configuration options
-                if ( !ConfigureRenderer() )
-                {
-                    // startup for this subsystem failed.
-                    // Either throw an exception, or return false.
-                    // The rest of the game should not start but instead show
-                    // some kind of dialog box that describes the problem.
-                    return false;
-                }
-                
-                CreateRenderWindow();
-                CreateSceneManager();
-                CreateCamera();
-                SetupCamera();
-                CreateViewport();
+                //// Load the configuration options
+                //if ( !ConfigureRenderer() )
+                //{
+                //    // startup for this subsystem failed.
+                //    // Either throw an exception, or return false.
+                //    // The rest of the game should not start but instead show
+                //    // some kind of dialog box that describes the problem.
+                //    return false;
+                //}
+                //
+                //CreateRenderWindow();
+                //CreateSceneManager();
+                //CreateCamera();
+                //SetupCamera();
+                //CreateViewport();
 
-                // Set default mipmap level (NB some APIs ignore this)
-                Ogre::TextureManager::getSingleton().setDefaultNumMipmaps(5);
+                //// Set default mipmap level (NB some APIs ignore this)
+                //Ogre::TextureManager::getSingleton().setDefaultNumMipmaps(5);
 
-                CreateResourceListener();
-                LoadResources();
-                CreateScene();
+                //CreateResourceListener();
+                //LoadResources();
+                //CreateScene();
 
                 return true;
 
@@ -90,16 +106,29 @@ namespace Ill
                 OGRE_DELETE m_pOgreRoot;
                 m_pOgreRoot = NULL;
 
+                Ill::System::DynamicLibSubsystem& dynLibMgr = Ill::System::DynamicLibSubsystem::GetSingleton();
+                Ill::System::DynamicLib* dynLib = NULL;
+
+                try
+                {
+                    dynLib = dynLibMgr.Load( m_GraphicsLibName );
+                    DESTROY_RENDERER_FUNC pFunc = (DESTROY_RENDERER_FUNC)dynLib->GetSymbol( TEXT("DestroyGraphicsRenderer") );
+                    if ( pFunc != NULL )
+                    {
+                        pFunc();
+                    }
+                }
+                catch ( std::exception& exp )
+                {
+                    std::cerr << "Could not destroy graphics lib: " << ConvertString( m_GraphicsLibName ) << exp.what() << std::endl;
+                }
+
+
                 return true;
             }
 
             GraphicsRenderer* GrapicsSubsystem::GetGraphicsRenderer()
             {
-                if ( m_pGraphicsRenderer == NULL )
-                {
-                    // Need a way to get to the DynamicLibSubsystem (singletons!)
-                }
-
                 return m_pGraphicsRenderer;
             }
 

@@ -23,7 +23,7 @@ namespace Ill
 {
 	namespace System
 	{
-		class NoCopyObject
+		class _IllExport NoCopyObject
 		{
 		public:
 			CLASS(NoCopyObject,NullClass);

@@ -4,4 +4,7 @@
 // Math types
 #include <gmtl/gmtl.h>
 
+// System types
+#include <Ill/System/System.hpp>
+
 #endif

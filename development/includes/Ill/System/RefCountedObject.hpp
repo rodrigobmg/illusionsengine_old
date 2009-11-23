@@ -23,7 +23,7 @@ namespace Ill
 {
 	namespace System
 	{
-		class RefCountedObject : public NoCopyObject
+		class _IllExport RefCountedObject : public NoCopyObject
 		{
 		public:
 			CLASS(RefCountedObject,NoCopyObject);

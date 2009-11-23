@@ -108,7 +108,7 @@ namespace Ill
 #   	define _IllExport
 #   	define _IllPrivate
 #   else
-#   	if defined( ILL_NONCLIENT_BUILD )
+#   	if defined( ILL_EXPORT )
 #       	define _IllExport __declspec( dllexport )
 #   	else
 #           if defined( __MINGW32__ )

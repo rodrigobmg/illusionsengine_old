@@ -66,7 +66,7 @@ namespace Ill
             }
 
             DynamicLib* pLib = new DynamicLib( libName );
-            pLib ->Load();
+            pLib->Load();
             m_LibList.insert( LibList::value_type( libName, pLib ) );
 
             return pLib;
