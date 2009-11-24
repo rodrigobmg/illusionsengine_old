@@ -182,7 +182,7 @@ namespace Ill
                 BOOST_ASSERT( m_pRenderWindow != NULL && m_pOgreCamera != NULL );
 
                 Ogre::Viewport* vp = m_pRenderWindow->addViewport( m_pOgreCamera );
-                vp->setBackgroundColour( Ogre::ColourValue(0.0f, 0.0f, 0.0f, 0.0f) );
+                vp->setBackgroundColour( Ogre::ColourValue(1.0f, 0.0f, 0.0f, 0.0f) );
 
                 // Modify the camera's aspect ratio to match the viewport's actual dimensions
                 m_pOgreCamera->setAspectRatio( Ogre::Real(vp->getActualWidth()) / Ogre::Real(vp->getActualHeight()) );

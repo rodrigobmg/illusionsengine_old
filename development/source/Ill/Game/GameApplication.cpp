@@ -13,7 +13,6 @@ namespace Ill
     namespace Game
     {
         GameApplication::GameApplication()
-        {
-        }
+        {}
     }
 }

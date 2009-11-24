@@ -27,11 +27,6 @@ int main( int argc, char* argv[] )
 {
     InstantiateTypes();
 
-#ifdef _DEBUG
-    // Run a small test to see what classes the reflection system knows about.
-    TestReflection();
-#endif
-
     // A property map to store the game options.
     Ill::System::PropertyMap gameOptions;
 
@@ -72,6 +67,11 @@ int main( int argc, char* argv[] )
     g_pGameApp->Shutdown();
 
     g_pGameApp = NULL;
+
+#ifdef _DEBUG
+    // Run a small test to see what classes the reflection system knows about.
+    TestReflection();
+#endif
 
     return 0;
 }
