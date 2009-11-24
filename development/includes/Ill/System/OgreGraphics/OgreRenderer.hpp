@@ -24,10 +24,10 @@ namespace Ill
             public:
                 CLASS( OgreRenderer, Ill::System::Graphics::GraphicsRenderer );
                 CONSTRUCTOR(public,OgreRenderer,());
-                virtual ~OgreRenderer();
 
                 VIRTUAL_METHOD(public,bool,GetProperties,(const PropertyMap& properties));
                 VIRTUAL_METHOD(public,bool,Initialize,());
+                VIRTUAL_METHOD(public,bool,Terminate,());
 
             protected:
                 /**

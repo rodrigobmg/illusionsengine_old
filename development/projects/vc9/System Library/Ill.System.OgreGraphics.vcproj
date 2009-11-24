@@ -185,6 +185,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\source\Ill\System\OgreGraphics\OgreGraphics.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\source\Ill\System\OgreGraphics\OgreRenderer.cpp"
 				>
 			</File>

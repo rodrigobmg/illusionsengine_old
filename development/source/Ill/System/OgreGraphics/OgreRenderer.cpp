@@ -19,6 +19,7 @@ extern "C" _IllExport void DestroyGraphicsRenderer()
 {
     if ( gs_GraphicsRenderer != NULL )
     {
+        gs_GraphicsRenderer->Terminate();
         delete gs_GraphicsRenderer;
     }
 }
@@ -40,15 +41,7 @@ namespace Ill
                 , m_pOgreCamera( NULL )
                 , m_pOgreSceneManager( NULL )
                 , m_pRenderWindow( NULL )
-            {
-                std::cout << "OgreRenderer::OgreRenderer" << std::endl;
-            }
-
-            OgreRenderer::~OgreRenderer()
-            {
-                OGRE_DELETE m_pOgreRoot;
-                m_pOgreRoot = NULL;
-            }
+            {}
 
             bool OgreRenderer::GetProperties(const PropertyMap& properties)
             {
@@ -98,6 +91,16 @@ namespace Ill
 
                 return true;
 
+            }
+
+            bool OgreRenderer::Terminate()
+            {
+                if ( m_pOgreRoot != NULL )
+                {
+                    OGRE_DELETE m_pOgreRoot;
+                    m_pOgreRoot = NULL;
+                }
+                return true;
             }
 
             void OgreRenderer::SetupResourcesPaths()

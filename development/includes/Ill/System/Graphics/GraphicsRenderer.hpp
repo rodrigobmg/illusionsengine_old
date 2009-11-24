@@ -32,6 +32,11 @@ namespace Ill
                  */
                 VIRTUAL_METHOD(public,bool,Initialize,()) = 0;
 
+                /**
+                 * Terminiate the graphics renderer.  Cleanup any memory used by the renderer
+                 * in this method.
+                 */
+                VIRTUAL_METHOD(public,bool,Terminate,()) = 0;
 
             protected:
                 

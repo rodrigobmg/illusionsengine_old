@@ -10,7 +10,7 @@
 #define ILL_SYSTEM_GRAPHICS_GRAPHICSSUBSYSTEM_HPP
 
 #include <Ill/System/Subsystem.hpp>
-#include <Ill/System/Graphics/GraphicsTypes.h>
+#include <Ill/System/Graphics/GraphicsTypes.hpp>
 
 // Forward-declaration of Ogre types
 namespace Ogre
