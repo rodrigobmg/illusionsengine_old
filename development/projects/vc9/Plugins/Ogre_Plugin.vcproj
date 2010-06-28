@@ -48,7 +48,7 @@
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderThrough="Ill/System/OgreGraphics/PrecompiledHeader.hpp"
+				PrecompiledHeaderThrough="Plugins/Ogre_Plugin/PrecompiledHeader.hpp"
 				WarningLevel="3"
 				DebugInformationFormat="4"
 			/>
@@ -125,7 +125,7 @@
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderThrough="Ill/System/OgreGraphics/PrecompiledHeader.hpp"
+				PrecompiledHeaderThrough="Plugins/Ogre_Plugin/PrecompiledHeader.hpp"
 				WarningLevel="3"
 				DebugInformationFormat="3"
 			/>
@@ -195,6 +195,22 @@
 			<File
 				RelativePath="..\..\..\source\Plugins\Ogre_Plugin\PrecompiledHeader.cpp"
 				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="1"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="1"
+					/>
+				</FileConfiguration>
 			</File>
 		</Filter>
 		<Filter
