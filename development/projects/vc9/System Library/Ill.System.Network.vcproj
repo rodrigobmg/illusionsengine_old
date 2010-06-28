@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="Ill.System.Network"
+	Name="Ill.Network"
 	ProjectGUID="{0E9A605D-6A09-4303-B6E5-4044EB95D9EE}"
 	RootNamespace="IllSystem"
 	Keyword="Win32Proj"

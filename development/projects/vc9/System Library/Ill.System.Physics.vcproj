@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="Ill.System.Physics"
+	Name="Ill.Physics"
 	ProjectGUID="{820FB986-B935-4C02-AE58-44FC54FD505A}"
 	RootNamespace="IllSystemPhysics"
 	Keyword="Win32Proj"

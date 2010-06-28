@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="Ill.System.Audio"
+	Name="Ill.Audio"
 	ProjectGUID="{D7C864D8-5EE6-449B-9CA6-56B79EB08367}"
 	RootNamespace="IllSystem"
 	Keyword="Win32Proj"

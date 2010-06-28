@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="Ill.System.Graphics"
+	Name="Ill.Graphics"
 	ProjectGUID="{0586457C-9061-4054-97A1-058B235EEB77}"
 	RootNamespace="IllSystem"
 	Keyword="Win32Proj"
