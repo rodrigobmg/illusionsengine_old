@@ -1,5 +1,5 @@
-#ifndef ILL_SYSTEM_OGREGRAPHICS_PRECOMPILED_HEADER_HPP
-#define ILL_SYSTEM_OGREGRAPHICS_PRECOMPILED_HEADER_HPP
+#ifndef ILL_OGREGRAPHICS_PRECOMPILED_HEADER_HPP
+#define ILL_OGREGRAPHICS_PRECOMPILED_HEADER_HPP
 
 // STL includes
 #include <iostream>
@@ -11,6 +11,6 @@
 #pragma warning( pop )
 
 #include <Ill/System/System.hpp>
-#include <Ill/System/Graphics/Graphics.hpp>
+#include <Ill/Graphics/Graphics.hpp>
 
-#endif // ILL_SYSTEM_OGREGRAPHICS_PRECOMPILED_HEADER_HPP
+#endif // ILL_OGREGRAPHICS_PRECOMPILED_HEADER_HPP

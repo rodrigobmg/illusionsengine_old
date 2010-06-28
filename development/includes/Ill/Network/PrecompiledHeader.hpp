@@ -2,9 +2,9 @@
  * @file
  */
 
-#ifndef ILL_SYSTEM_NETWORK_PRECOMPILED_HEADER_HPP
-#define ILL_SYSTEM_NETWORK_PRECOMPILED_HEADER_HPP
+#ifndef ILL_NETWORK_PRECOMPILED_HEADER_HPP
+#define ILL_NETWORK_PRECOMPILED_HEADER_HPP
 
-#include <Ill/System/System.hpp>
+//#include <Ill/System/System.hpp>
 
 #endif

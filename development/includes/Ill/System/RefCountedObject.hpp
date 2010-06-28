@@ -1,5 +1,5 @@
-#ifndef __Ill_System_RefCountedObject_H__
-#define __Ill_System_RefCountedObject_H__
+#ifndef ILL_SYSTEM_REFCOUNTEDOBJECT_HPP
+#define ILL_SYSTEM_REFCOUNTEDOBJECT_HPP
 
 #include <Ill/System/NoCopyObject.hpp>
 
@@ -60,4 +60,4 @@ namespace Ill
 	}
 }
 
-#endif // __Ill_System_RefCountedObject_H__
+#endif // ILL_SYSTEM_REFCOUNTEDOBJECT_HPP

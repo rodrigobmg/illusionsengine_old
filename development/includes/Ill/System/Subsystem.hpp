@@ -1,5 +1,3 @@
-#ifndef __Ill_System_Subsystem_H__
-#define __Ill_System_Subsystem_H__
 /**
 * @file Subsystem.h
 * @date December 09, 2008
@@ -9,6 +7,10 @@
 * @description This class is the abstract base class for all subsystem components
 * that can be registered and managed by the Application class.
 */
+
+#ifndef ILL_SYSTEM_SUBSYSTEM_HPP
+#define ILL_SYSTEM_SUBSYSTEM_HPP
+
 #include <Ill/System/PropertyMap.hpp>
 #include <Ill/System/Object.hpp>
 
@@ -44,4 +46,4 @@ namespace Ill
 	}
 }
 
-#endif // __Ill_System_Subsystem_H__
+#endif // ILL_SYSTEM_SUBSYSTEM_HPP

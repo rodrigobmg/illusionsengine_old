@@ -18,8 +18,8 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="$(SolutionDir)..\..\libs\"
-			IntermediateDirectory="$(SolutionDir)..\..\intermediate\$(ConfigurationName)\$(ProjectName)"
+			OutputDirectory="..\..\..\libs\"
+			IntermediateDirectory="..\..\..\intermediate\$(ConfigurationName)\$(ProjectName)"
 			ConfigurationType="4"
 			CharacterSet="1"
 			>
@@ -41,13 +41,13 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="$(SolutionDir)..\..\includes"
+				AdditionalIncludeDirectories="..\..\..\includes"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;ILL_STATIC_LIB"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
-				UsePrecompiledHeader="1"
-				PrecompiledHeaderThrough="Ill/System/Network/PrecompiledHeader.hpp"
+				UsePrecompiledHeader="2"
+				PrecompiledHeaderThrough="Ill/Network/PrecompiledHeader.hpp"
 				WarningLevel="4"
 				WarnAsError="true"
 				DebugInformationFormat="4"
@@ -83,8 +83,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="$(SolutionDir)..\..\libs\"
-			IntermediateDirectory="$(SolutionDir)..\..\intermediate\$(ConfigurationName)\$(ProjectName)"
+			OutputDirectory="..\..\..\libs\"
+			IntermediateDirectory="..\..\..\intermediate\$(ConfigurationName)\$(ProjectName)"
 			ConfigurationType="4"
 			CharacterSet="1"
 			WholeProgramOptimization="1"
@@ -108,12 +108,12 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="$(SolutionDir)..\..\includes"
+				AdditionalIncludeDirectories="..\..\..\includes"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;ILL_STATIC_LIB"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
-				UsePrecompiledHeader="1"
-				PrecompiledHeaderThrough="Ill/System/Network/PrecompiledHeader.hpp"
+				UsePrecompiledHeader="2"
+				PrecompiledHeaderThrough="Ill/Network/PrecompiledHeader.hpp"
 				WarningLevel="4"
 				WarnAsError="true"
 				DebugInformationFormat="3"
@@ -156,8 +156,24 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath="..\..\..\source\Ill\System\Network\PrecompiledHeader.cpp"
+				RelativePath="..\..\..\source\Ill\Network\PrecompiledHeader.cpp"
 				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="1"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="1"
+					/>
+				</FileConfiguration>
 			</File>
 		</Filter>
 		<Filter
@@ -166,11 +182,11 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath="..\..\..\includes\Ill\System\Network\Network.hpp"
+				RelativePath="..\..\..\includes\Ill\Network\Network.hpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\includes\Ill\System\Network\PrecompiledHeader.hpp"
+				RelativePath="..\..\..\includes\Ill\Network\PrecompiledHeader.hpp"
 				>
 			</File>
 		</Filter>

@@ -1,5 +1,5 @@
-#ifndef __Ill_System_BoostInclude_H__
-#define __Ill_System_BoostInclude_H__
+#ifndef ILL_SYSTEM_BOOSTINCLUDE_HPP
+#define ILL_SYSTEM_BOOSTINCLUDE_HPP
 
 /**
 * @file BoostInclude.h
@@ -16,4 +16,4 @@
 #include <boost/filesystem.hpp>
 #include <boost/any.hpp>
 
-#endif // __Ill_System_BoostInclude_H__
+#endif // ILL_SYSTEM_BOOSTINCLUDE_HPP

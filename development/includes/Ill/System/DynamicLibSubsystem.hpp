@@ -5,9 +5,11 @@
  * Handles loading and unlading Dynamic libraries (DLL on Windows, Shared Objects on Linux).
  */
 
+#ifndef ILL_SYSTEM_DYNAMICLIBSUBSYSTEM_HPP
+#define ILL_SYSTEM_DYNAMICLIBSUBSYSTEM_HPP
+
 #include <Ill/System/Subsystem.hpp>
 #include <Ill/System/DynamicLib.hpp>
-// #include <Ill/System/Singleton.hpp>
 
 namespace Ill
 {
@@ -54,3 +56,5 @@ namespace Ill
         };
     }
 }
+
+#endif // ILL_SYSTEM_DYNAMICLIBSUBSYSTEM_HPP

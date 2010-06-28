@@ -181,38 +181,20 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath="..\..\..\source\Ill\System\OgreGraphics\OgreConvert.cpp"
+				RelativePath="..\..\..\source\Plugins\Ogre_Plugin\OgreConvert.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\source\Ill\System\OgreGraphics\OgreGraphics.cpp"
+				RelativePath="..\..\..\source\Plugins\Ogre_Plugin\OgreGraphics.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\source\Ill\System\OgreGraphics\OgreRenderer.cpp"
+				RelativePath="..\..\..\source\Plugins\Ogre_Plugin\OgreRenderer.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\source\Ill\System\OgreGraphics\PrecompiledHeader.cpp"
+				RelativePath="..\..\..\source\Plugins\Ogre_Plugin\PrecompiledHeader.cpp"
 				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						UsePrecompiledHeader="1"
-						PrecompiledHeaderThrough="Ill/System/OgreGraphics/PrecompiledHeader.hpp"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						UsePrecompiledHeader="1"
-						PrecompiledHeaderThrough="Ill/System/OgreGraphics/PrecompiledHeader.hpp"
-					/>
-				</FileConfiguration>
 			</File>
 		</Filter>
 		<Filter
@@ -221,19 +203,19 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath="..\..\..\includes\Ill\System\OgreGraphics\OgreConvert.hpp"
+				RelativePath="..\..\..\includes\Plugins\Ogre_Plugin\OgreConvert.hpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\includes\Ill\System\OgreGraphics\OgreGraphics.hpp"
+				RelativePath="..\..\..\includes\Plugins\Ogre_Plugin\OgreGraphics.hpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\includes\Ill\System\OgreGraphics\OgreRenderer.hpp"
+				RelativePath="..\..\..\includes\Plugins\Ogre_Plugin\OgreRenderer.hpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\includes\Ill\System\OgreGraphics\PrecompiledHeader.hpp"
+				RelativePath="..\..\..\includes\Plugins\Ogre_Plugin\PrecompiledHeader.hpp"
 				>
 			</File>
 		</Filter>

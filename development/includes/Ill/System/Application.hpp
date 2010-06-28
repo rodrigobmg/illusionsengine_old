@@ -1,5 +1,5 @@
-#ifndef __Ill_System_Application_H__
-#define __Ill_System_Application_H__
+#ifndef ILL_SYSTEM_APPLICATION_HPP
+#define ILL_SYSTEM_APPLICATION_HPP
 
 /**
 * @file Application.h
@@ -125,4 +125,4 @@ namespace Ill
 
 #include <Ill/System/Application.inl>
 
-#endif // __Ill_System_Application_H__
+#endif // ILL_SYSTEM_APPLICATION_HPP

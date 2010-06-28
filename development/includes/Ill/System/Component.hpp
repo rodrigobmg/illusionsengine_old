@@ -1,5 +1,5 @@
-#ifndef __Ill_System_Component_H__
-#define __Ill_System_Component_H__
+#ifndef ILL_SYSTEM_COMPONENT_HPP
+#define ILL_SYSTEM_COMPONENT_HPP
 /**
 * @file Component.h
 * @date April 15, 2009
@@ -23,9 +23,6 @@ namespace Ill
 {
 	namespace System
 	{
-		// Forward-declare so we can declare our component as a composite structure
-		// which stores handles to other components.
-		class Component;
 		typedef boost::intrusive_ptr<Component> ComponentPtr;
 
 		class Component : public Object
@@ -83,8 +80,10 @@ namespace Ill
 			// Property accessors
 
 		};
+
+		typedef boost::intrusive_ptr<Component> ComponentPtr;
 	}
 }
 
 
-#endif // __Ill_System_Component_H__
+#endif // ILL_SYSTEM_COMPONENT_HPP

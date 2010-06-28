@@ -2,7 +2,7 @@
  * @file
  */
 
-#ifndef ILL_SYSTEM_AUDIO_HPP
-#define ILL_SYSTEM_AUDIO_HPP
+#ifndef ILL_AUDIO_HPP
+#define ILL_AUDIO_HPP
 
 #endif

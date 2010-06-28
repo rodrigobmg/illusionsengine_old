@@ -41,13 +41,13 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\..\includes;&quot;..\..\..\external\ogre-v1-6-3\OgreMain\include&quot;"
+				AdditionalIncludeDirectories="..\..\..\includes"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;ILL_STATIC_LIB"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderThrough="Ill/System/Graphics/PrecompiledHeader.hpp"
+				PrecompiledHeaderThrough="Ill/Graphics/PrecompiledHeader.hpp"
 				WarningLevel="4"
 				DebugInformationFormat="4"
 			/>
@@ -62,9 +62,8 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				AdditionalDependencies="OgreMain_d.lib"
 				OutputFile="$(OutDir)\$(ProjectName)_d.lib"
-				AdditionalLibraryDirectories="&quot;..\..\..\external\ogre-v1-6-3\lib&quot;"
+				AdditionalLibraryDirectories=""
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -109,12 +108,12 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="..\..\..\includes;&quot;..\..\..\external\ogre-v1-6-3\OgreMain\include&quot;"
+				AdditionalIncludeDirectories="..\..\..\includes"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;ILL_STATIC_LIB"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderThrough="Ill/System/Graphics/PrecompiledHeader.hpp"
+				PrecompiledHeaderThrough="Ill/Graphics/PrecompiledHeader.hpp"
 				WarningLevel="4"
 				DebugInformationFormat="3"
 			/>
@@ -129,8 +128,7 @@
 			/>
 			<Tool
 				Name="VCLibrarianTool"
-				AdditionalDependencies="OgreMain.lib"
-				AdditionalLibraryDirectories="&quot;..\..\..\external\ogre-v1-6-3\lib&quot;"
+				AdditionalLibraryDirectories=""
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -158,19 +156,19 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath="..\..\..\source\Ill\System\Graphics\Graphics.cpp"
+				RelativePath="..\..\..\source\Ill\Graphics\Graphics.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\source\Ill\System\Graphics\GraphicsRenderer.cpp"
+				RelativePath="..\..\..\source\Ill\Graphics\GraphicsRenderer.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\source\Ill\System\Graphics\GraphicsSubsystem.cpp"
+				RelativePath="..\..\..\source\Ill\Graphics\GraphicsSubsystem.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\source\Ill\System\Graphics\PrecompiledHeader.cpp"
+				RelativePath="..\..\..\source\Ill\Graphics\PrecompiledHeader.cpp"
 				>
 				<FileConfiguration
 					Name="Debug|Win32"
@@ -178,6 +176,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						UsePrecompiledHeader="1"
+						PrecompiledHeaderThrough="Ill/Graphics/PrecompiledHeader.hpp"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -186,6 +185,7 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						UsePrecompiledHeader="1"
+						PrecompiledHeaderThrough="Ill/Graphics/PrecompiledHeader.hpp"
 					/>
 				</FileConfiguration>
 			</File>
@@ -196,27 +196,23 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath="..\..\..\includes\Ill\System\Graphics\Graphics.hpp"
+				RelativePath="..\..\..\includes\Ill\Graphics\Graphics.hpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\includes\Ill\System\Graphics\GraphicsRenderer.hpp"
+				RelativePath="..\..\..\includes\Ill\Graphics\GraphicsRenderer.hpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\includes\Ill\System\Graphics\GraphicsSubsystem.hpp"
+				RelativePath="..\..\..\includes\Ill\Graphics\GraphicsSubsystem.hpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\includes\Ill\System\Graphics\GraphicsTypes.hpp"
+				RelativePath="..\..\..\includes\Ill\Graphics\GraphicsTypes.hpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\source\Ill\System\Graphics\GraphicsUtils.hpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\includes\Ill\System\Graphics\PrecompiledHeader.hpp"
+				RelativePath="..\..\..\includes\Ill\Graphics\PrecompiledHeader.hpp"
 				>
 			</File>
 		</Filter>

@@ -1,5 +1,5 @@
-#ifndef __Ill_System_NoCopyObject_H__
-#define __Ill_System_NoCopyObject_H__
+#ifndef ILL_SYSTEM_NOCOPYOBJECT_HPP
+#define ILL_SYSTEM_NOCOPYOBJECT_HPP
 
 /**
 * @file NoCopyObject.h
@@ -40,4 +40,4 @@ namespace Ill
 	}
 }
 
-#endif // __Ill_System_NoCopyObject_H__
+#endif // ILL_SYSTEM_NOCOPYOBJECT_HPP

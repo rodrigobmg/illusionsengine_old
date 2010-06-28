@@ -1,5 +1,5 @@
-#ifndef __Ill_System_Object_H__
-#define __Ill_System_Object_H__
+#ifndef ILL_SYSTEM_OBJECT_HPP
+#define ILL_SYSTEM_OBJECT_HPP
 /**
 * @file Object.h
 * @date April 14, 2009
@@ -16,7 +16,7 @@
 *  <li>Serialization and class versioning</li>
 * </ul>
 */
-#include "Ill/System/RefCountedObject.hpp"
+#include <Ill/System/RefCountedObject.hpp>
 
 namespace Ill
 {

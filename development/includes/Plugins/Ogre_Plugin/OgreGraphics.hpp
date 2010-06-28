@@ -1,18 +1,15 @@
-#ifndef ILL_SYSTEM_OGREGRAPHICS_HPP
-#define ILL_SYSTEM_OGREGRAPHICS_HPP
+#ifndef ILL_OGREGRAPHICS_HPP
+#define ILL_OGREGRAPHICS_HPP
 
-#include <Ill/System/OgreGraphics/OgreConvert.hpp>
-#include <Ill/System/OgreGraphics/OgreRenderer.hpp>
+#include <Ill/OgreGraphics/OgreConvert.hpp>
+#include <Ill/OgreGraphics/OgreRenderer.hpp>
 
 namespace Ill
 {
-    namespace System
+    namespace OgreGraphics
     {
-        namespace OgreGraphics
-        {
-            void InstantiateTypes();
-        }
+        void InstantiateTypes();
     }
 }
 
-#endif 
+#endif // ILL_OGREGRAPHICS_HPP

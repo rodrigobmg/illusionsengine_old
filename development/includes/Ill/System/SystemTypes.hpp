@@ -13,19 +13,19 @@ namespace Ill
     namespace System
     {
         // Convert to wide-character string
-        std::wstring ConvertStringW( const std::string& fromString );
-        std::wstring ConvertStringW( const std::wstring& fromString );
+        std::wstring ConvertStringA( const std::string& fromString );
+        std::wstring ConvertStringA( const std::wstring& fromString );
 
         // Convert to single-character string
-        std::string ConvertStringA( const std::wstring& fromString );
-        std::string ConvertStringA( const std::string& fromString );
+        std::string ConvertStringW( const std::wstring& fromString );
+        std::string ConvertStringW( const std::string& fromString );
 
 #ifdef UNICODE
         typedef std::wstring _StringBase;
-#define ConvertString ConvertStringA
+#define ConvertString ConvertStringW
 #else
         typedef std::string _StringBase;
-#define ConvertString ConvertStringW
+#define ConvertString ConvertStringA
 #endif
         typedef _StringBase String;
 

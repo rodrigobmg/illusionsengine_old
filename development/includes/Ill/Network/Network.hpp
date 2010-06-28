@@ -2,7 +2,7 @@
  * @file
  */
 
-#ifndef ILL_SYSTEM_NETWORK_HPP
-#define ILL_SYSTEM_NETWORK_HPP
+#ifndef ILL_NETWORK_HPP
+#define ILL_NETWORK_HPP
 
 #endif

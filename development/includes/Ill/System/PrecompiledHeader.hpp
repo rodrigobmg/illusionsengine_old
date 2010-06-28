@@ -24,4 +24,4 @@
 #include <Ill/System/Platform.hpp>
 #include <Ill/System/SystemTypes.hpp>
 
-#endif
+#endif // ILL_SYSTEM_PRECOMPILED_HEADER_HPP

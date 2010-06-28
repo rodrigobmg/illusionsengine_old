@@ -1,5 +1,5 @@
-#include <Ill/System/OgreGraphics/PrecompiledHeader.hpp>
-#include <Ill/System/OgreGraphics/OgreGraphics.hpp>
+#include <Ill/OgreGraphics/PrecompiledHeader.hpp>
+#include <Ill/OgreGraphics/OgreGraphics.hpp>
 
 void TestReflection()
 {
@@ -27,7 +27,7 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL,  // handle to DLL module
     switch( fdwReason ) 
     { 
     case DLL_PROCESS_ATTACH:
-        Ill::System::OgreGraphics::InstantiateTypes();
+        Ill::OgreGraphics::InstantiateTypes();
         TestReflection();
         break;
 
@@ -48,14 +48,11 @@ BOOL WINAPI DllMain(HINSTANCE hinstDLL,  // handle to DLL module
 
 namespace Ill
 {
-    namespace System
+    namespace OgreGraphics
     {
-        namespace OgreGraphics
+        void InstantiateTypes()
         {
-            void InstantiateTypes()
-            {
-                OgreRenderer();
-            }
+            OgreRenderer();
         }
     }
 }

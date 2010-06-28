@@ -1,23 +1,20 @@
-#ifndef ILL_SYSTEM_OGREGRAPHICS_OGRECONVERT_HPP
-#define ILL_SYSTEM_OGREGRAPHICS_OGRECONVERT_HPP
+#ifndef ILL_OGREGRAPHICS_OGRECONVERT_HPP
+#define ILL_OGREGRAPHICS_OGRECONVERT_HPP
 
 namespace Ill
 {
-    namespace System
+    namespace OgreGraphics
     {
-        namespace OgreGraphics
+        class OgreConvert
         {
-            class OgreConvert
-            {
-            public:
-                /**
-                 * Convert Ill::System::Graphics::SceneType to Ogre::SceneType
-                 */
-                static Ogre::SceneType Convert( Graphics::SceneType sceneType );
-            };
-        }
+        public:
+            /**
+             * Convert Ill::System::Graphics::SceneType to Ogre::SceneType
+             */
+            static Ogre::SceneType Convert( Graphics::SceneType sceneType );
+        };
     }
 }
 
 
-#endif // ILL_SYSTEM_OGREGRAPHICS_OGRECONVERT_HPP
+#endif // ILL_OGREGRAPHICS_OGRECONVERT_HPP

@@ -4,15 +4,12 @@
  *
  */
 
-#include <Ill/System/Graphics/PrecompiledHeader.hpp>
-#include <Ill/System/Graphics/GraphicsSubsystem.hpp>
+#include <Ill/Graphics/PrecompiledHeader.hpp>
+#include <Ill/Graphics/GraphicsSubsystem.hpp>
 
 namespace Ill
 {
-    namespace System
+    namespace Graphics
     {
-        namespace Graphics
-        {
-        }
     }
 }

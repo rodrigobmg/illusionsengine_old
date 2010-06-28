@@ -1,5 +1,5 @@
-#ifndef __Ill_System_PropertyMap_H_
-#define __Ill_System_PropertyMap_H_
+#ifndef ILL_SYSTEM_PROPERTYMAP_HPP
+#define ILL_SYSTEM_PROPERTYMAP_HPP
 /**
 * @file PropertyMap.h
 * @date April 15, 2008
@@ -74,4 +74,4 @@ namespace Ill
 
 #include "PropertyMap.inl"
 
-#endif //__Ill_System_PropertyMap_H_
+#endif //ILL_SYSTEM_PROPERTYMAP_HPP
