@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="Ill.System.OgreGraphics"
+	Name="Ill.OgreGraphics"
 	ProjectGUID="{412E4C3A-0500-4849-BD43-5EE472100582}"
 	RootNamespace="OgreGraphics"
 	Keyword="Win32Proj"
