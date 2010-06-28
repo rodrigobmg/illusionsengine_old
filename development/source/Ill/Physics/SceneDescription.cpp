@@ -3,18 +3,15 @@
  * @date: September 16, 2009
  */
 
-#include <Ill/System/Physics/PrecompiledHeader.hpp>
-#include <Ill/System/Physics/SceneDescription.hpp>
+#include <Ill/Physics/PrecompiledHeader.hpp>
+#include <Ill/Physics/SceneDescription.hpp>
 
 namespace Ill
 {
-	namespace System
+	namespace Physics
 	{
-		namespace Physics
-		{
-			SceneDescription::SceneDescription()
-			{}
+		SceneDescription::SceneDescription()
+		{}
 
-		}
 	}
 }

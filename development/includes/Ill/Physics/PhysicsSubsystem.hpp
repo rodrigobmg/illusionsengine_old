@@ -2,38 +2,35 @@
  * The Physics Subsystem
  */
 
-#ifndef ILL_SYSTEM_PHYSICS_PHYSICSSUBSYSTEM_HEADER_HPP
-#define ILL_SYSTEM_PHYSICS_PHYSICSSUBSYSTEM_HEADER_HPP
+#ifndef ILL_PHYSICS_PHYSICSSUBSYSTEM_HEADER_HPP
+#define ILL_PHYSICS_PHYSICSSUBSYSTEM_HEADER_HPP
 
 #include <Ill/System/Subsystem.hpp>
 
 namespace Ill
 {
-	namespace System
+	namespace Physics
 	{
-		namespace Physics
+		class PhysicsSubsystem : public Ill::System::Subsystem
 		{
-			class PhysicsSubsystem : public Ill::System::Subsystem
-			{
-				CLASS(PhysicsSubsystem,Ill::System::Subsystem);
-				CONSTRUCTOR(public,PhysicsSubsystem,());
+			CLASS(PhysicsSubsystem,Ill::System::Subsystem);
+			CONSTRUCTOR(public,PhysicsSubsystem,());
 
-				/**
-				* Startup
-				*/
-				VIRTUAL_METHOD(public,bool,Startup,( const Ill::System::PropertyMap& startupOptions ));
+			/**
+			* Startup
+			*/
+			VIRTUAL_METHOD(public,bool,Startup,( const Ill::System::PropertyMap& startupOptions ));
 
-				/**
-				* Shutdown
-				*/
-				VIRTUAL_METHOD(public,bool,Shutdown,());
+			/**
+			* Shutdown
+			*/
+			VIRTUAL_METHOD(public,bool,Shutdown,());
 
-			};
+		};
 
-			typedef boost::intrusive_ptr<PhysicsSubsystem> PhysicsSubsystemPtr;
+		typedef boost::intrusive_ptr<PhysicsSubsystem> PhysicsSubsystemPtr;
 
-		}
 	}
 }
 
-#endif // ILL_SYSTEM_PHYSICS_PHYSICSSUBSYSTEM_HEADER_HPP
+#endif // ILL_PHYSICS_PHYSICSSUBSYSTEM_HEADER_HPP

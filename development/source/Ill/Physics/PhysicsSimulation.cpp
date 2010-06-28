@@ -4,24 +4,21 @@
  *
  * 
  */
-#include <Ill/System/Physics/PrecompiledHeader.hpp>
-#include <Ill/System/Physics/PhysicsSimulation.hpp>
+#include <Ill/Physics/PrecompiledHeader.hpp>
+#include <Ill/Physics/PhysicsSimulation.hpp>
 
 namespace Ill
 {
-	namespace System
+	namespace Physics
 	{
-		namespace Physics
+		PhysicsSimulation::PhysicsSimulation()
 		{
-			PhysicsSimulation::PhysicsSimulation()
-			{
 
-			}
+		}
 
-			void PhysicsSimulation::CreatePhysicsScene(const SceneDescription& desc)
-			{
+		void PhysicsSimulation::CreatePhysicsScene(const SceneDescription& desc)
+		{
 
-			}
 		}
 	}
 }

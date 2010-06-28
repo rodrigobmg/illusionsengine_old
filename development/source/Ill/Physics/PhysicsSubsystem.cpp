@@ -5,28 +5,24 @@
  * 
  */
 
-#include <Ill/System/Physics/PrecompiledHeader.hpp>
-#include <Ill/System/Physics/PhysicsSubsystem.hpp>
+#include <Ill/Physics/PrecompiledHeader.hpp>
+#include <Ill/Physics/PhysicsSubsystem.hpp>
 
 namespace Ill
 {
-	namespace System
+	namespace Physics
 	{
-		namespace Physics
+		PhysicsSubsystem::PhysicsSubsystem()
+		{}
+
+		bool PhysicsSubsystem::Startup( const Ill::System::PropertyMap& statupOptions )
 		{
-			PhysicsSubsystem::PhysicsSubsystem()
-			{}
+			return true;
+		}
 
-			bool PhysicsSubsystem::Startup( const Ill::System::PropertyMap& statupOptions )
-			{
-				return true;
-			}
-
-			bool PhysicsSubsystem::Shutdown()
-			{
-				return true;
-			}
-
+		bool PhysicsSubsystem::Shutdown()
+		{
+			return true;
 		}
 	}
 }

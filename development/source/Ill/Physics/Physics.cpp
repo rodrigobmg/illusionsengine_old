@@ -1,18 +1,15 @@
-#include <Ill/System/Physics/PrecompiledHeader.hpp>
-#include <Ill/System/Physics/Physics.hpp>
+#include <Ill/Physics/PrecompiledHeader.hpp>
+#include <Ill/Physics/Physics.hpp>
 
 namespace Ill
 {
-	namespace System
+	namespace Physics
 	{
-		namespace Physics
+		void InstantiateTypes()
 		{
-			void InstantiateTypes()
-			{
-				PhysicsSubsystem();
-				SceneDescription();
+			PhysicsSubsystem();
+			SceneDescription();
 //				PhysicsSimulation(); // This class is abstract
-			}
 		}
 	}
 }

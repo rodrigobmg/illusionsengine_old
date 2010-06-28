@@ -18,8 +18,8 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="$(SolutionDir)..\..\libs\"
-			IntermediateDirectory="$(SolutionDir)..\..\intermediate\$(ConfigurationName)\$(ProjectName)"
+			OutputDirectory="..\..\..\libs\"
+			IntermediateDirectory="..\..\..\intermediate\$(ConfigurationName)\$(ProjectName)"
 			ConfigurationType="4"
 			CharacterSet="1"
 			>
@@ -41,13 +41,13 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;$(SolutionDir)..\..\includes&quot;;&quot;..\..\..\external\gmtl-0.6.0&quot;"
+				AdditionalIncludeDirectories="..\..\..\includes;&quot;..\..\..\external\gmtl-0.6.0&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;ILL_STATIC_LIB"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderThrough="Ill/System/Physics/PrecompiledHeader.hpp"
+				PrecompiledHeaderThrough="Ill/Physics/PrecompiledHeader.hpp"
 				WarningLevel="3"
 				DebugInformationFormat="4"
 			/>
@@ -82,8 +82,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="$(SolutionDir)..\..\libs\"
-			IntermediateDirectory="$(SolutionDir)..\..\intermediate\$(ConfigurationName)\$(ProjectName)"
+			OutputDirectory="..\..\..\libs\"
+			IntermediateDirectory="..\..\..\intermediate\$(ConfigurationName)\$(ProjectName)"
 			ConfigurationType="4"
 			CharacterSet="1"
 			WholeProgramOptimization="1"
@@ -107,12 +107,12 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="&quot;$(SolutionDir)..\..\includes&quot;;&quot;..\..\..\external\gmtl-0.6.0&quot;"
+				AdditionalIncludeDirectories="..\..\..\includes;&quot;..\..\..\external\gmtl-0.6.0&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;ILL_STATIC_LIB"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderThrough="Ill/System/Physics/PrecompiledHeader.hpp"
+				PrecompiledHeaderThrough="Ill/Physics/PrecompiledHeader.hpp"
 				WarningLevel="3"
 				DebugInformationFormat="3"
 			/>
@@ -154,19 +154,19 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath="..\..\..\source\Ill\System\Physics\Physics.cpp"
+				RelativePath="..\..\..\source\Ill\Physics\Physics.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\source\Ill\System\Physics\PhysicsSimulation.cpp"
+				RelativePath="..\..\..\source\Ill\Physics\PhysicsSimulation.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\source\Ill\System\Physics\PhysicsSubsystem.cpp"
+				RelativePath="..\..\..\source\Ill\Physics\PhysicsSubsystem.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\source\Ill\System\Physics\PrecompiledHeader.cpp"
+				RelativePath="..\..\..\source\Ill\Physics\PrecompiledHeader.cpp"
 				>
 				<FileConfiguration
 					Name="Debug|Win32"
@@ -174,7 +174,6 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						UsePrecompiledHeader="1"
-						PrecompiledHeaderThrough="Ill/System/Physics/PrecompiledHeader.hpp"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -183,12 +182,11 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						UsePrecompiledHeader="1"
-						PrecompiledHeaderThrough="Ill/System/Physics/PrecompiledHeader.hpp"
 					/>
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\..\..\source\Ill\System\Physics\SceneDescription.cpp"
+				RelativePath="..\..\..\source\Ill\Physics\SceneDescription.cpp"
 				>
 			</File>
 		</Filter>
@@ -198,23 +196,23 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath="..\..\..\includes\Ill\System\Physics\Physics.hpp"
+				RelativePath="..\..\..\includes\Ill\Physics\Physics.hpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\includes\Ill\System\Physics\PhysicsSimulation.hpp"
+				RelativePath="..\..\..\includes\Ill\Physics\PhysicsSimulation.hpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\includes\Ill\System\Physics\PhysicsSubsystem.hpp"
+				RelativePath="..\..\..\includes\Ill\Physics\PhysicsSubsystem.hpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\includes\Ill\System\Physics\PrecompiledHeader.hpp"
+				RelativePath="..\..\..\includes\Ill\Physics\PrecompiledHeader.hpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\includes\Ill\System\Physics\SceneDescription.hpp"
+				RelativePath="..\..\..\includes\Ill\Physics\SceneDescription.hpp"
 				>
 			</File>
 		</Filter>
