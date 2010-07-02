@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{46885ECC-4817-4899-B9DE-DF4094E37165}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <ProjectGuid>{5A41EC83-B4D8-45CE-889B-67CB75362AE6}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DependencyConfigurationUtility</RootNamespace>
-    <AssemblyName>DependencyConfigurationUtility</AssemblyName>
+    <RootNamespace>BoostDependency</RootNamespace>
+    <AssemblyName>BoostDependency</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -35,6 +35,9 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -42,65 +45,48 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Data" />
-    <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
+    <Compile Include="BoostDependency.cs" />
+    <Compile Include="BoostDependencyControl.cs">
+      <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="BoostDependencyControl.Designer.cs">
+      <DependentUpon>BoostDependencyControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="BoostDependencyControl.resx">
+      <DependentUpon>BoostDependencyControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
+    <None Include="Resources\boost_logo_64x64.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Havok_Logo_64x64.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Images\havok_logo_64x64.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-    <None Include="Images\havok_logo_32x32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="BoostDependency\BoostDependency.csproj">
-      <Project>{5A41EC83-B4D8-45CE-889B-67CB75362AE6}</Project>
-      <Name>BoostDependency</Name>
-    </ProjectReference>
-    <ProjectReference Include="DependencyLibrary\DependencyLibrary.csproj">
+    <ProjectReference Include="..\DependencyLibrary\DependencyLibrary.csproj">
       <Project>{CD54F248-A673-495C-8AFA-F4398D94ACAA}</Project>
       <Name>DependencyLibrary</Name>
-    </ProjectReference>
-    <ProjectReference Include="OgreDependency\OgreDependency.csproj">
-      <Project>{9F590C55-C03F-4C63-91B4-296EE28BBB7C}</Project>
-      <Name>OgreDependency</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

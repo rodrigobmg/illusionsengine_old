@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DependencyConfigurationUtility.Properties {
+namespace OgreDependency.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace DependencyConfigurationUtility.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DependencyConfigurationUtility.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("OgreDependency.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -60,16 +60,16 @@ namespace DependencyConfigurationUtility.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap havok_logo_32x32 {
+        internal static System.Drawing.Bitmap ogre_logo_32x32 {
             get {
-                object obj = ResourceManager.GetObject("havok_logo_32x32", resourceCulture);
+                object obj = ResourceManager.GetObject("ogre_logo_32x32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap havok_logo_64x64 {
+        internal static System.Drawing.Bitmap ogre_logo_64x64 {
             get {
-                object obj = ResourceManager.GetObject("havok_logo_64x64", resourceCulture);
+                object obj = ResourceManager.GetObject("ogre_logo_64x64", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
