@@ -26,6 +26,18 @@ namespace DependencyConfigurationUtility
             dependencyList.Items.Add(new OgreDependency.OgreDependency() );
         }
 
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            // Allow the dependency items to save their settings.
+            foreach( IDependencyItem item in dependencyList.Items )
+            {
+                if ( item != null )
+                {
+                    item.SaveSettings();
+                }
+            }
+        }
+
         private void dependencyList_DrawItem(object sender, DrawItemEventArgs e)
         {
             // If the item is the selected item, then draw the rectangle

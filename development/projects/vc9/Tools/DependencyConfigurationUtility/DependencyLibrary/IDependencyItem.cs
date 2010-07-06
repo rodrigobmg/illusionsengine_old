@@ -52,5 +52,10 @@ namespace DependencyLibrary
         {
             get;
         }
+
+        /// <summary>
+        /// Allow this dependency item to save it's persistent settings.
+        /// </summary>
+        void SaveSettings();
     }
 }

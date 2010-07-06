@@ -99,6 +99,7 @@
             this.getSourceButton.TabIndex = 2;
             this.getSourceButton.Text = "Get";
             this.getSourceButton.UseVisualStyleBackColor = true;
+            this.getSourceButton.Click += new System.EventHandler(this.getSourceButton_Click);
             // 
             // buildButton
             // 

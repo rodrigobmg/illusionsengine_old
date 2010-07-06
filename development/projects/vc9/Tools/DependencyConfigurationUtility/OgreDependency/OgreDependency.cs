@@ -56,5 +56,11 @@ namespace OgreDependency
                 return control;
             }
         }
+
+        public void SaveSettings()
+        {
+            Properties.Settings.Default.Save();
+        }
+
     }
 }

@@ -1,6 +1,18 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="BoostDependency.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="SVN_PATH" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://svn.boost.org/svn/boost/tags/release/Boost_1_43_0</Value>
+    </Setting>
+    <Setting Name="LOCAL_PATH" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\boost</Value>
+    </Setting>
+    <Setting Name="SVN_REVISION" Type="System.String" Scope="User">
+      <Value Profile="(Default)">HEAD</Value>
+    </Setting>
+    <Setting Name="ENVIRONMENT_VARIABLE" Type="System.String" Scope="User">
+      <Value Profile="(Default)">BOOST_ROOT</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

@@ -15,7 +15,7 @@ namespace BoostDependency
         private string description = "Boost C++ Libraries";
         private Bitmap icon = Properties.Resources.boost_logo_64x64;
         private Font font = new Font("Candara", 27.75f, FontStyle.Bold);
-        private Control control = new BoostDependencyControl();
+        private BoostDependencyControl control = new BoostDependencyControl();
 
         public string Name
         {
@@ -56,5 +56,11 @@ namespace BoostDependency
                 return control;
             }
         }
+
+        public void SaveSettings()
+        {
+            Properties.Settings.Default.Save();
+        }
+
     }
 }

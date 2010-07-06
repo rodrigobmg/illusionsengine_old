@@ -22,5 +22,53 @@ namespace BoostDependency.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://svn.boost.org/svn/boost/tags/release/Boost_1_43_0")]
+        public string SVN_PATH {
+            get {
+                return ((string)(this["SVN_PATH"]));
+            }
+            set {
+                this["SVN_PATH"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\boost")]
+        public string LOCAL_PATH {
+            get {
+                return ((string)(this["LOCAL_PATH"]));
+            }
+            set {
+                this["LOCAL_PATH"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("HEAD")]
+        public string SVN_REVISION {
+            get {
+                return ((string)(this["SVN_REVISION"]));
+            }
+            set {
+                this["SVN_REVISION"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("BOOST_ROOT")]
+        public string ENVIRONMENT_VARIABLE {
+            get {
+                return ((string)(this["ENVIRONMENT_VARIABLE"]));
+            }
+            set {
+                this["ENVIRONMENT_VARIABLE"] = value;
+            }
+        }
     }
 }
