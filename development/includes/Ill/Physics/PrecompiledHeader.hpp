@@ -5,6 +5,6 @@
 #include <gmtl/gmtl.h>
 
 // System types
-#include <Ill/System/System.hpp>
+#include <Ill/Core/Core.hpp>
 
 #endif // ILL_PHYSICS_PRECOMPILED_HEADER_HPP

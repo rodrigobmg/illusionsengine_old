@@ -13,16 +13,16 @@ namespace Ill
 {
     namespace Graphics
     {
-        class _IllExport GraphicsRenderer : public Ill::System::Object
+        class _IllExport GraphicsRenderer : public Ill::Core::Object
         {
         public:
-            CLASS(GraphicsRenderer,Ill::System::Object);
+            CLASS(GraphicsRenderer,Ill::Core::Object);
             // This is an abstract class, no constructor.
 
             /**
              * Parse the properties map for startup parameters.
              */
-            VIRTUAL_METHOD(public,bool,GetProperties,(const PropertyMap& properties)) = 0;
+            VIRTUAL_METHOD(public,bool,GetProperties,(const Ill::Core::PropertyMap& properties)) = 0;
 
             /**
              * Initialize the graphics renderer. The "GetProperties" method should be called

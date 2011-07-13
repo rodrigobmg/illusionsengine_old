@@ -79,7 +79,6 @@ namespace Ill
 
 		};
 
-		typedef boost::intrusive_ptr<Component> ComponentPtr;
 	}
 }
 

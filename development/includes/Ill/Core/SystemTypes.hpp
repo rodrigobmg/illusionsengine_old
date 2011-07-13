@@ -6,32 +6,10 @@
 #ifndef ILL_CORE_SYSTEMTYPES_HPP
 #define ILL_CORE_SYSTEMTYPES_HPP
 
+#include <locale>
 #include <string>
 
-namespace Ill
-{
-    namespace Core
-    {
-        // Convert to wide-character string
-        std::wstring ConvertStringA( const std::string& fromString );
-        std::wstring ConvertStringA( const std::wstring& fromString );
+// Converts a wide character string to a multi-byte string.
+std::string ConvertString( const std::wstring& strW );
 
-        // Convert to single-character string
-        std::string ConvertStringW( const std::wstring& fromString );
-        std::string ConvertStringW( const std::string& fromString );
-
-#ifdef UNICODE
-        typedef std::wstring _StringBase;
-#define ConvertString ConvertStringW
-#else
-        typedef std::string _StringBase;
-#define ConvertString ConvertStringA
-#endif
-        typedef _StringBase String;
-
-
-
-    }
-}
-
-#endif
+#endif // ILL_CORE_SYSTEMTYPES_HPP

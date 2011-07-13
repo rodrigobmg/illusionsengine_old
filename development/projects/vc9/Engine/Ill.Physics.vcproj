@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\..\includes;&quot;..\..\..\external\gmtl-0.6.0&quot;"
+				AdditionalIncludeDirectories="..\..\..\includes;&quot;..\..\..\external\gmtl-0.6.0&quot;;..\..\..\external\boost_1_46_1"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;ILL_STATIC_LIB"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -107,7 +107,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="..\..\..\includes;&quot;..\..\..\external\gmtl-0.6.0&quot;"
+				AdditionalIncludeDirectories="..\..\..\includes;&quot;..\..\..\external\gmtl-0.6.0&quot;;..\..\..\external\boost_1_46_1"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;ILL_STATIC_LIB"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"

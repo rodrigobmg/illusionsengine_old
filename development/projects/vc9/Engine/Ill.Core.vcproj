@@ -21,7 +21,7 @@
 			OutputDirectory="..\..\..\libs"
 			IntermediateDirectory="..\..\..\intermediate\$(ConfigurationName)\$(ProjectName)"
 			ConfigurationType="4"
-			CharacterSet="1"
+			CharacterSet="2"
 			>
 			<Tool
 				Name="VCPreBuildEventTool"
@@ -86,7 +86,7 @@
 			OutputDirectory="..\..\..\libs"
 			IntermediateDirectory="..\..\..\intermediate\$(ConfigurationName)\$(ProjectName)"
 			ConfigurationType="4"
-			CharacterSet="1"
+			CharacterSet="2"
 			WholeProgramOptimization="1"
 			>
 			<Tool
@@ -188,19 +188,19 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="..\..\..\source\Ill\Core\DynamicLib.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\source\Ill\Core\DynamicLibSubsystem.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\..\source\Ill\Core\NoCopyObject.cpp"
 				>
 			</File>
 			<File
 				RelativePath="..\..\..\source\Ill\Core\Object.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\source\Ill\Core\Plugin.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\source\Ill\Core\PluginSubsystem.cpp"
 				>
 			</File>
 			<File
@@ -213,6 +213,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\source\Ill\Core\Subsystem.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\source\Ill\Core\SystemTypes.cpp"
 				>
 			</File>
 		</Filter>
@@ -246,14 +250,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\includes\Ill\Core\DynamicLib.hpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\includes\Ill\Core\DynamicLibSubsystem.hpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\..\includes\Ill\Core\NoCopyObject.hpp"
 				>
 			</File>
@@ -263,6 +259,14 @@
 			</File>
 			<File
 				RelativePath="..\..\..\includes\Ill\Core\Platform.hpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\includes\Ill\Core\Plugin.hpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\includes\Ill\Core\PluginSubsystem.hpp"
 				>
 			</File>
 			<File
@@ -287,6 +291,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\includes\Ill\Core\Subsystem.hpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\includes\Ill\Core\SystemTypes.hpp"
 				>
 			</File>
 		</Filter>

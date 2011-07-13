@@ -67,8 +67,6 @@ namespace Ill
 			map		m_Properties;
 
 		};
-
-		typedef boost::intrusive_ptr<PropertyMap> PropertyMapPtr;
 	}
 }
 

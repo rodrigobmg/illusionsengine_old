@@ -12,7 +12,7 @@ namespace Ill
 			Object();
 			Component();
 			Subsystem();
-			DynamicLibSubsystem();
+			PluginSubsystem();
 			Application();
 			PropertyMap();
 		}

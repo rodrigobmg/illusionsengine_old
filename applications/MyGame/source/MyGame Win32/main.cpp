@@ -13,22 +13,22 @@
 // reflection library can register it's types.
 void InstantiateTypes()
 {
-    Ill::System::InstantiateTypes();
-    Ill::System::Graphics::InstantiateTypes();
+    Ill::Core::InstantiateTypes();
+    Ill::Core::Graphics::InstantiateTypes();
 }
 
 // Gloabals
 Ill::Game::GameApplicationPtr g_pGameApp;
 
 // Typedefs
-typedef Ill::System::String String;
+typedef Ill::Core::String String;
 
 int main( int argc, char* argv[] )
 {
     InstantiateTypes();
 
     // A property map to store the game options.
-    Ill::System::PropertyMap gameOptions;
+    Ill::Core::PropertyMap gameOptions;
 
 #ifdef _DEBUG
     gameOptions.AddValue( "PluginFilename", String( TEXT("../Configuration/Plugins_Debug.cfg") ) );
@@ -51,8 +51,8 @@ int main( int argc, char* argv[] )
     g_pGameApp->ParseConfigurations( argc, argv, gameOptions );
 
     // Register subsystems
-    g_pGameApp->RegisterSubsystem( Class::forName( "class Ill::System::DynamicLibSubsystem") );
-    g_pGameApp->RegisterSubsystem( Class::forName( "class Ill::System::Graphics::GrapicsSubsystem" ) );
+    g_pGameApp->RegisterSubsystem( Class::forName( "class Ill::Core::DynamicLibSubsystem") );
+    g_pGameApp->RegisterSubsystem( Class::forName( "class Ill::Core::Graphics::GrapicsSubsystem" ) );
 
     if ( g_pGameApp->StartUp( gameOptions ) )
 	{

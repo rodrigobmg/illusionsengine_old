@@ -8,17 +8,17 @@
 #ifndef ILL_PHYSICS_PHYSICSSIMULATION_HEADER_HPP
 #define ILL_PHYSICS_PHYSICSSIMULATION_HEADER_HPP
 
-#include <Ill/System/Object.hpp>
+#include <Ill/Core/Object.hpp>
 #include <Ill/Physics/SceneDescription.hpp>
 
 namespace Ill
 {
 	namespace Physics
 	{
-		class PhysicsSimulation : public Ill::System::Object
+		class PhysicsSimulation : public Ill::Core::Object
 		{
 		public:
-			CLASS(PhysicsSimulation,Ill::System::Object);
+			CLASS(PhysicsSimulation,Ill::Core::Object);
 			CONSTRUCTOR(public,PhysicsSimulation,());
 
 			VIRTUAL_METHOD(public,void,CreatePhysicsScene,(const SceneDescription& desc));

@@ -14,7 +14,6 @@
 * can be bad if the class owns heap-allocated or shared memory.
 */
 
-#include <boost/intrusive_ptr.hpp>
 #include <Ill/Core/reflection.hpp>
 
 using namespace agm::reflection;

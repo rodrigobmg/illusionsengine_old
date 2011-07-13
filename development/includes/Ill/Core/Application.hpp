@@ -34,9 +34,7 @@ namespace Ill
 		{
 		public:
 
-			typedef std::vector< Subsystem* > SubsystemList;
-			typedef SubsystemList::iterator iterator;
-			typedef SubsystemList::const_iterator const_iterator;
+            typedef std::vector< boost::shared_ptr<Subsystem> > SubsystemList;
 
 			CLASS(Application,Component);
 			CONSTRUCTOR(public,Application,());
@@ -104,21 +102,19 @@ namespace Ill
 			VIRTUAL_METHOD(public,bool,Shutdown,());
 
 			/**
-			* Retrieve an intrusive pointer to the subsystem that matches
+			* Retrieve a pointer to the subsystem that matches
 			* the template parameter type.
-			* @return A valid smart pointer object of the subsystem, otherwise
+			* @return A valid weak pointer object of the subsystem, otherwise
 			* an invalid pointer object if the subsystem does not exist (the type
 			* was never registered).
 			*/
 			template<class T>
-			boost::intrusive_ptr<T> GetSubsystem();
+			boost::weak_ptr<T> GetSubsystem();
 
 		private:
 			SubsystemList m_Subsystems;
 
 		};
-
-		typedef boost::intrusive_ptr<Application> ApplicationPtr;
 
 	} // namespace Ill
 } // namespace Core

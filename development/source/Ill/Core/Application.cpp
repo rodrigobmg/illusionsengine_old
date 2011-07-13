@@ -1,6 +1,7 @@
 #include <Ill/Core/CorePCH.hpp>
 
 #include <Ill/Core/Subsystem.hpp>
+#include <Ill/Core/PluginSubsystem.hpp>
 #include <Ill/Core/Application.hpp>
 
 namespace Ill
@@ -8,7 +9,11 @@ namespace Ill
 	namespace Core
 	{
 		Application::Application()
-		{}
+		{
+            // Before we can load plugins, we need the plugin subsystem 
+            // to be available.  So register that one by default.
+            RegisterSubsystem( &PluginSubsystem::getClassStatic() );
+        }
 
 		Application::~Application()
 		{
@@ -29,13 +34,9 @@ namespace Ill
 			if ( subsystemClass != NULL && baseClass.isBase( *subsystemClass ) )
 			{
 				// Default construct the subsystem.
-				Subsystem* subsystem = static_cast<Subsystem*>( subsystemClass->newInstance() );
+                Subsystem::Ptr subsystem = Subsystem::Ptr( static_cast<Subsystem*>(subsystemClass->newInstance()) );
 				BOOST_ASSERT( subsystem != NULL );
 				subsystem->Name = subsystemClass->getFullName();
-
-				// Increment the ref-counter (this is to ensure the subsystem isn't accidentally deleted if 
-				// somebody stores a pointer to the subsystem in an intrusive_ptr type.
-				intrusive_ptr_add_ref(subsystem); // subsystem->AddRef();
 
 				m_Subsystems.push_back( subsystem );
 				return true;
@@ -47,11 +48,11 @@ namespace Ill
 		bool Application::StartUp( const PropertyMap& options )
 		{
 			// Startup our registered subsystems.
-			iterator iter = m_Subsystems.begin();
+            SubsystemList::iterator iter = m_Subsystems.begin();
 
 			while (iter != m_Subsystems.end() )
 			{
-				Subsystem* subsystem = (*iter);
+                Subsystem::Ptr subsystem = (*iter);
 				BOOST_ASSERT( subsystem != NULL );
 
 				if ( !subsystem->Startup( options ) )
@@ -76,12 +77,8 @@ namespace Ill
 			SubsystemList::reverse_iterator iter = m_Subsystems.rbegin();
 			while ( iter != m_Subsystems.rend() )
 			{
-				Subsystem* subsystem = (*iter);
+                Subsystem::Ptr subsystem = (*iter);
 				subsystem->Shutdown();
-
-				// Decrement the ref counter.  This should trigger a delete if
-				// nobody has an intrusive ptr reference to it.
-				intrusive_ptr_release(subsystem);
 
 				++iter;
 			}

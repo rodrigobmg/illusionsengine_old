@@ -6,7 +6,6 @@
 #define ILL_CORE_HPP
 
 #include <Ill/Core/Platform.hpp>
-#include <Ill/Core/SystemTypes.hpp>
 #include <Ill/Core/Singleton.hpp>
 #include <Ill/Core/NoCopyObject.hpp>
 #include <Ill/Core/RefCountedObject.hpp>
@@ -15,8 +14,8 @@
 #include <Ill/Core/Component.hpp>
 #include <Ill/Core/Subsystem.hpp>
 #include <Ill/Core/Application.hpp>
-#include <Ill/Core/DynamicLib.hpp>
-#include <Ill/Core/DynamicLibSubsystem.hpp>
+#include <Ill/Core/Plugin.hpp>
+#include <Ill/Core/PluginSubsystem.hpp>
 
 namespace Ill
 {

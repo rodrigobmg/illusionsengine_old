@@ -16,16 +16,16 @@
 *  <li>Serialization and class versioning</li>
 * </ul>
 */
-#include <Ill/Core/RefCountedObject.hpp>
+#include <Ill/Core/NoCopyObject.hpp>
 
 namespace Ill
 {
 	namespace Core
 	{
-		class _IllExport Object : public RefCountedObject
+		class _IllExport Object : public NoCopyObject
 		{
 		public:
-			CLASS(Object,RefCountedObject);
+			CLASS(Object,NoCopyObject);
 			CONSTRUCTOR(public,Object,() );
 
 			// TODO: Implement object serialization methods (see boost/Serialization)
@@ -43,8 +43,6 @@ namespace Ill
             PROPERTY( const std::string&, Name );
 
 		};
-
-		typedef boost::intrusive_ptr<Object> ObjectPtr;
 	}
 }
 

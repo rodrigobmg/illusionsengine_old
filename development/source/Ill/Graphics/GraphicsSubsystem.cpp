@@ -21,19 +21,19 @@ namespace Ill
             , m_pGraphicsRenderer( NULL )
         {}
 
-        bool GrapicsSubsystem::Startup( const PropertyMap& startupOptions )
+        bool GrapicsSubsystem::Startup( const Ill::Core::PropertyMap& startupOptions )
         {
             Super::Startup(startupOptions);
 
             // Populate our properties from our startup options.
             GetProperties( startupOptions );
        
-			Ill::System::DynamicLibSubsystem& dynLibMgr = Ill::System::DynamicLibSubsystem::GetSingleton();
-			Ill::System::DynamicLib* dynLib = NULL;
+			Ill::Core::PluginSubsystem& pluginMgr = Ill::Core::PluginSubsystem::GetSingleton();
+			Ill::Core::Plugin* plugin = NULL;
 			try
 			{
-				dynLib = dynLibMgr.Load( m_GraphicsLibName );
-                GET_RENDERER_FUNC pFunc = (GET_RENDERER_FUNC)dynLib->GetSymbol( TEXT("GetGraphicsRenderer") );
+				plugin = pluginMgr.Load( m_GraphicsLibName );
+                GET_RENDERER_FUNC pFunc = (GET_RENDERER_FUNC)plugin->GetSymbol( TEXT("GetGraphicsRenderer") );
 
                 if ( pFunc != NULL )
                 {
@@ -58,13 +58,13 @@ namespace Ill
         {
             Super::Shutdown();
 
-            Ill::System::DynamicLibSubsystem& dynLibMgr = Ill::System::DynamicLibSubsystem::GetSingleton();
-            Ill::System::DynamicLib* dynLib = NULL;
+            Ill::Core::PluginSubsystem& pluginMgr = Ill::Core::PluginSubsystem::GetSingleton();
+            Ill::Core::Plugin* plugin = NULL;
 
             try
             {
-                dynLib = dynLibMgr.Load( m_GraphicsLibName );
-                DESTROY_RENDERER_FUNC pFunc = (DESTROY_RENDERER_FUNC)dynLib->GetSymbol( TEXT("DestroyGraphicsRenderer") );
+                pluginMgr = pluginMgr.Load( m_GraphicsLibName );
+                DESTROY_RENDERER_FUNC pFunc = (DESTROY_RENDERER_FUNC)plugin->GetSymbol( TEXT("DestroyGraphicsRenderer") );
                 if ( pFunc != NULL )
                 {
                     pFunc();

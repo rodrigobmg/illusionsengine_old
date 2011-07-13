@@ -1,6 +1,7 @@
 #ifndef ILL_CORE_REFCOUNTEDOBJECT_HPP
 #define ILL_CORE_REFCOUNTEDOBJECT_HPP
 
+#include <boost/intrusive_ptr.hpp>
 #include <Ill/Core/NoCopyObject.hpp>
 
 template< class T >

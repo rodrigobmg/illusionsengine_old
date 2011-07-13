@@ -14,6 +14,17 @@
 // Boost common includes
 #include <boost/assert.hpp>
 #include <boost/filesystem.hpp>
+#include <boost/filesystem/fstream.hpp>
+// Namespace alias for boost's filesystem
+namespace fs = boost::filesystem;
+
+// Smart pointer handling
+#include <boost/scoped_ptr.hpp>
+#include <boost/scoped_array.hpp>
+#include <boost/shared_ptr.hpp>
+#include <boost/shared_array.hpp>
+#include <boost/weak_ptr.hpp>
+
 #include <boost/any.hpp>
 
 #endif // ILL_CORE_BOOSTINCLUDE_HPP

@@ -1,5 +1,5 @@
-#ifndef ILL_CORE_DYNAMICLIB_HPP
-#define ILL_CORE_DYNAMICLIB_HPP
+#ifndef ILL_CORE_PLUGIN_HPP
+#define ILL_CORE_PLUGIN_HPP
 
 #include <Ill/Core/Object.hpp>
 
@@ -29,15 +29,15 @@ namespace Ill
 {
     namespace Core
     {
-        class DynamicLib : public Object
+        class Plugin : public Object
         {
         public:
-            CLASS(DynamicLib,Object);
-            CONSTRUCTOR(public,DynamicLib,( const String& libName ) );
+            CLASS(Plugin,Object);
+            CONSTRUCTOR(public,Plugin,( const std::wstring& libName ) );
             /**
              * Default destructor
              */
-            ~DynamicLib();
+            ~Plugin();
 
             /**
              * Load this Dynamic Library.
@@ -53,7 +53,7 @@ namespace Ill
              * Gets the address of a particular symbol defined in the Dynamic Library.
              * The symbol must be exported for the symbol to be found in the library.
              */
-            void* GetSymbol( const String& symbolName ) const throw();
+            void* GetSymbol( const std::string& symbolName ) const;
 
         protected:
 
@@ -61,29 +61,29 @@ namespace Ill
              * If an error occurred while loading a dynamic library,
              * use this method to discover the error.
              */
-            std::string GetDynamicLibError();
+            std::string GetPluginError();
 
             // The name of the library to load.
-            String m_LibName;
+            std::wstring    m_PluginName;
             // Handle to the loaded library.
             DYNLIB_HANDLE   m_hInst;
 
         private:
             // Private getters and setters for the properties.
-            const String& get_LibName() const
+            const std::wstring& get_PluginName() const
             {
-                return m_LibName;
+                return m_PluginName;
             }
-            void set_LibName( const String& )
+            void set_PluginName( const std::wstring& )
             {
                 // Throw an exception that this variable should not be set.
-                throw std::exception("ReadOnlyError: DynamicLib::LibName can only be set in the constructor.");
+                throw std::exception("ReadOnlyError: Plugin::PluginName can only be set in the constructor.");
             }
 
         public:
-            PROPERTY( const String&, LibName );
+            PROPERTY( const std::wstring&, PluginName );
         };
     }
 }
 
-#endif // ILL_CORE_DYNAMICLIB_HPP
+#endif // ILL_CORE_PLUGIN_HPP

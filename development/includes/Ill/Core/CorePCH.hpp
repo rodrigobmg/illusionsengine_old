@@ -18,10 +18,10 @@
 
 #pragma warning( pop )
 
-// Boost specific headers should go in BoostInclude.h
-#include <Ill/Core/BoostInclude.hpp>
-
 #include <Ill/Core/Platform.hpp>
 #include <Ill/Core/SystemTypes.hpp>
+
+// Boost specific headers should go in BoostInclude.h
+#include <Ill/Core/BoostInclude.hpp>
 
 #endif // ILL_CORE_PRECOMPILED_HEADER_HPP

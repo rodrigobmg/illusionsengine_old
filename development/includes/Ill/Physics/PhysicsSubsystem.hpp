@@ -5,21 +5,21 @@
 #ifndef ILL_PHYSICS_PHYSICSSUBSYSTEM_HEADER_HPP
 #define ILL_PHYSICS_PHYSICSSUBSYSTEM_HEADER_HPP
 
-#include <Ill/System/Subsystem.hpp>
+#include <Ill/Core/Subsystem.hpp>
 
 namespace Ill
 {
 	namespace Physics
 	{
-		class PhysicsSubsystem : public Ill::System::Subsystem
+		class PhysicsSubsystem : public Ill::Core::Subsystem
 		{
-			CLASS(PhysicsSubsystem,Ill::System::Subsystem);
+			CLASS(PhysicsSubsystem,Ill::Core::Subsystem);
 			CONSTRUCTOR(public,PhysicsSubsystem,());
 
 			/**
 			* Startup
 			*/
-			VIRTUAL_METHOD(public,bool,Startup,( const Ill::System::PropertyMap& startupOptions ));
+			VIRTUAL_METHOD(public,bool,Startup,( const Ill::Core::PropertyMap& startupOptions ));
 
 			/**
 			* Shutdown

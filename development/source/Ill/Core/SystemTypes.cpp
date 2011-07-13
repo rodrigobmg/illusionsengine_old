@@ -7,35 +7,31 @@
 
 #include <Ill/Core/CorePCH.hpp>
 
-namespace Ill
+std::string ConvertString( std::wstring& strW )
 {
-    namespace Core
-    {
-        // Convert to wide-character string
-        std::wstring ConvertStringW( const std::string& fromString )
-        {
-            std::wstring temp( fromString.length(), L' ' );
-            std::copy( fromString.begin(), fromString.end(), temp.begin() );
-            return temp;
-        }
+    typedef std::codecvt<wchar_t, char, mbstate_t> codecvt_t;
+    typedef codecvt_t::result result_type;
 
-        std::wstring ConvertStringW( const std::wstring& fromString )
-        {
-            return fromString;
-        }
+    std::locale mylocale;
+    // The code conversion facet that is used to perform the conversion.
+    const codecvt_t& facet = std::use_facet< codecvt_t >(mylocale);
 
+    // State object to keep track of the state of a multibyte character conversion.
+    mbstate_t   mystate = mbstate_t();
 
-        // Convert to single-character string
-        std::string ConvertStringA( const std::wstring& fromString )
-        {
-            std::string temp( fromString.length(), ' ' );
-            std::copy( fromString.begin(), fromString.end(), temp.begin() );
-            return temp;
-        }
+    // A pointer to the current character of the input string.
+    // When the function returns, this points to the element in the source range
+    // beyond the last one successfully translated.
+    const wchar_t* inputIterator = NULL;
 
-        std::string ConvertStringA( const std::string& fromString )
-        {
-            return fromString;
-        }
-    }
+    // The destination sequence
+    std::string strA( strW.length()+1, 0 );
+    // A pointer to the element in the output sequence.
+    // When the function returns, this points to the element in the destination 
+    // range beyond the last one successfully translated.
+    char* outputIterator = NULL;
+
+    result_type result = facet.out( mystate, &(*strW.begin()), &(*strW.end()), inputIterator, &(*strA.begin()), &(*strA.end()), outputIterator );
+
+    return strA;
 }

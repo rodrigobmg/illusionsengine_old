@@ -8,16 +8,16 @@
 #ifndef ILL_PHYSICS_SCENEDESCRIPTION_HEADER_HPP
 #define ILL_PHYSICS_SCENEDESCRIPTION_HEADER_HPP
 
-#include <Ill/System/Object.hpp>
+#include <Ill/Core/Object.hpp>
 
 namespace Ill
 {
 	namespace Physics
 	{
-		class SceneDescription : public Ill::System::Object
+		class SceneDescription : public Ill::Core::Object
 		{
 		public:
-			CLASS(SceneDescription,Ill::System::Object);
+			CLASS(SceneDescription,Ill::Core::Object);
 			CONSTRUCTOR(public,SceneDescription,());
 
 

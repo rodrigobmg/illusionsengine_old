@@ -9,7 +9,7 @@
 #ifndef ILL_GRAPHICS_GRAPHICSSUBSYSTEM_HPP
 #define ILL_GRAPHICS_GRAPHICSSUBSYSTEM_HPP
 
-#include <Ill/System/Subsystem.hpp>
+#include <Ill/Core/Subsystem.hpp>
 #include <Ill/Graphics/GraphicsTypes.hpp>
 
 namespace Ill
@@ -18,17 +18,17 @@ namespace Ill
     {
         class GraphicsRenderer;
 
-        class GrapicsSubsystem : public Ill::System::Subsystem
+        class GrapicsSubsystem : public Ill::Core::Subsystem
         {
         public:
 
-            CLASS( GrapicsSubsystem, Ill::System::Subsystem );
+            CLASS( GrapicsSubsystem, Ill::Core::Subsystem );
             CONSTRUCTOR(public,GrapicsSubsystem,());
 
             /**
             * Startup the graphics subsystem.
             */
-            VIRTUAL_METHOD(public,bool,Startup,( const PropertyMap& startupOptions ));
+            VIRTUAL_METHOD(public,bool,Startup,( const Ill::Core::PropertyMap& startupOptions ));
 
             /**
             * Shutdown
@@ -47,29 +47,29 @@ namespace Ill
             /**
             * Populate my defined properties from the passed-in property map
             */
-            VIRTUAL_METHOD(public,void,GetProperties,(const PropertyMap& properties) );
+            VIRTUAL_METHOD(public,void,GetProperties,(const Ill::Core::PropertyMap& properties) );
 
         private:
             // Getters and setters for property types
-            const String& get_GraphicsLibName() const
+            const std::wstring& get_GraphicsLibName() const
             {
                 return m_GraphicsLibName;
             }
-            void set_GraphicsLibName( const String& libName )
+            void set_GraphicsLibName( const std::wstring& libName )
             {
                 m_GraphicsLibName = libName;
             }
 
             // Data members
             // The name of graphics library that is used to load the graphics renderer.
-            String              m_GraphicsLibName;
+            std::wstring        m_GraphicsLibName;
 
             GraphicsRenderer*   m_pGraphicsRenderer;
 
         public:
             // Define properties at the bottom of the class to avoid VAssistX getting confused and hiding 
             // my member variables from using code-completion.
-            PROPERTY(const String&,  GraphicsLibName );
+            PROPERTY(const std::wstring&,  GraphicsLibName );
         };
 
         typedef boost::intrusive_ptr<GrapicsSubsystem> GraphicsSubsystemPtr;
