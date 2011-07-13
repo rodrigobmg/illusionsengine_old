@@ -11,7 +11,6 @@
 #ifndef ILL_CORE_SUBSYSTEM_HPP
 #define ILL_CORE_SUBSYSTEM_HPP
 
-#include <Ill/Core/ManagedPtr.hpp>
 #include <Ill/Core/PropertyMap.hpp>
 #include <Ill/Core/Object.hpp>
 

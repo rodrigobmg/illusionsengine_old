@@ -1,7 +1,7 @@
 // #include <SDL.h>
 #include <wx/wx.h>
 
-#include <Ill/System/Platform.hpp>
+#include <Ill/Core/Platform.hpp>
 #include <Ill/Editor/EditorApp.hpp>
 
 // Create an editor application

@@ -10,9 +10,6 @@ namespace Ill
 	{
 		Application::Application()
 		{
-            // Before we can load plugins, we need the plugin subsystem 
-            // to be available.  So register that one by default.
-            RegisterSubsystem( &PluginSubsystem::getClassStatic() );
         }
 
 		Application::~Application()
@@ -47,6 +44,10 @@ namespace Ill
 
 		bool Application::StartUp( const PropertyMap& options )
 		{
+            // Before we can load plugins, we need the plugin subsystem 
+            // to be available.  So register that one by default.
+            RegisterSubsystem( &PluginSubsystem::getClassStatic() );
+
 			// Startup our registered subsystems.
             SubsystemList::iterator iter = m_Subsystems.begin();
 

@@ -6,6 +6,7 @@
 #define ILL_CORE_HPP
 
 #include <Ill/Core/Platform.hpp>
+#include <Ill/Core/SystemTypes.hpp>
 #include <Ill/Core/Singleton.hpp>
 #include <Ill/Core/NoCopyObject.hpp>
 #include <Ill/Core/RefCountedObject.hpp>

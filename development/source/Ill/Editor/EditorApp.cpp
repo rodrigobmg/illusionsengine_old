@@ -1,4 +1,4 @@
-#include <Ill/Editor/PrecompiledHeader.hpp>
+#include <Ill/Editor/EditorPCH.hpp>
 #include <Ill/Editor/EditorApp.hpp>
 
 namespace Ill
@@ -7,11 +7,14 @@ namespace Ill
 	{
 		EditorApp::EditorApp()
 		{
-
+            // This seems to be the only place I can call this
+            Ill::Core::InstantiateTypes();
 		}
 
 		bool EditorApp::OnInit()
 		{
+            Super::StartUp( Ill::Core::PropertyMap() );
+
 			// TODO: Save the position and size of the frame when it was closed so we 
 			// can restore it when we open the editor again.
 			// TODO: The game name should be stored somewhere (property bag?)

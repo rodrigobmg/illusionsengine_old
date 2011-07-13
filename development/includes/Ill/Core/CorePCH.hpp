@@ -12,6 +12,7 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
+#include <locale>
 #include <vector>
 #include <map>
 #include <algorithm>

@@ -7,7 +7,7 @@
 
 #include <Ill/Core/CorePCH.hpp>
 
-std::string ConvertString( std::wstring& strW )
+std::string ConvertString( const std::wstring& strW )
 {
     typedef std::codecvt<wchar_t, char, mbstate_t> codecvt_t;
     typedef codecvt_t::result result_type;

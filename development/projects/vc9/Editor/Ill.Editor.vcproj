@@ -41,13 +41,13 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\external\boost_1_46_1"
+				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\external\boost_1_46_1;&quot;..\..\..\external\wxWidgets-2.9.2\include&quot;;&quot;..\..\..\external\wxWidgets-2.9.2\include\msvc&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;ILL_STATIC_LIB"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderThrough="Ill/Editor/PrecompiledHeader.hpp"
+				PrecompiledHeaderThrough="Ill/Editor/EditorPCH.hpp"
 				WarningLevel="4"
 				WarnAsError="true"
 				DebugInformationFormat="4"
@@ -108,12 +108,12 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="$(SolutionDir)..\..\includes"
+				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\external\boost_1_46_1;&quot;..\..\..\external\wxWidgets-2.9.2\include&quot;;&quot;..\..\..\external\wxWidgets-2.9.2\include\msvc&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;ILL_STATIC_LIB"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderThrough="Ill/Editor/PrecompiledHeader.hpp"
+				PrecompiledHeaderThrough="Ill/Editor/EditorPCH.hpp"
 				WarningLevel="4"
 				WarnAsError="true"
 				DebugInformationFormat="3"
@@ -160,11 +160,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\source\Ill\Editor\Frame.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\source\Ill\Editor\PrecompiledHeader.cpp"
+				RelativePath="..\..\..\source\Ill\Editor\EditorPCH.cpp"
 				>
 				<FileConfiguration
 					Name="Debug|Win32"
@@ -182,6 +178,10 @@
 						UsePrecompiledHeader="1"
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\..\..\source\Ill\Editor\Frame.cpp"
+				>
 			</File>
 		</Filter>
 		<Filter
@@ -202,11 +202,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\includes\Ill\Editor\Frame.hpp"
+				RelativePath="..\..\..\includes\Ill\Editor\EditorPCH.hpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\includes\Ill\Editor\PrecompiledHeader.hpp"
+				RelativePath="..\..\..\includes\Ill\Editor\Frame.hpp"
 				>
 			</File>
 		</Filter>

@@ -8,17 +8,17 @@
 #ifndef __Ill_Editor_EditorApp_h__
 #define __Ill_Editor_EditorApp_h__
 
-#include <Ill/System/Application.hpp>
+#include <Ill/Core/Application.hpp>
 #include <Ill/Editor/Frame.hpp>
 
 namespace Ill
 {
 	namespace Editor
 	{
-		class EditorApp : public System::Application, public wxApp
+		class EditorApp : public Core::Application, public wxApp
 		{
 		public:
-			CLASS(EditorApp,System::Application);
+			CLASS(EditorApp,Core::Application);
 			CONSTRUCTOR(public,EditorApp,());
 
 			/**

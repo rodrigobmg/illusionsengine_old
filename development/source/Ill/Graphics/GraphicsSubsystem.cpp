@@ -33,7 +33,7 @@ namespace Ill
 			try
 			{
 				plugin = pluginMgr.Load( m_GraphicsLibName );
-                GET_RENDERER_FUNC pFunc = (GET_RENDERER_FUNC)plugin->GetSymbol( TEXT("GetGraphicsRenderer") );
+                GET_RENDERER_FUNC pFunc = (GET_RENDERER_FUNC)plugin->GetSymbol( "GetGraphicsRenderer" );
 
                 if ( pFunc != NULL )
                 {
@@ -63,8 +63,8 @@ namespace Ill
 
             try
             {
-                pluginMgr = pluginMgr.Load( m_GraphicsLibName );
-                DESTROY_RENDERER_FUNC pFunc = (DESTROY_RENDERER_FUNC)plugin->GetSymbol( TEXT("DestroyGraphicsRenderer") );
+                plugin = pluginMgr.Load( m_GraphicsLibName );
+                DESTROY_RENDERER_FUNC pFunc = (DESTROY_RENDERER_FUNC)plugin->GetSymbol( "DestroyGraphicsRenderer" );
                 if ( pFunc != NULL )
                 {
                     pFunc();
@@ -84,7 +84,7 @@ namespace Ill
             return m_pGraphicsRenderer;
         }
 
-        void GrapicsSubsystem::GetProperties(const PropertyMap& properties)
+        void GrapicsSubsystem::GetProperties(const Ill::Core::PropertyMap& properties)
         {
             Super::GetProperties( properties );
 

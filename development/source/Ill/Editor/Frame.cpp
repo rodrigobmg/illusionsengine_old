@@ -5,7 +5,7 @@
 * 
 * @brief 	The main editor frame.
 */
-#include <Ill/Editor/PrecompiledHeader.hpp>
+#include <Ill/Editor/EditorPCH.hpp>
 #include <Ill/Editor/Frame.hpp>
 
 namespace Ill
