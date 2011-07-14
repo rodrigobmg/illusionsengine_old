@@ -5,9 +5,10 @@
 #ifndef ILL_EDITOR_PRECOMPILED_HEADER_HPP
 #define ILL_EDITOR_PRECOMPILED_HEADER_HPP
 
-#include <wx/wx.h>
+#include <wx/wxprec.h>
+#include <wx/aui/aui.h>
 
-// System types
+// Core types
 #include <Ill/Core/Core.hpp>
 
 #endif

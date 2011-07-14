@@ -18,28 +18,46 @@ namespace Ill
 		END_EVENT_TABLE()
 
 		Frame::Frame( const wxString& title, const wxPoint& pos, const wxSize& size )
-		: wxFrame( NULL, -1, title, pos, size )
+		: wxFrame( NULL, wxID_ANY, title, pos, size )
 		{
+            m_AUImanager.SetManagedWindow( this );
+
+            wxTextCtrl* text1 = new wxTextCtrl( this, -1, wxT("Pane 1 - Sample Text"), wxDefaultPosition, wxDefaultSize, wxNO_BORDER|wxTE_MULTILINE );
+            wxTextCtrl* text2 = new wxTextCtrl( this, -1, wxT("Pane 2 - Sample Text"), wxDefaultPosition, wxDefaultSize, wxNO_BORDER|wxTE_MULTILINE );
+            wxTextCtrl* text3 = new wxTextCtrl( this, -1, wxT("Pane 3 - Sample Text"), wxDefaultPosition, wxDefaultSize, wxNO_BORDER|wxTE_MULTILINE );
+
+            m_AUImanager.AddPane( text1, wxLEFT, wxT("Pane Number One") );
+            m_AUImanager.AddPane( text2, wxBOTTOM, wxT("Pane Number Two") );
+            m_AUImanager.AddPane( text3, wxCENTER );
+
+            m_AUImanager.Update();
+
 			wxMenuBar* menuBar = CreateMenuBar();
-			wxASSERT_MSG( menuBar != NULL, TEXT("MenuBar is NULL\n") );
+			wxASSERT_MSG( menuBar != NULL, wxT("MenuBar is NULL\n") );
 
 			SetMenuBar( menuBar );
 
 			CreateStatusBar();
 
-			SetStatusText( TEXT("Illusions Engine Editor (c) 2009") );
+			SetStatusText( wxT("Illusions Engine Editor (c) 2011") );
 		}
+
+        Frame::~Frame()
+        {
+            m_AUImanager.UnInit();
+        }
 
 		wxMenuBar* Frame::CreateMenuBar()
 		{
-			wxMenu *menuFile = new wxMenu;
+			wxMenu* menuFile = new wxMenu;
+            wxMenu* menuHelp = new wxMenu;
 
-			menuFile->Append( ECID_About, TEXT("&About...") );
-			menuFile->AppendSeparator();
-			menuFile->Append( ECID_Quit, TEXT("E&xit") );
+            menuFile->Append( ECID_Quit, wxT("E&xit\tAlt-X"), wxT("Quit this program") );
+			menuHelp->Append( ECID_About, wxT("&About...\tF1"), wxT("Show about dialog") );
 
 			wxMenuBar *menuBar = new wxMenuBar;
-			menuBar->Append( menuFile, TEXT("&File") );
+			menuBar->Append( menuFile, wxT("&File") );
+            menuBar->Append( menuHelp, wxT("&Help") );
 
 			return menuBar;
 		}
@@ -51,7 +69,7 @@ namespace Ill
 
 		void Frame::OnAbout(wxCommandEvent& WXUNUSED(event) )
 		{
-			wxMessageBox( TEXT("Illusions Engine Editor (c) 2009"),
+			wxMessageBox( TEXT("Illusions Engine Editor (c) 2011"),
 				TEXT("Illusions Engine Editor"), wxOK | wxICON_INFORMATION );
 
 		}

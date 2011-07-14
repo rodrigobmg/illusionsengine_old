@@ -17,6 +17,7 @@ namespace Ill
 		{
 		public:
 			Frame( const wxString& title, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize );
+            virtual ~Frame();
 
 			virtual wxMenuBar* CreateMenuBar();
 
@@ -30,6 +31,7 @@ namespace Ill
 			void OnAbout(wxCommandEvent& event);
 
 		private:
+            wxAuiManager    m_AUImanager;
 			DECLARE_EVENT_TABLE();
 
 		};

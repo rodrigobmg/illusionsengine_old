@@ -33,7 +33,9 @@ namespace Ill
 
 			/**
 			* Initialize any memory needed by this component.
-			* 
+			* This should be called on all newly created components
+            * since the constructor will usually never allocate anything.
+            *
 			* @returns true if all memory allocations were successful.
 			*/
 			VIRTUAL_METHOD(public,void,Initialize,());
@@ -67,7 +69,10 @@ namespace Ill
 
 			/**
 			* Deallocate the memory that was allocated in Initialize.
-			*
+			* It should be possible to invoke this method many times
+            * without an error or exception being thrown.  This way, 
+            * components can be recycled without deleting them.
+            * 
 			* @returns true if all memory allocations were successful.
 			*/
 			VIRTUAL_METHOD(public,void,Terminiate,());

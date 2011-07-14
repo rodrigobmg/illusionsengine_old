@@ -41,7 +41,24 @@ namespace Ill
 
 			virtual ~Application();
 
-			/**
+            /**
+            * Initialize any memory needed by this component.
+            * 
+            * @returns true if all memory allocations were successful.
+            */
+            VIRTUAL_METHOD(public,void,Initialize,());
+
+            /**
+            * Deallocate the memory that was allocated in Initialize.
+            * It should be possible to invoke this method many times
+            * without an error or exception being thrown.  This way, 
+            * components can be recycled without deleting them.
+            * 
+            * @returns true if all memory allocations were successful.
+            */
+            VIRTUAL_METHOD(public,void,Terminiate,());
+
+            /**
 			* Register a subsystem class that is associated with this application.
 			* An instance of a subsystem will be created and initialized when the
 			* application starts and shut-down when the application is about to close.

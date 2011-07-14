@@ -3,7 +3,7 @@
 * @date 	Apr 16, 2009
 * @author 	Jeremiah van Oosten
 * 
-* @brief 	The even IDs used in the editor must be unique.  Define unique event 
+* @brief 	The event IDs used in the editor must be unique.  Define unique event 
 * ID's in this file.
 */
 

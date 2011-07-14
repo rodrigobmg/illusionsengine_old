@@ -17,6 +17,23 @@ namespace Ill
 			BOOST_ASSERT( m_Subsystems.empty() );
 		}
 
+        void Application::Initialize()
+        {
+            Super::Initialize();
+
+            // Before we can load plugins, we need the plugin subsystem  
+            // must be available.  So register that one by default.
+            RegisterSubsystem( &PluginSubsystem::getClassStatic() );
+        }
+
+        void Application::Terminiate()
+        {
+            Super::Terminiate();
+
+            // Make sure our application has been shutdown.
+            Shutdown();
+        }
+
 		bool Application::ParseConfigurations( int argc, char* argv[], PropertyMap& options )
 		{
 
@@ -44,10 +61,6 @@ namespace Ill
 
 		bool Application::StartUp( const PropertyMap& options )
 		{
-            // Before we can load plugins, we need the plugin subsystem 
-            // to be available.  So register that one by default.
-            RegisterSubsystem( &PluginSubsystem::getClassStatic() );
-
 			// Startup our registered subsystems.
             SubsystemList::iterator iter = m_Subsystems.begin();
 
