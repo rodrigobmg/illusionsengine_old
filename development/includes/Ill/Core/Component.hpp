@@ -4,17 +4,6 @@
 * @file Component.h
 * @date April 15, 2009
 * @author Jeremiah van Oosten
-* 
-* @brief The main component class.
-* @description Components are any objects that need to implement the basic
-* component life-cycle: <br>
-* <ol>
-*  <li>Initialize</li>
-*  <li>Serialize</li>
-*  <li>LoadResources</li>
-*  <li>FlushResources</li>
-*  <li>Terminate</li>
-* </ol>
 */
 
 #include <Ill/Core/Object.hpp>
@@ -26,19 +15,11 @@ namespace Ill
 		class Component : public Object
 		{
 		public:
-
+            
 			CLASS(Component,Object);
 			CONSTRUCTOR(public,Component,());
 			virtual ~Component();
 
-			/**
-			* Initialize any memory needed by this component.
-			* This should be called on all newly created components
-            * since the constructor will usually never allocate anything.
-            *
-			* @returns true if all memory allocations were successful.
-			*/
-			VIRTUAL_METHOD(public,void,Initialize,());
 			/**
 			* Serialize this component.
 			* TODO: Create the serialize class that holds the serialization 
@@ -48,6 +29,15 @@ namespace Ill
 			*/
 			VIRTUAL_METHOD(public,void,Serialize,());
 
+            /**
+			* Initialize any memory needed by this component.
+			* This should be called on all newly created components
+            * since the constructor will usually never allocate anything.
+            *
+			* @returns true if all memory allocations were successful.
+			*/
+			VIRTUAL_METHOD(public,void,Initialize,());
+
 			/**
 			* Load any resources from disc.
 			* Resource loading should be limited to this function to ensure 
@@ -56,6 +46,20 @@ namespace Ill
 			* @returns true if all resources were loaded successfully.
 			*/
 			VIRTUAL_METHOD(public,void,LoadResources,());
+
+            /**
+             * Allows this component to be updated using a variable time-step.
+             * If you need the component to be updated using a fixed time-step,
+             * override the @see(FixedUpdate) method instead.
+             */
+            VIRTUAL_METHOD(public,void,Update,(float elapsedTime) );
+
+            /**
+             * Allows this component to be updated using a fixed time-step.
+             * If you need the component to be updated with a variable time-step,
+             * override the @see(Update) method instead.
+             */
+            VIRTUAL_METHOD(public,void,FixedUpdate,(float elapsedTime) );
 
 			/**
 			* Resources should be released here.
@@ -83,7 +87,6 @@ namespace Ill
 			// Property accessors
 
 		};
-
 	}
 }
 

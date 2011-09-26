@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\external\boost_1_46_1;&quot;..\..\..\external\wxWidgets-2.9.2\include&quot;;&quot;..\..\..\external\wxWidgets-2.9.2\include\msvc&quot;"
+				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\external\boost_1_46_1;&quot;..\..\..\external\gmtl-0.6.0&quot;;&quot;..\..\..\external\wxWidgets-2.9.2\include&quot;;&quot;..\..\..\external\wxWidgets-2.9.2\include\msvc&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;ILL_STATIC_LIB"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -108,7 +108,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\external\boost_1_46_1;&quot;..\..\..\external\wxWidgets-2.9.2\include&quot;;&quot;..\..\..\external\wxWidgets-2.9.2\include\msvc&quot;"
+				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\external\boost_1_46_1;&quot;..\..\..\external\gmtl-0.6.0&quot;;&quot;..\..\..\external\wxWidgets-2.9.2\include&quot;;&quot;..\..\..\external\wxWidgets-2.9.2\include\msvc&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;ILL_STATIC_LIB"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"

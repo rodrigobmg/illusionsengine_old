@@ -17,8 +17,8 @@ namespace Ill
 		class SceneDescription : public Ill::Core::Object
 		{
 		public:
-			CLASS(SceneDescription,Ill::Core::Object);
-			CONSTRUCTOR(public,SceneDescription,());
+			CLASS( SceneDescription, Ill::Core::Object );
+			CONSTRUCTOR( public, SceneDescription, () );
 
 
 

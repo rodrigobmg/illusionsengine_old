@@ -4,4 +4,4 @@
  * Precompiled header file for the Physics subsystem.
  */
 
-#include <Ill/Physics/PrecompiledHeader.hpp>
+#include <Ill/Physics/PhysicsPCH.hpp>

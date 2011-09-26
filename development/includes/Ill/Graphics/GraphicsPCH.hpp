@@ -18,6 +18,11 @@
 
 #pragma warning( pop )
 
+// Generic Math Template Library
+#include <gmtl/gmtl.h>
+
+
+#include <Ill/Core/BoostInclude.hpp>
 #include <Ill/Core/Core.hpp>
 
 #endif

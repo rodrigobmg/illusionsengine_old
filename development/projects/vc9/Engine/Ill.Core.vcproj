@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\external\boost_1_46_1"
+				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\external\boost_1_46_1;&quot;..\..\..\external\gmtl-0.6.0&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;ILL_STATIC_LIB"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -108,7 +108,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\external\boost_1_46_1"
+				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\external\boost_1_46_1;&quot;..\..\..\external\gmtl-0.6.0&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;ILL_STATIC_LIB"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
@@ -188,6 +188,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="..\..\..\source\Ill\Core\GameObject.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\source\Ill\Core\NoCopyObject.cpp"
 				>
 			</File>
@@ -219,6 +223,10 @@
 				RelativePath="..\..\..\source\Ill\Core\SystemTypes.cpp"
 				>
 			</File>
+			<File
+				RelativePath="..\..\..\source\Ill\Core\TransformComponent.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -247,6 +255,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\includes\Ill\Core\CorePCH.hpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\includes\Ill\Core\GameObject.hpp"
 				>
 			</File>
 			<File
@@ -295,6 +307,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\includes\Ill\Core\SystemTypes.hpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\includes\Ill\Core\TransformComponent.hpp"
 				>
 			</File>
 		</Filter>

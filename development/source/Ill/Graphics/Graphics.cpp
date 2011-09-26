@@ -1,4 +1,4 @@
-#include <Ill/Graphics/PrecompiledHeader.hpp>
+#include <Ill/Graphics/GraphicsPCH.hpp>
 #include <Ill/Graphics/Graphics.hpp>
 
 namespace Ill

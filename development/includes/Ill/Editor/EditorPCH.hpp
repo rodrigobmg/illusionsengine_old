@@ -8,6 +8,11 @@
 #include <wx/wxprec.h>
 #include <wx/aui/aui.h>
 
+#include <gmtl/gmtl.h>
+
+// Boost includes
+#include <Ill/Core/BoostInclude.hpp>
+
 // Core types
 #include <Ill/Core/Core.hpp>
 

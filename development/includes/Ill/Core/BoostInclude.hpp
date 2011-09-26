@@ -27,4 +27,18 @@ namespace fs = boost::filesystem;
 
 #include <boost/any.hpp>
 
+// UUID's and Hash
+#include <boost/functional/hash.hpp>
+#include <boost/uuid/uuid.hpp>
+#include <boost/uuid/uuid_generators.hpp>
+#include <boost/uuid/uuid_serialize.hpp>
+
+namespace Ill
+{
+    namespace Core
+    {
+        extern boost::uuids::random_generator uuid_generator;
+    }
+}
+
 #endif // ILL_CORE_BOOSTINCLUDE_HPP

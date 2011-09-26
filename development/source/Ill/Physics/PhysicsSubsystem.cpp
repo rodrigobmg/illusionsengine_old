@@ -5,7 +5,7 @@
  * 
  */
 
-#include <Ill/Physics/PrecompiledHeader.hpp>
+#include <Ill/Physics/PhysicsPCH.hpp>
 #include <Ill/Physics/PhysicsSubsystem.hpp>
 
 namespace Ill

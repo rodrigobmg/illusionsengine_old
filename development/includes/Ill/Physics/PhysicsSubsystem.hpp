@@ -27,9 +27,6 @@ namespace Ill
 			VIRTUAL_METHOD(public,bool,Shutdown,());
 
 		};
-
-		typedef boost::intrusive_ptr<PhysicsSubsystem> PhysicsSubsystemPtr;
-
 	}
 }
 

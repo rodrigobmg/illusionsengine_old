@@ -19,6 +19,9 @@
 
 #pragma warning( pop )
 
+// Generic Math Template Library
+#include <gmtl/gmtl.h>
+
 #include <Ill/Core/Platform.hpp>
 #include <Ill/Core/SystemTypes.hpp>
 

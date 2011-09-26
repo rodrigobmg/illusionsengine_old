@@ -9,17 +9,22 @@ namespace Ill
 		{}
 
 		Component::~Component()
-		{
-		}
-
-		void Component::Initialize() 
 		{}
 
-		void Component::Serialize()
+        void Component::Serialize()
+        {}
+
+        void Component::Initialize() 
 		{}
 
 		void Component::LoadResources()
 		{}
+
+        void Component::Update( float elapsedTime )
+        {}
+
+        void Component::FixedUpdate( float elapsedTime )
+        {}
 
 		void Component::FlushResources()
 		{}

@@ -41,13 +41,13 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\external\boost_1_46_1"
+				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\external\boost_1_46_1;&quot;..\..\..\external\gmtl-0.6.0&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;ILL_STATIC_LIB"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderThrough="Ill/Graphics/PrecompiledHeader.hpp"
+				PrecompiledHeaderThrough="Ill/Graphics/GraphicsPCH.hpp"
 				WarningLevel="4"
 				DebugInformationFormat="4"
 			/>
@@ -108,12 +108,12 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\external\boost_1_46_1"
+				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\external\boost_1_46_1;&quot;..\..\..\external\gmtl-0.6.0&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;ILL_STATIC_LIB"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderThrough="Ill/Graphics/PrecompiledHeader.hpp"
+				PrecompiledHeaderThrough="Ill/Graphics/GraphicsPCH.hpp"
 				WarningLevel="4"
 				DebugInformationFormat="3"
 			/>
@@ -160,15 +160,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\source\Ill\Graphics\GraphicsRenderer.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\source\Ill\Graphics\GraphicsSubsystem.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\source\Ill\Graphics\PrecompiledHeader.cpp"
+				RelativePath="..\..\..\source\Ill\Graphics\GraphicsPCH.cpp"
 				>
 				<FileConfiguration
 					Name="Debug|Win32"
@@ -176,7 +168,6 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						UsePrecompiledHeader="1"
-						PrecompiledHeaderThrough="Ill/Graphics/PrecompiledHeader.hpp"
 					/>
 				</FileConfiguration>
 				<FileConfiguration
@@ -185,9 +176,16 @@
 					<Tool
 						Name="VCCLCompilerTool"
 						UsePrecompiledHeader="1"
-						PrecompiledHeaderThrough="Ill/Graphics/PrecompiledHeader.hpp"
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\..\..\source\Ill\Graphics\GraphicsRenderer.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\source\Ill\Graphics\GraphicsSubsystem.cpp"
+				>
 			</File>
 		</Filter>
 		<Filter
@@ -200,6 +198,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\includes\Ill\Graphics\GraphicsPCH.hpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\includes\Ill\Graphics\GraphicsRenderer.hpp"
 				>
 			</File>
@@ -209,10 +211,6 @@
 			</File>
 			<File
 				RelativePath="..\..\..\includes\Ill\Graphics\GraphicsTypes.hpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\includes\Ill\Graphics\PrecompiledHeader.hpp"
 				>
 			</File>
 		</Filter>

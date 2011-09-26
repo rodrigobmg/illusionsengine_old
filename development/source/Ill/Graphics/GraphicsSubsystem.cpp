@@ -4,7 +4,7 @@
  *
  */
 
-#include <Ill/Graphics/PrecompiledHeader.hpp>
+#include <Ill/Graphics/GraphicsPCH.hpp>
 #include <Ill/Graphics/GraphicsSubsystem.hpp>
 #include <Ill/Graphics/GraphicsRenderer.hpp>
 

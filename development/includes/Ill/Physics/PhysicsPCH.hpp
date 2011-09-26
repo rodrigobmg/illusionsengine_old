@@ -4,6 +4,9 @@
 // Math types
 #include <gmtl/gmtl.h>
 
+// Boost headers
+#include <Ill/Core/BoostInclude.hpp>
+
 // System types
 #include <Ill/Core/Core.hpp>
 

@@ -10,11 +10,14 @@ namespace Ill
 			NoCopyObject();
 			RefCountedObject();
 			Object();
+            GameObject();
 			Component();
 			Subsystem();
 			PluginSubsystem();
 			Application();
 			PropertyMap();
 		}
+
+        boost::uuids::random_generator uuid_generator;
 	}
 }

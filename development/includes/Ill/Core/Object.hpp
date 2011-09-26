@@ -30,17 +30,22 @@ namespace Ill
 
 			// TODO: Implement object serialization methods (see boost/Serialization)
 		protected:
-		private:
-
             // Getters and setters for properties
             const std::string& get_Name() const;
             void set_Name( const std::string& name );
 
+            const boost::uuids::uuid& get_UUID() const;
+            void set_UUID( const boost::uuids::uuid& uuid );
+
+        private:
             // Data members
             std::string     m_Name;
+            // A unique identifier that represents this object.
+            boost::uuids::uuid m_UUID;
 
         public:
             PROPERTY( const std::string&, Name );
+            PROPERTY( const boost::uuids::uuid&, UUID );
 
 		};
 	}
