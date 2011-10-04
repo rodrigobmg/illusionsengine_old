@@ -13,6 +13,8 @@
 
 #include <Ill/Core/PropertyMap.hpp>
 #include <Ill/Core/Object.hpp>
+#include <Ill/Core/Subsystem.fwd.hpp>
+#include <Ill/Core/Application.fwd.hpp>
 
 namespace Ill
 {
@@ -40,6 +42,16 @@ namespace Ill
             */
             VIRTUAL_METHOD(public,void,GetProperties,(const PropertyMap& properties) );
 
+        private:
+            ApplicationPtr get_App() const;
+            void set_App( ApplicationPtr application );
+
+            // Only store a weak pointer to the application to avoid creating
+            // circular references.
+            ApplicationWeakPtr m_pApplication;
+
+        public:
+            PROPERTY( ApplicationPtr, App );
 		};
 	}
 }

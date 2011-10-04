@@ -21,22 +21,22 @@
 * </ul>
 */
 
-#include <Ill/Core/Component.hpp>
+#include <Ill/Core/Object.hpp>
 #include <Ill/Core/PropertyMap.hpp>
+#include <Ill/Core/Subsystem.fwd.hpp>
+#include <Ill/Core/Application.fwd.hpp>
 
 namespace Ill
 {
 	namespace Core
 	{
-		class Subsystem;
-
-		class Application : public Component
+        class Application : public Object, public boost::enable_shared_from_this<Application>
 		{
 		public:
 
-            typedef std::vector< boost::shared_ptr<Subsystem> > SubsystemList;
+            typedef std::vector< SubsystemPtr > SubsystemList;
 
-			CLASS(Application,Component);
+			CLASS(Application,Object);
 			CONSTRUCTOR(public,Application,());
 
 			virtual ~Application();
@@ -81,12 +81,12 @@ namespace Ill
 			* property bag parameter.  These properties can be parsed from the command line, or read from 
 			* the applications config file.
 			*
-			* @param subsystemClass an instance of the class that represents the subsytem type.
+			* @param subsystemClass an instance of the class that represents the subsystem type.
 			* @returns true if the subsystem was successfully created, or false if either
 			* the passed-in class is NULL or it is not of the correct type, that is, 
 			* not derrived from the Subsystem class.
 			*/
-			VIRTUAL_METHOD(public,bool,RegisterSubsystem,(const Class* subsystemClass) );
+			VIRTUAL_METHOD(public,bool,RegisterSubsystem,(const Class& subsystemClass) );
 
 			/**
 			* Parse the command line options and configuration options and store them
@@ -130,7 +130,7 @@ namespace Ill
 
 		private:
 			SubsystemList m_Subsystems;
-
+            ApplicationPtr m_This;
 		};
 
 	} // namespace Ill

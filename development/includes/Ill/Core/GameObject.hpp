@@ -14,8 +14,8 @@
  */
 
 #include <Ill/Core/Object.hpp>
- #include <Ill/Core/Component.hpp>
- #include <Ill/Core/TransformComponent.hpp>
+#include <Ill/Core/Component.fwd.hpp>
+#include <Ill/Core/TransformComponent.fwd.hpp>
 
 namespace Ill
 {
@@ -24,17 +24,17 @@ namespace Ill
         class _IllExport GameObject : public Object
         {
         public:
-            typedef std::vector<Component::WeakPtr> ComponentList;
+            typedef std::vector<ComponentWeakPtr> ComponentList;
 
             CLASS( GameObject, Object );
             CONSTRUCTOR( public, GameObject, () );
 
             // Add a component to the GameObject's component list.
             // @returns the component that was added to the list.
-            METHOD( public, Component::Ptr, AddComponent, ( Component::Ptr component ) );
+            METHOD( public, ComponentPtr, AddComponent, ( ComponentPtr component ) );
 
             // Retrieve the first component in the component list that matches the class type.
-            METHOD( public, Component::WeakPtr, GetComponent, ( const Class& type ) );
+            METHOD( public, ComponentWeakPtr, GetComponent, ( const Class& type ) );
 
             // Retrieve all the components in the component list that matches the class type.
             METHOD( public, ComponentList, GetComponents, ( const Class& type ) );
@@ -44,16 +44,16 @@ namespace Ill
 
         private:
             // A component map stores the UUID of the component as a hash value.
-            typedef std::map< std::size_t , Component::Ptr > ComponentMap;
+            typedef std::map< std::size_t , ComponentPtr > ComponentMap;
 
-            const TransformComponent::WeakPtr get_Transform() const;
-            void set_Transform( const TransformComponent::WeakPtr transform );
+            const TransformComponentWeakPtr get_Transform() const;
+            void set_Transform( const TransformComponentWeakPtr transform );
 
-            TransformComponent::Ptr m_TransformPtr;
+            TransformComponentPtr m_TransformPtr;
             ComponentMap m_Components;
 
         public:
-            PROPERTY( const TransformComponent::WeakPtr, Transform );
+            PROPERTY( const TransformComponentWeakPtr, Transform );
         };
     }
 }

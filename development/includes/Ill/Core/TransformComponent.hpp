@@ -10,6 +10,7 @@
  * by every game object.
  */
 #include <Ill/Core/Component.hpp>
+#include <Ill/Core/TransformComponent.fwd.hpp>
 
 namespace Ill
 {

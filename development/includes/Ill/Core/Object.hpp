@@ -17,6 +17,7 @@
 * </ul>
 */
 #include <Ill/Core/NoCopyObject.hpp>
+#include <Ill/Core/Object.fwd.hpp>
 
 namespace Ill
 {

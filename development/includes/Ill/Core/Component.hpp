@@ -7,6 +7,7 @@
 */
 
 #include <Ill/Core/Object.hpp>
+#include <Ill/Core/Component.fwd.hpp>
 
 namespace Ill
 {

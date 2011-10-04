@@ -1,6 +1,6 @@
 #include <Ill/Editor/EditorPCH.hpp>
 #include <Ill/Editor/Frame.hpp>
-
+#include <Ill/Core/Application.hpp>
 #include <Ill/Editor/EditorApp.hpp>
 
 namespace Ill
@@ -11,13 +11,18 @@ namespace Ill
 		{
             // This seems to be the only place I can call this since wxWidgets doesn't really expose
             // an entry point.
+            // NOTE: It does, but for the sake of platform-independence, I will just all wxWidgets
+            // to define the entry point.
+           
+            // Instantiate the core types to allow the reflection system to register the class types.
             Ill::Core::InstantiateTypes();
 		}
 
 		bool EditorApp::OnInit()
 		{
-            Super::Initialize();
-            Super::StartUp( Ill::Core::PropertyMap() );
+            m_App = Ill::Core::ApplicationPtr( new Ill::Core::Application() );
+            m_App->Initialize();
+            m_App->StartUp( Ill::Core::PropertyMap() );
 
 			// TODO: Save the position and size of the frame when it was closed so we 
 			// can restore it when we open the editor again.
@@ -33,8 +38,8 @@ namespace Ill
 
         int EditorApp::OnExit()
         {
-            Super::Terminiate();
-
+            m_App->Terminiate();
+            m_App.reset();
             return wxApp::OnExit();
         }
 	}

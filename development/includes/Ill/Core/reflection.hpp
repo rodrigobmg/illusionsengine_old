@@ -37,10 +37,6 @@
 #include <cstddef>
 #include <sstream>
 
-// Boost pointers used to add memory management to class types
-#include <boost/shared_ptr.hpp>
-#include <boost/weak_ptr.hpp>
-
 //joins
 #define REF_JOIN( X, Y ) REF_DO_JOIN( X, Y )
 #define REF_DO_JOIN( X, Y ) REF_DO_JOIN2(X,Y)
@@ -1039,8 +1035,6 @@ protected:\
         return &_class;\
     }\
 public:\
-    typedef boost::shared_ptr<CLASS_NAME> Ptr; \
-    typedef boost::weak_ptr<CLASS_NAME> WeakPtr; \
     static const agm::reflection::Class &getClassStatic() {\
         return *CLASS_NAME::getClassStaticPtr();\
     }\

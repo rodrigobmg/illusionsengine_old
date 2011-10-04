@@ -8,6 +8,16 @@ namespace Ill
 		Subsystem::Subsystem()
 		{}
 
+        ApplicationPtr Subsystem::get_App() const
+        {
+            return m_pApplication.lock();
+        }
+
+        void Subsystem::set_App( ApplicationPtr application )
+        {
+            m_pApplication = application;
+        }
+
 		bool Subsystem::Startup( const PropertyMap& statupOptions )
 		{
 			return true;

@@ -19,17 +19,13 @@ namespace Ill
 
         void Application::Initialize()
         {
-            Super::Initialize();
-
             // Before we can load plugins, we need the plugin subsystem  
-            // must be available.  So register that one by default.
-            RegisterSubsystem( &PluginSubsystem::getClassStatic() );
+            // to be available.  So register that one by default.
+            RegisterSubsystem( PluginSubsystem::getClassStatic() );
         }
 
         void Application::Terminiate()
         {
-            Super::Terminiate();
-
             // Make sure our application has been shutdown.
             Shutdown();
         }
@@ -40,17 +36,18 @@ namespace Ill
 			return true;
 		}
 
-		bool Application::RegisterSubsystem( const Class* subsystemClass )
+		bool Application::RegisterSubsystem( const Class& subsystemClass )
 		{
 			static const Class& baseClass = Subsystem::getClassStatic();
 
 			// Make sure the class is actually derived from Subsystem.
-			if ( subsystemClass != NULL && baseClass.isBase( *subsystemClass ) )
+			if ( baseClass.isBase( subsystemClass ) )
 			{
 				// Default construct the subsystem.
-                Subsystem::Ptr subsystem = Subsystem::Ptr( static_cast<Subsystem*>(subsystemClass->newInstance()) );
-				BOOST_ASSERT( subsystem != NULL );
-				subsystem->Name = subsystemClass->getFullName();
+                SubsystemPtr subsystem = SubsystemPtr( static_cast<Subsystem*>( subsystemClass.newInstance() ) );
+                BOOST_ASSERT( subsystem != NULL );
+				subsystem->Name = subsystemClass.getFullName();
+                subsystem->App = shared_from_this();
 
 				m_Subsystems.push_back( subsystem );
 				return true;
@@ -66,7 +63,7 @@ namespace Ill
 
 			while (iter != m_Subsystems.end() )
 			{
-                Subsystem::Ptr subsystem = (*iter);
+                SubsystemPtr subsystem = (*iter);
 				BOOST_ASSERT( subsystem != NULL );
 
 				if ( !subsystem->Startup( options ) )
@@ -91,7 +88,7 @@ namespace Ill
 			SubsystemList::reverse_iterator iter = m_Subsystems.rbegin();
 			while ( iter != m_Subsystems.rend() )
 			{
-                Subsystem::Ptr subsystem = (*iter);
+                SubsystemPtr subsystem = (*iter);
 				subsystem->Shutdown();
 
 				++iter;

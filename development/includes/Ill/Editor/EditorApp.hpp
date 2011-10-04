@@ -8,7 +8,10 @@
 #ifndef __Ill_Editor_EditorApp_h__
 #define __Ill_Editor_EditorApp_h__
 
-#include <Ill/Core/Application.hpp>
+#include <Ill/Core/reflection.hpp>
+#include <Ill/Core/Application.fwd.hpp>
+
+using namespace agm::reflection;
 
 namespace Ill
 {
@@ -16,10 +19,10 @@ namespace Ill
 	{
         class Frame;
 
-		class EditorApp : public Core::Application, public wxApp
+		class EditorApp : public wxApp
 		{
 		public:
-			CLASS(EditorApp,Core::Application);
+			CLASS(EditorApp,NullClass);
 			CONSTRUCTOR(public,EditorApp,());
 
 			/**
@@ -31,7 +34,7 @@ namespace Ill
 		private:
 			// The main frame window for the Editor application
 			Frame*		m_pFrame;
-
+            Ill::Core::ApplicationPtr m_App;
 		};
 	}
 }

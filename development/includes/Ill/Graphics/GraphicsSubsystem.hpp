@@ -10,6 +10,7 @@
 #define ILL_GRAPHICS_GRAPHICSSUBSYSTEM_HPP
 
 #include <Ill/Core/Subsystem.hpp>
+#include <Ill/Core/Application.fwd.hpp>
 #include <Ill/Graphics/GraphicsTypes.hpp>
 
 namespace Ill
@@ -71,8 +72,6 @@ namespace Ill
             // my member variables from using code-completion.
             PROPERTY(const std::wstring&,  GraphicsLibName );
         };
-
-        typedef boost::intrusive_ptr<GrapicsSubsystem> GraphicsSubsystemPtr;
     }
 }
 

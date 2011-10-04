@@ -2,6 +2,7 @@
 #define ILL_CORE_PLUGIN_HPP
 
 #include <Ill/Core/Object.hpp>
+#include <Ill/Core/Plugin.fwd.hpp>
 
 #if ILL_PLATFORM == ILL_PLATFORM_WIN32
 #    define DYNLIB_HANDLE hInstance

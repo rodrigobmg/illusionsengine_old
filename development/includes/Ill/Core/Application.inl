@@ -9,14 +9,14 @@ namespace Ill
 			// Type should be reflective (defines the CLASS(..) macro in the class definition.
 			const Class& typeClass = T::getClassStatic();
 
-			iterator iter = m_Subsystems.begin();
+            SubsystemList::iterator iter = m_Subsystems.begin();
 			while ( iter != m_Subsystems.end() )
 			{
-                Subsystem::Ptr subsystem = (*iter);
+                SubsystemPtr subsystem = (*iter);
 				const Class& subsystemClass = subsystem->getClass();
-				if ( subsystemClass.isSame(typeClass) || subsystemClass.isBase(typeClass) )
+				if ( subsystemClass.isSame(typeClass) /*|| subsystemClass.isSuper(typeClass) */ )
 				{
-					return boost::weak_ptr<T>( subsystem );
+                    return boost::shared_dynamic_cast<T>( subsystem );
 				}
 				++iter;
 			}

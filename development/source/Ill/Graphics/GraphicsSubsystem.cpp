@@ -7,6 +7,7 @@
 #include <Ill/Graphics/GraphicsPCH.hpp>
 #include <Ill/Graphics/GraphicsSubsystem.hpp>
 #include <Ill/Graphics/GraphicsRenderer.hpp>
+#include <Ill/Core/PluginSubsystem.hpp>
 
 // Define a function that will be used to get a pointer to our graphics renderer implementation.
 typedef Ill::Graphics::GraphicsRenderer* (*GET_RENDERER_FUNC)(void);
@@ -28,11 +29,12 @@ namespace Ill
             // Populate our properties from our startup options.
             GetProperties( startupOptions );
        
-			Ill::Core::PluginSubsystem& pluginMgr = Ill::Core::PluginSubsystem::GetSingleton();
-			Ill::Core::Plugin* plugin = NULL;
+            Ill::Core::ApplicationPtr app = App;
+            Ill::Core::PluginSubsystemPtr pluginMgr = app->GetSubsystem<Ill::Core::PluginSubsystem>().lock();
+			Ill::Core::PluginPtr plugin;
 			try
 			{
-				plugin = pluginMgr.Load( m_GraphicsLibName );
+				plugin = pluginMgr->Load( m_GraphicsLibName );
                 GET_RENDERER_FUNC pFunc = (GET_RENDERER_FUNC)plugin->GetSymbol( "GetGraphicsRenderer" );
 
                 if ( pFunc != NULL )
@@ -58,12 +60,13 @@ namespace Ill
         {
             Super::Shutdown();
 
-            Ill::Core::PluginSubsystem& pluginMgr = Ill::Core::PluginSubsystem::GetSingleton();
-            Ill::Core::Plugin* plugin = NULL;
+            Ill::Core::ApplicationPtr app = App;
+            Ill::Core::PluginSubsystemPtr pluginMgr = app->GetSubsystem<Ill::Core::PluginSubsystem>().lock();
+            Ill::Core::PluginPtr plugin;
 
             try
             {
-                plugin = pluginMgr.Load( m_GraphicsLibName );
+                plugin = pluginMgr->Load( m_GraphicsLibName );
                 DESTROY_RENDERER_FUNC pFunc = (DESTROY_RENDERER_FUNC)plugin->GetSymbol( "DestroyGraphicsRenderer" );
                 if ( pFunc != NULL )
                 {

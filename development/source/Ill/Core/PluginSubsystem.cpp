@@ -5,32 +5,20 @@
  */
 
 #include <Ill/Core/CorePCH.hpp>
+#include <Ill/Core/Plugin.hpp>
 #include <Ill/Core/PluginSubsystem.hpp>
 
 namespace Ill
 {
     namespace Core
     {
-		PluginSubsystem* PluginSubsystem::ms_Singleton = NULL;
-
         PluginSubsystem::PluginSubsystem()
         {
-			BOOST_ASSERT( ms_Singleton == NULL );
-			ms_Singleton = this;
 		}
 
         PluginSubsystem::~PluginSubsystem()
         {
-            BOOST_ASSERT( m_PluginList.empty() );
-			BOOST_ASSERT( ms_Singleton != NULL );
-			ms_Singleton = NULL;
         }
-
-		PluginSubsystem& PluginSubsystem::GetSingleton()
-		{
-			BOOST_ASSERT( ms_Singleton != NULL );
-			return *ms_Singleton;
-		}
 
         bool PluginSubsystem::Startup( const PropertyMap& startupOptions )
         {
@@ -45,9 +33,8 @@ namespace Ill
             PluginList::iterator iter = m_PluginList.begin();
             while( iter != m_PluginList.end() )
             {
-                Plugin* lib = iter->second;
+                PluginPtr lib = iter->second;
                 lib->Unload();
-                delete lib;
 
                 ++iter;
             }
@@ -57,7 +44,7 @@ namespace Ill
             return true;
         }
 
-        Plugin* PluginSubsystem::Load( const std::wstring& pluginName )
+        PluginPtr PluginSubsystem::Load( const std::wstring& pluginName )
         {
             PluginList::iterator iter = m_PluginList.find( pluginName );
             if ( iter != m_PluginList.end() )
@@ -65,14 +52,14 @@ namespace Ill
                 return iter->second;
             }
 
-            Plugin* pLib = new Plugin( pluginName );
+            PluginPtr pLib = boost::make_shared<Plugin>( pluginName );
             pLib->Load();
             m_PluginList.insert( PluginList::value_type( pluginName, pLib ) );
 
             return pLib;
         }
 
-        void PluginSubsystem::Unload( Plugin* plugin )
+        void PluginSubsystem::Unload( PluginPtr plugin )
         {
 			if ( plugin  != NULL )
 			{
@@ -83,7 +70,6 @@ namespace Ill
 				}
 
 				plugin->Unload();
-				delete plugin;
 			}
         }
 

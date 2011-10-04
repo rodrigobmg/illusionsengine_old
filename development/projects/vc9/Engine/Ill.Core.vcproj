@@ -234,6 +234,10 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
+				RelativePath="..\..\..\includes\Ill\Core\Application.fwd.hpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\includes\Ill\Core\Application.hpp"
 				>
 			</File>
@@ -243,6 +247,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\includes\Ill\Core\BoostInclude.hpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\includes\Ill\Core\Component.fwd.hpp"
 				>
 			</File>
 			<File
@@ -266,6 +274,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\includes\Ill\Core\Object.fwd.hpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\includes\Ill\Core\Object.hpp"
 				>
 			</File>
@@ -274,7 +286,15 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\includes\Ill\Core\Plugin.fwd.hpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\includes\Ill\Core\Plugin.hpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\includes\Ill\Core\PluginSubsystem.fwd.hpp"
 				>
 			</File>
 			<File
@@ -302,11 +322,19 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\includes\Ill\Core\Subsystem.fwd.hpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\includes\Ill\Core\Subsystem.hpp"
 				>
 			</File>
 			<File
 				RelativePath="..\..\..\includes\Ill\Core\SystemTypes.hpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\includes\Ill\Core\TransformComponent.fwd.hpp"
 				>
 			</File>
 			<File
