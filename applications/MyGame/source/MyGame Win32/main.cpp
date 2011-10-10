@@ -1,4 +1,4 @@
-#include <PrecompiledHeader.hpp>
+#include <MyGamePCH.hpp>
 #include <SDL_main.h>
 
 // Include the game library.
@@ -14,14 +14,11 @@
 void InstantiateTypes()
 {
     Ill::Core::InstantiateTypes();
-    Ill::Core::Graphics::InstantiateTypes();
+    Ill::Graphics::InstantiateTypes();
 }
 
 // Gloabals
 Ill::Game::GameApplicationPtr g_pGameApp;
-
-// Typedefs
-typedef Ill::Core::String String;
 
 int main( int argc, char* argv[] )
 {
@@ -31,28 +28,31 @@ int main( int argc, char* argv[] )
     Ill::Core::PropertyMap gameOptions;
 
 #ifdef _DEBUG
-    gameOptions.AddValue( "PluginFilename", String( TEXT("../Configuration/Plugins_Debug.cfg") ) );
-    gameOptions.AddValue( "GraphicsLibName", String( TEXT("Ill.System.OgreGraphics_d.dll") ) );
+    gameOptions.AddValue( "PluginFilename", std::wstring(L"../Configuration/Plugins_Debug.cfg") );
+    gameOptions.AddValue( "GraphicsLibName", std::wstring(L"Ill.System.OgreGraphics_d.dll") );
 #else
-    gameOptions.AddValue( "PluginFilename", String( TEXT("../Configuration/Plugins.cfg") ) );
-    gameOptions.AddValue( "GraphicsLibName", String( TEXT("Ill.System.OgreGraphics.dll") ) );
+    gameOptions.AddValue( "PluginFilename", std::wstring(L"../Configuration/Plugins.cfg") );
+    gameOptions.AddValue( "GraphicsLibName", std::wstring(L"Ill.System.OgreGraphics.dll") );
 #endif
 
-    gameOptions.AddValue( "ConfigFilename", String( TEXT("../Configuration/ogre.cfg") ) );
-    gameOptions.AddValue( "ResourceFilename", String( TEXT("../Configuration/resources.cfg") ) );
-    gameOptions.AddValue( "LogFilename", String( TEXT("../Logs/Ogre.log") ) );
-    gameOptions.AddValue( "DefaultSceneInstanceName", String( TEXT("MyGameSceneInstance") ) );
+    gameOptions.AddValue( "ConfigFilename", std::wstring(L"../Configuration/ogre.cfg") );
+    gameOptions.AddValue( "ResourceFilename", std::wstring(L"../Configuration/resources.cfg") );
+    gameOptions.AddValue( "LogFilename", std::wstring(L"../Logs/Ogre.log") );
+    gameOptions.AddValue( "DefaultSceneInstanceName", std::wstring(L"MyGameSceneInstance") );
 
 
     // Create the game application class
-    g_pGameApp = new Ill::Game::GameApplication();
+    g_pGameApp = Ill::Game::GameApplicationPtr( new Ill::Game::GameApplication() );
+    g_pGameApp->Initialize();
 
     // Parse the command-line options
     g_pGameApp->ParseConfigurations( argc, argv, gameOptions );
 
     // Register subsystems
-    g_pGameApp->RegisterSubsystem( Class::forName( "class Ill::Core::DynamicLibSubsystem") );
-    g_pGameApp->RegisterSubsystem( Class::forName( "class Ill::Core::Graphics::GrapicsSubsystem" ) );
+    const Class* pGrapicsSubsystemClass = Class::forName( "class Ill::Graphics::GrapicsSubsystem" );
+    BOOST_ASSERT( pGrapicsSubsystemClass != NULL && "Could not find GraphicsSubsystem class in class registry.");
+
+    g_pGameApp->RegisterSubsystem( *pGrapicsSubsystemClass );
 
     if ( g_pGameApp->StartUp( gameOptions ) )
 	{
@@ -65,8 +65,8 @@ int main( int argc, char* argv[] )
 	}
     
     g_pGameApp->Shutdown();
-
-    g_pGameApp = NULL;
+    g_pGameApp->Terminiate();
+    g_pGameApp.reset();
 
 #ifdef _DEBUG
     // Run a small test to see what classes the reflection system knows about.

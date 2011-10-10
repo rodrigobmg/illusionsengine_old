@@ -29,8 +29,8 @@ namespace Ill
             // Populate our properties from our startup options.
             GetProperties( startupOptions );
        
-            Ill::Core::ApplicationPtr app = App;
-            Ill::Core::PluginSubsystemPtr pluginMgr = app->GetSubsystem<Ill::Core::PluginSubsystem>().lock();
+            Ill::Core::ApplicationPtr app = get_App().lock();
+            Ill::Core::PluginSubsystemPtr pluginMgr = (app->GetSubsystem<Ill::Core::PluginSubsystem>()).lock();
 			Ill::Core::PluginPtr plugin;
 			try
 			{
@@ -60,8 +60,8 @@ namespace Ill
         {
             Super::Shutdown();
 
-            Ill::Core::ApplicationPtr app = App;
-            Ill::Core::PluginSubsystemPtr pluginMgr = app->GetSubsystem<Ill::Core::PluginSubsystem>().lock();
+            Ill::Core::ApplicationPtr app = get_App().lock();
+            Ill::Core::PluginSubsystemPtr pluginMgr = (app->GetSubsystem<Ill::Core::PluginSubsystem>()).lock();
             Ill::Core::PluginPtr plugin;
 
             try

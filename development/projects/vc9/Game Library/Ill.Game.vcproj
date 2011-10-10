@@ -41,13 +41,13 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\..\includes"
+				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\external\boost_1_46_1"
 				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;ILL_STATIC_LIB"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
-				UsePrecompiledHeader="1"
-				PrecompiledHeaderThrough="Ill/Game/PrecompiledHeader.hpp"
+				UsePrecompiledHeader="2"
+				PrecompiledHeaderThrough="Ill/Game/GamePCH.hpp"
 				WarningLevel="4"
 				WarnAsError="true"
 				DebugInformationFormat="4"
@@ -108,12 +108,12 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="..\..\..\includes"
+				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\external\boost_1_46_1"
 				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;ILL_STATIC_LIB"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
-				UsePrecompiledHeader="1"
-				PrecompiledHeaderThrough="Ill/Game/PrecompiledHeader.hpp"
+				UsePrecompiledHeader="2"
+				PrecompiledHeaderThrough="Ill/Game/GamePCH.hpp"
 				WarningLevel="4"
 				WarnAsError="true"
 				DebugInformationFormat="3"
@@ -164,8 +164,24 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\source\Ill\Game\PrecompiledHeader.cpp"
+				RelativePath="..\..\..\source\Ill\Game\GamePCH.cpp"
 				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="1"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="1"
+					/>
+				</FileConfiguration>
 			</File>
 		</Filter>
 		<Filter
@@ -178,11 +194,15 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\includes\Ill\Game\GameApplication.h"
+				RelativePath="..\..\..\includes\Ill\Game\GameApplication.fwd.hpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\includes\Ill\Game\PrecompiledHeader.hpp"
+				RelativePath="..\..\..\includes\Ill\Game\GameApplication.hpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\includes\Ill\Game\GamePCH.hpp"
 				>
 			</File>
 		</Filter>

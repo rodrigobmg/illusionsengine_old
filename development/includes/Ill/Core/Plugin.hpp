@@ -30,7 +30,7 @@ namespace Ill
 {
     namespace Core
     {
-        class Plugin : public Object
+        class _IllExport Plugin : public Object
         {
         public:
             CLASS(Plugin,Object);

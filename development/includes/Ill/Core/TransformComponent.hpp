@@ -16,7 +16,7 @@ namespace Ill
 {
     namespace Core
     {
-        class TransformComponent : public Component
+        class _IllExport TransformComponent : public Component
         {
         public:
             CLASS( TransformComponent, Component );

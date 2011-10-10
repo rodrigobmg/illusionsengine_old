@@ -1,4 +1,4 @@
-#include <PrecompiledHeader.hpp>
+#include <MyGamePCH.hpp>
 #include <TestReflection.h>
 
 using namespace agm::reflection;

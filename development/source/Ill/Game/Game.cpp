@@ -5,7 +5,7 @@
  * Implementation file for the Game library.
  */
 
-#include <Ill/Game/PrecompiledHeader.hpp>
+#include <Ill/Game/GamePCH.hpp>
 #include <Ill/Game/Game.hpp>
 
 namespace Ill

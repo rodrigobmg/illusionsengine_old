@@ -30,7 +30,7 @@ namespace Ill
 {
 	namespace Core
 	{
-        class Application : public Object, public boost::enable_shared_from_this<Application>
+        class _IllExport Application : public Object, public boost::enable_shared_from_this<Application>
 		{
 		public:
 
@@ -130,7 +130,6 @@ namespace Ill
 
 		private:
 			SubsystemList m_Subsystems;
-            ApplicationPtr m_This;
 		};
 
 	} // namespace Ill

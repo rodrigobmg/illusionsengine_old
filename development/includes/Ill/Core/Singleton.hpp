@@ -30,6 +30,12 @@ namespace Ill
 			{
 				BOOST_ASSERT( ms_Singleton == NULL );
 #if defined( _MSC_VER ) && _MSC_VER < 1200	 
+                // Calculate the offset from the starting address of type T
+                // and the address of type Singelton<T> so that we can get
+                // the address of type T and not Singelton<T> from the "this" pointer.
+                // For a better explanation of this Singelton implementation, refer to 
+                // Chapter 1.3 "An Automatic Singleton Utility" by Scott Bilas in
+                // Game Programming Gems (2000), Charles River Media, Inc.
 				int offset = (int)(T*)1 - (int)(Singleton <T>*)(T*)1;
 				ms_Singleton = (T*)((int)this + offset);
 #else

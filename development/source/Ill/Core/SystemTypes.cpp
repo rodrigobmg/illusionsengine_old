@@ -22,16 +22,22 @@ std::string ConvertString( const std::wstring& strW )
     // A pointer to the current character of the input string.
     // When the function returns, this points to the element in the source range
     // beyond the last one successfully translated.
-    const wchar_t* inputIterator = NULL;
-
-    // The destination sequence
-    std::string strA( strW.length()+1, 0 );
+    const wchar_t* inputIterator;
     // A pointer to the element in the output sequence.
     // When the function returns, this points to the element in the destination 
     // range beyond the last one successfully translated.
-    char* outputIterator = NULL;
+    char* outputIterator;
 
-    result_type result = facet.out( mystate, &(*strW.begin()), &(*strW.end()), inputIterator, &(*strA.begin()), &(*strA.end()), outputIterator );
+    size_t length = strW.length();
+    // A temporary buffer to store the result of the translated string.
+    char* chA = new char[length + 1];
+
+    result_type result = facet.out( mystate, strW.c_str(), strW.c_str()+length+1, inputIterator, chA , chA+length+1, outputIterator );
+    BOOST_ASSERT( result == codecvt_t::ok && "Could not convert the wide-character string to a narrow-character string." );
+
+    std::string strA( chA );
+
+    delete [] chA;
 
     return strA;
 }

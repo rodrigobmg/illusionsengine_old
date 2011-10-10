@@ -22,6 +22,7 @@ namespace Ill
 		{
             m_App = Ill::Core::ApplicationPtr( new Ill::Core::Application() );
             m_App->Initialize();
+            // TODO: Read configuration data from a file.
             m_App->StartUp( Ill::Core::PropertyMap() );
 
 			// TODO: Save the position and size of the frame when it was closed so we 

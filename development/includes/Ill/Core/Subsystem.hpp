@@ -20,7 +20,7 @@ namespace Ill
 {
 	namespace Core
 	{
-		class Subsystem : public Object
+		class _IllExport Subsystem : public Object
 		{
 		public:
 			CLASS(Subsystem,Object);
@@ -42,16 +42,16 @@ namespace Ill
             */
             VIRTUAL_METHOD(public,void,GetProperties,(const PropertyMap& properties) );
 
-        private:
-            ApplicationPtr get_App() const;
-            void set_App( ApplicationPtr application );
+            ApplicationWeakPtr get_App() const;
+            void set_App( ApplicationWeakPtr application );
 
+        private:
             // Only store a weak pointer to the application to avoid creating
             // circular references.
             ApplicationWeakPtr m_pApplication;
 
         public:
-            PROPERTY( ApplicationPtr, App );
+            PROPERTY( ApplicationWeakPtr, App );
 		};
 	}
 }

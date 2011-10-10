@@ -48,7 +48,7 @@ namespace Ill
 
         void Plugin::Unload()
         {
-            if( DYNLIB_UNLOAD( m_hInst ) )
+            if( m_hInst == NULL || DYNLIB_UNLOAD( m_hInst ) )
             {
                 std::string msg = std::string( "Could not unload dynamic library " ) + ConvertString(m_PluginName) + std::string( ". System Error: " ) + GetPluginError();
                 throw std::exception(msg.c_str()); // TODO: Create a more elaborate exception classes to store more information and can accept wide character strings in UNICODE mode!.

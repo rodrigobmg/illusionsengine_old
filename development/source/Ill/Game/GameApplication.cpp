@@ -5,8 +5,8 @@
  * GameApplication base class.
  */
 
-#include <Ill/Game/PrecompiledHeader.hpp>
-#include <Ill/Game/GameApplication.h>
+#include <Ill/Game/GamePCH.hpp>
+#include <Ill/Game/GameApplication.hpp>
 
 namespace Ill
 {

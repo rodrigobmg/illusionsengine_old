@@ -41,13 +41,13 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\includes;..\..\..\..\development\includes;..\..\..\..\development\external\boost_1_46_1"
+				AdditionalIncludeDirectories="..\..\includes;..\..\..\..\development\includes;..\..\..\..\development\external\boost_1_46_1;&quot;..\..\..\..\development\external\SDL-1.2.14\include&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;ILL_STATIC_LIB"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderThrough="PrecompiledHeader.hpp"
+				PrecompiledHeaderThrough="MyGamePCH.hpp"
 				WarningLevel="4"
 				DebugInformationFormat="4"
 			/>
@@ -65,7 +65,7 @@
 				AdditionalDependencies="SDLmain.lib SDL.lib"
 				OutputFile="$(OutDir)\$(ProjectName)_d.exe"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="..\..\libs;..\..\..\..\libs"
+				AdditionalLibraryDirectories="&quot;..\..\..\..\development\external\SDL-1.2.14\lib&quot;;..\..\..\..\development\external\boost_1_46_1\lib"
 				IgnoreDefaultLibraryNames="msvcrt.lib"
 				GenerateDebugInformation="true"
 				SubSystem="2"
@@ -120,12 +120,12 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="..\..\includes;..\..\..\..\development\includes;..\..\..\..\development\external\boost_1_46_1"
+				AdditionalIncludeDirectories="..\..\includes;..\..\..\..\development\includes;..\..\..\..\development\external\boost_1_46_1;&quot;..\..\..\..\development\external\SDL-1.2.14\include&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;ILL_STATIC_LIB"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderThrough="PrecompiledHeader.hpp"
+				PrecompiledHeaderThrough="MyGamePCH.hpp"
 				WarningLevel="4"
 				DebugInformationFormat="3"
 			/>
@@ -142,7 +142,7 @@
 				Name="VCLinkerTool"
 				AdditionalDependencies="SDLmain.lib SDL.lib"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="..\..\libs;..\..\..\..\libs"
+				AdditionalLibraryDirectories="&quot;..\..\..\..\development\external\SDL-1.2.14\lib&quot;;..\..\..\..\development\external\boost_1_46_1\lib"
 				IgnoreDefaultLibraryNames=""
 				GenerateDebugInformation="true"
 				SubSystem="2"
@@ -186,7 +186,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\source\PrecompiledHeader.cpp"
+				RelativePath="..\..\source\MyGamePCH.cpp"
 				>
 				<FileConfiguration
 					Name="Debug|Win32"
@@ -216,7 +216,7 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath="..\..\includes\PrecompiledHeader.hpp"
+				RelativePath="..\..\includes\MyGamePCH.hpp"
 				>
 			</File>
 			<File

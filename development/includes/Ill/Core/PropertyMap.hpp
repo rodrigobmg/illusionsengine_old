@@ -14,7 +14,7 @@ namespace Ill
 {
 	namespace Core
 	{
-		class PropertyMap : public Object
+		class _IllExport PropertyMap : public Object
 		{
 		public:
 			typedef std::map< std::string, boost::any > map;

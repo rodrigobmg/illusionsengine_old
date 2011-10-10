@@ -9,7 +9,9 @@ namespace Ill
     namespace Core
     {
         class Plugin;
-        DECLARE_PTR( Plugin );
+        //DECLARE_PTR( Plugin );
+        typedef boost::shared_ptr<Plugin> PluginPtr;
+        typedef boost::weak_ptr<Plugin> PluginWeakPtr;
     }
 }
 

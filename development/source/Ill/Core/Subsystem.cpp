@@ -8,12 +8,12 @@ namespace Ill
 		Subsystem::Subsystem()
 		{}
 
-        ApplicationPtr Subsystem::get_App() const
+        ApplicationWeakPtr Subsystem::get_App() const
         {
-            return m_pApplication.lock();
+            return m_pApplication;
         }
 
-        void Subsystem::set_App( ApplicationPtr application )
+        void Subsystem::set_App( ApplicationWeakPtr application )
         {
             m_pApplication = application;
         }

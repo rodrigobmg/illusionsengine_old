@@ -16,7 +16,7 @@ namespace Ill
 {
     namespace Core
     {
-        class PluginSubsystem : public Subsystem
+        class _IllExport PluginSubsystem : public Subsystem
         {
         public:
             CLASS(PluginSubsystem,Subsystem);
