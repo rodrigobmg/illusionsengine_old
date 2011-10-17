@@ -16,16 +16,16 @@ namespace Ill
 {
     namespace Core
     {
-        class _IllExport TransformComponent : public Component
+        class CORE_DLL TransformComponent : public Component
         {
         public:
             CLASS( TransformComponent, Component );
-            CONSTRUCTOR( public, TransformComponent, () );
+            CONSTRUCTOR( CORE_DLL, public, TransformComponent, () );
 
             /**
              * Update the transform matrices if they are out-of-date.
              */
-            VIRTUAL_METHOD( public, void, Update, (float elapsedTime) );
+            VIRTUAL_METHOD( CORE_DLL, public, void, Update, (float elapsedTime) );
 
         protected:
             
@@ -51,9 +51,9 @@ namespace Ill
 
             bool            m_bTransformDirty;
         public:
-            PROPERTY( gmtl::Vec3f, Scale );
-            PROPERTY( gmtl::Vec3f, Position );
-            PROPERTY( gmtl::Quatf, Rotation );
+            PROPERTY( CORE_DLL, gmtl::Vec3f, Scale );
+            PROPERTY( CORE_DLL, gmtl::Vec3f, Position );
+            PROPERTY( CORE_DLL, gmtl::Quatf, Rotation );
             
         };
     }

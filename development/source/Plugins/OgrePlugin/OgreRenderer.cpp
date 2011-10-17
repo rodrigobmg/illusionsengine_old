@@ -1,21 +1,22 @@
-#include <Ill/OgreGraphics/PrecompiledHeader.hpp>
-#include <Ill/OgreGraphics/OgreConvert.hpp>
-#include <Ill/OgreGraphics/OgreRenderer.hpp>
+#include <Plugins/OgrePlugin/OgrePluginPCH.hpp>
+
+#include <Plugins/OgrePlugin/OgreConvert.hpp>
+#include <Plugins/OgrePlugin/OgreRenderer.hpp>
 
 
 Ill::Graphics::GraphicsRenderer* gs_GraphicsRenderer = NULL;
 
-extern "C" _IllExport Ill::Graphics::GraphicsRenderer* GetGraphicsRenderer()
+extern "C" OGREPLUGIN_DLL Ill::Graphics::GraphicsRenderer* GetGraphicsRenderer()
 {
     if ( gs_GraphicsRenderer == NULL )
     {
-        gs_GraphicsRenderer = new Ill::OgreGraphics::OgreRenderer();
+        gs_GraphicsRenderer = new Ill::OgrePlugin::OgreRenderer();
     }
 
     return gs_GraphicsRenderer;
 }
 
-extern "C" _IllExport void DestroyGraphicsRenderer()
+extern "C" OGREPLUGIN_DLL void DestroyGraphicsRenderer()
 {
     if ( gs_GraphicsRenderer != NULL )
     {
@@ -26,22 +27,22 @@ extern "C" _IllExport void DestroyGraphicsRenderer()
 
 namespace Ill
 {
-    namespace OgreGraphics
+    namespace OgrePlugin
     {
         OgreRenderer::OgreRenderer()
-            : m_ConfigFilename( TEXT("ogre.cfg") )
-            , m_ResourceFilename( TEXT("resource.cfg") )
-            , m_PluginFilename( TEXT("plugins.cfg") )
-            , m_LogFilename( TEXT("Ogre.log") )
-            , m_DefaultSceneInstanceName( TEXT("DefaultSceneManager") )
+            : m_ConfigFilename( L"ogre.cfg" )
+            , m_ResourceFilename( L"resource.cfg" )
+            , m_PluginFilename( L"plugins.cfg" )
+            , m_LogFilename( L"Ogre.log" )
+            , m_DefaultSceneInstanceName( "DefaultSceneManager" )
             , m_DefaultSceneType( Graphics::SceneType_Generic )
-            , m_pOgreRoot ( NULL )
-            , m_pOgreCamera( NULL )
-            , m_pOgreSceneManager( NULL )
-            , m_pRenderWindow( NULL )
+            //, m_pOgreRoot ( NULL )
+            //, m_pOgreCamera( NULL )
+            //, m_pOgreSceneManager( NULL )
+            //, m_pRenderWindow( NULL )
         {}
 
-        bool OgreRenderer::GetProperties(const PropertyMap& properties)
+        bool OgreRenderer::GetProperties(const Ill::Core::PropertyMap& properties)
         {
             properties.GetValue( "PluginFilename", m_PluginFilename );
             properties.GetValue( "ConfigFilename", m_ConfigFilename );
@@ -59,7 +60,7 @@ namespace Ill
         bool OgreRenderer::Initialize()
         {
             // Create our ogre root object
-            m_pOgreRoot = OGRE_NEW Ogre::Root( ConvertString(m_PluginFilename), ConvertString(m_ConfigFilename), ConvertString(m_LogFilename) );
+//            m_pOgreRoot = OGRE_NEW Ogre::Root( ConvertString(m_PluginFilename), ConvertString(m_ConfigFilename), ConvertString(m_LogFilename) );
 
             // Setup the resource paths
             SetupResourcesPaths();
@@ -81,7 +82,7 @@ namespace Ill
             CreateViewport();
 
             // Set default mipmap level (NB some APIs ignore this)
-            Ogre::TextureManager::getSingleton().setDefaultNumMipmaps(5);
+//            Ogre::TextureManager::getSingleton().setDefaultNumMipmaps(5);
 
             CreateResourceListener();
             LoadResources();
@@ -93,102 +94,104 @@ namespace Ill
 
         bool OgreRenderer::Terminate()
         {
-            if ( m_pOgreRoot != NULL )
-            {
-                OGRE_DELETE m_pOgreRoot;
-                m_pOgreRoot = NULL;
-            }
+            //if ( m_pOgreRoot != NULL )
+            //{
+            //    OGRE_DELETE m_pOgreRoot;
+            //    m_pOgreRoot = NULL;
+            //}
             return true;
         }
 
         void OgreRenderer::SetupResourcesPaths()
         {
             // Load the resource paths from a configuration file.
-            Ogre::ConfigFile configFile;
-            configFile.load( ConvertString(m_ResourceFilename) );
+            //Ogre::ConfigFile configFile;
+            //configFile.load( ConvertString(m_ResourceFilename) );
 
-            Ogre::ConfigFile::SectionIterator secIter = configFile.getSectionIterator();
-            Ogre::String archiveName, sectionName, typeName;
+            //Ogre::ConfigFile::SectionIterator secIter = configFile.getSectionIterator();
+            //Ogre::String archiveName, sectionName, typeName;
 
-            while ( secIter.hasMoreElements() )
-            {
-                sectionName = secIter.peekNextKey();
-                Ogre::ConfigFile::SettingsMultiMap* settings = secIter.getNext();
-                Ogre::ConfigFile::SettingsMultiMap::iterator iter = settings->begin();
-                while( iter != settings->end() )
-                {
-                    typeName = iter->first;
-                    archiveName = iter->second;
+            //while ( secIter.hasMoreElements() )
+            //{
+            //    sectionName = secIter.peekNextKey();
+            //    Ogre::ConfigFile::SettingsMultiMap* settings = secIter.getNext();
+            //    Ogre::ConfigFile::SettingsMultiMap::iterator iter = settings->begin();
+            //    while( iter != settings->end() )
+            //    {
+            //        typeName = iter->first;
+            //        archiveName = iter->second;
 
-                    // Now add the resource to the resource manager.
-                    Ogre::ResourceGroupManager::getSingleton().addResourceLocation( archiveName, typeName, sectionName );
+            //        // Now add the resource to the resource manager.
+            //        Ogre::ResourceGroupManager::getSingleton().addResourceLocation( archiveName, typeName, sectionName );
 
-                    ++iter;
-                }
-            }
+            //        ++iter;
+            //    }
+            //}
         }
 
         bool OgreRenderer::ConfigureRenderer() 
         {
-            BOOST_ASSERT( m_pOgreRoot != NULL );
+            //BOOST_ASSERT( m_pOgreRoot != NULL );
 
-            // This will present the user with a configuration dialog box.
-            // If you are sure the configuration file contains valid settings, 
-            // you could just call m_pOgreRoot->restoreConfig to load the saved 
-            // configuration file.
-            return m_pOgreRoot->showConfigDialog();
+            //// This will present the user with a configuration dialog box.
+            //// If you are sure the configuration file contains valid settings, 
+            //// you could just call m_pOgreRoot->restoreConfig to load the saved 
+            //// configuration file.
+            //return m_pOgreRoot->showConfigDialog();
+
+            return true;
         }
 
         void OgreRenderer::CreateRenderWindow() 
         {
-            BOOST_ASSERT( m_pOgreRoot != NULL );
+//            BOOST_ASSERT( m_pOgreRoot != NULL );
 
             // Create a rendering window based on the configuration options.
-            m_pRenderWindow = m_pOgreRoot->initialise(true);
+//            m_pRenderWindow = m_pOgreRoot->initialise(true);
         }
 
         void OgreRenderer::CreateSceneManager()
         {
-            BOOST_ASSERT( m_pOgreRoot != NULL );
+//            BOOST_ASSERT( m_pOgreRoot != NULL );
 
             // Create the scene manager based on assigned properties.
-            m_pOgreSceneManager = m_pOgreRoot->createSceneManager( Ogre::SceneTypeMask( OgreConvert::Convert(m_DefaultSceneType) ), ConvertString(m_DefaultSceneInstanceName) );
+//            m_pOgreSceneManager = m_pOgreRoot->createSceneManager( Ogre::SceneTypeMask( OgreConvert::Convert(m_DefaultSceneType) ), ConvertString(m_DefaultSceneInstanceName) );
         }
 
         void OgreRenderer::CreateCamera()
         {
-            BOOST_ASSERT( m_pOgreSceneManager != NULL );
+//            BOOST_ASSERT( m_pOgreSceneManager != NULL );
 
             // Create the default camera that will be used to render the scene
-            m_pOgreCamera = m_pOgreSceneManager->createCamera( ConvertString(m_DefaultCameraName) );
+//            m_pOgreCamera = m_pOgreSceneManager->createCamera( ConvertString(m_DefaultCameraName) );
         }
 
         void OgreRenderer::SetupCamera()
         {
-            BOOST_ASSERT( m_pOgreCamera != NULL );
+//            BOOST_ASSERT( m_pOgreCamera != NULL );
 
             // Setup the camera to view our scene.
             // Position it at 500 in +Z direction
-            m_pOgreCamera->setPosition(Ogre::Vector3(0,0,500));
+//            m_pOgreCamera->setPosition(Ogre::Vector3(0,0,500));
             // Look back along -Z
-            m_pOgreCamera->lookAt(Ogre::Vector3(0,0,-300));
-            m_pOgreCamera->setNearClipDistance(5);
+//            m_pOgreCamera->lookAt(Ogre::Vector3(0,0,-300));
+//            m_pOgreCamera->setNearClipDistance(5);
         }
 
         void OgreRenderer::CreateViewport()
         {
-            BOOST_ASSERT( m_pRenderWindow != NULL && m_pOgreCamera != NULL );
+//            BOOST_ASSERT( m_pRenderWindow != NULL && m_pOgreCamera != NULL );
 
-            Ogre::Viewport* vp = m_pRenderWindow->addViewport( m_pOgreCamera );
-            vp->setBackgroundColour( Ogre::ColourValue(1.0f, 0.0f, 0.0f, 0.0f) );
+//            Ogre::Viewport* vp = m_pRenderWindow->addViewport( m_pOgreCamera );
+//            vp->setBackgroundColour( Ogre::ColourValue(1.0f, 0.0f, 0.0f, 0.0f) );
 
             // Modify the camera's aspect ratio to match the viewport's actual dimensions
-            m_pOgreCamera->setAspectRatio( Ogre::Real(vp->getActualWidth()) / Ogre::Real(vp->getActualHeight()) );
+//            m_pOgreCamera->setAspectRatio( Ogre::Real(vp->getActualWidth()) / Ogre::Real(vp->getActualHeight()) );
         }
 
         void OgreRenderer::LoadResources()
         {
-            Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
+//            Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
         }
 
         void OgreRenderer::CreateScene()

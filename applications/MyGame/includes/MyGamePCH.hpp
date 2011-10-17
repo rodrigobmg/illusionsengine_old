@@ -1,5 +1,5 @@
-#ifndef MYGAME_PRECOMPILED_HEADER_HPP
-#define MYGAME_PRECOMPILED_HEADER_HPP
+#ifndef MYGAME_PCH_HPP
+#define MYGAME_PCH_HPP
 
 // STL
 #include <iostream>
@@ -10,11 +10,6 @@
 
 #include <Ill/Core/Core.hpp>
 #include <Ill/Graphics/Graphics.hpp>
+#include <Ill/Game/Game.hpp>
 
-#if ILL_PLATFORM == ILL_PLATFORM_WIN32
-#  define WIN32_LEAN_AND_MEAN
-#  define NOMINMAX // required to stop windows.h messing up std::min
-#  include <windows.h>
-#endif
-
-#endif // MYGAME_PRECOMPILED_HEADER_HPP
+#endif // MYGAME_PCH_HPP

@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="MyGame"
-	ProjectGUID="{DB3DB1CB-703D-4B10-AF9A-B81DB8D8F6AE}"
-	RootNamespace="MyGameWin32"
+	Name="Ill.Game"
+	ProjectGUID="{BC617CC4-A341-4C7D-92E7-6B65784B2317}"
+	RootNamespace="IllGame"
 	Keyword="Win32Proj"
 	TargetFrameworkVersion="196613"
 	>
@@ -18,9 +18,9 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="$(ProjectDir)..\..\binaries"
-			IntermediateDirectory="$(ProjectDir)..\..\intermediate\$(ConfigurationName)\$(ProjectName)"
-			ConfigurationType="1"
+			OutputDirectory="..\..\..\libs"
+			IntermediateDirectory="..\..\..\intermediate\$(ConfigurationName)\$(ProjectName)"
+			ConfigurationType="2"
 			CharacterSet="1"
 			>
 			<Tool
@@ -41,14 +41,14 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\includes;..\..\..\..\development\includes;..\..\..\..\development\external\boost_1_46_1;&quot;..\..\..\..\development\external\SDL-1.2.14\include&quot;"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS"
+				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\external\boost_1_46_1"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;GAME_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderThrough="MyGamePCH.hpp"
-				WarningLevel="4"
+				PrecompiledHeaderThrough="Ill\Game\GamePCH.hpp"
+				WarningLevel="3"
 				DebugInformationFormat="4"
 			/>
 			<Tool
@@ -62,11 +62,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="Ill.Core_d.lib Ill.Graphics_d.lib Ill.Game_d.lib SDLmain.lib SDL.lib"
-				OutputFile="$(OutDir)\$(ProjectName)_d.exe"
+				AdditionalDependencies="Ill.Core_d.lib"
+				OutputFile="$(OutDir)\$(ProjectName)_d.dll"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="..\..\..\..\development\libs;&quot;..\..\..\..\development\external\SDL-1.2.14\lib&quot;;..\..\..\..\development\external\boost_1_46_1\lib"
-				IgnoreDefaultLibraryNames="msvcrt.lib"
+				AdditionalLibraryDirectories="..\..\..\libs;..\..\..\external\boost_1_46_1\lib"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				TargetMachine="1"
@@ -95,9 +94,9 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="$(ProjectDir)..\..\binaries"
-			IntermediateDirectory="$(ProjectDir)..\..\intermediate\$(ConfigurationName)\$(ProjectName)"
-			ConfigurationType="1"
+			OutputDirectory="..\..\..\libs"
+			IntermediateDirectory="..\..\..\intermediate\$(ConfigurationName)\$(ProjectName)"
+			ConfigurationType="2"
 			CharacterSet="1"
 			WholeProgramOptimization="1"
 			>
@@ -120,13 +119,13 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="..\..\includes;..\..\..\..\development\includes;..\..\..\..\development\external\boost_1_46_1;&quot;..\..\..\..\development\external\SDL-1.2.14\include&quot;"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS"
+				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\external\boost_1_46_1"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;GAME_EXPORTS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderThrough="MyGamePCH.hpp"
-				WarningLevel="4"
+				PrecompiledHeaderThrough="Ill\Game\GamePCH.hpp"
+				WarningLevel="3"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -140,10 +139,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="Ill.Core.lib Ill.Graphics.lib Ill.Game.lib SDLmain.lib SDL.lib"
+				AdditionalDependencies="Ill.Core.lib"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="..\..\..\..\development\libs;&quot;..\..\..\..\development\external\SDL-1.2.14\lib&quot;;..\..\..\..\development\external\boost_1_46_1\lib"
-				IgnoreDefaultLibraryNames=""
+				AdditionalLibraryDirectories="..\..\..\libs;..\..\..\external\boost_1_46_1\lib"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -182,11 +180,15 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath="..\..\source\MyGame Win32\main.cpp"
+				RelativePath="..\..\..\source\Ill\Game\Game.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\source\MyGamePCH.cpp"
+				RelativePath="..\..\..\source\Ill\Game\GameApplication.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\source\Ill\Game\GamePCH.cpp"
 				>
 				<FileConfiguration
 					Name="Debug|Win32"
@@ -205,10 +207,6 @@
 					/>
 				</FileConfiguration>
 			</File>
-			<File
-				RelativePath="..\..\source\TestReflection.cpp"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -216,11 +214,23 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath="..\..\includes\MyGamePCH.hpp"
+				RelativePath="..\..\..\includes\Ill\Game\Game.hpp"
 				>
 			</File>
 			<File
-				RelativePath="..\..\includes\TestReflection.h"
+				RelativePath="..\..\..\includes\Ill\Game\GameApplication.fwd.hpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\includes\Ill\Game\GameApplication.hpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\includes\Ill\Game\GameExports.hpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\includes\Ill\Game\GamePCH.hpp"
 				>
 			</File>
 		</Filter>
@@ -231,6 +241,4 @@
 			>
 		</Filter>
 	</Files>
-	<Globals>
-	</Globals>
 </VisualStudioProject>

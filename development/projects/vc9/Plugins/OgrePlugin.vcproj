@@ -42,8 +42,8 @@
 				Name="VCCLCompilerTool"
 				AdditionalOptions="/Zm110"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\..\includes;&quot;..\..\..\external\ogre-v1-6-3\OgreMain\include&quot;"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;OGREGRAPHICS_EXPORTS;ILL_EXPORT"
+				AdditionalIncludeDirectories="..\..\..\includes;&quot;..\..\..\external\ogre-v1-6-3\OgreMain\include&quot;;..\..\..\external\boost_1_46_1"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;OGREPLUGIN_EXPORTS;ILL_EXPORT"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -63,10 +63,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="OgreMain_d.lib"
+				AdditionalDependencies="Ill.Core_d.lib Ill.Graphics_d.lib"
 				OutputFile="$(OutDir)\$(ProjectName)_d.dll"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="&quot;..\..\..\external\ogre-v1-6-3\lib&quot;"
+				AdditionalLibraryDirectories="..\..\..\libs;&quot;..\..\..\external\ogre-v1-6-3\lib&quot;;..\..\..\external\boost_1_46_1\lib"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				TargetMachine="1"
@@ -120,8 +120,8 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="..\..\..\includes;&quot;..\..\..\external\ogre-v1-6-3\OgreMain\include&quot;"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;OGREGRAPHICS_EXPORTS;ILL_EXPORT"
+				AdditionalIncludeDirectories="..\..\..\includes;&quot;..\..\..\external\ogre-v1-6-3\OgreMain\include&quot;;..\..\..\external\boost_1_46_1"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;OGREPLUGIN_EXPORTS;ILL_EXPORT"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="2"
@@ -140,9 +140,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="OgreMain.lib"
+				AdditionalDependencies="Ill.Core.lib Ill.Graphics.lib"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="&quot;..\..\..\external\ogre-v1-6-3\lib&quot;"
+				AdditionalLibraryDirectories="..\..\..\libs;&quot;..\..\..\external\ogre-v1-6-3\lib&quot;;..\..\..\external\boost_1_46_1\lib"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -185,7 +185,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\source\Plugins\OgrePlugin\OgreGraphics.cpp"
+				RelativePath="..\..\..\source\Plugins\OgrePlugin\OgrePlugin.cpp"
 				>
 			</File>
 			<File
@@ -223,7 +223,11 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\includes\Plugins\OgrePlugin\OgreGraphics.hpp"
+				RelativePath="..\..\..\includes\Plugins\OgrePlugin\OgrePlugin.hpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\includes\Plugins\OgrePlugin\OgrePluginExports.hpp"
 				>
 			</File>
 			<File

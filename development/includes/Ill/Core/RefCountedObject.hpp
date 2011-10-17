@@ -24,12 +24,12 @@ namespace Ill
 {
 	namespace Core
 	{
-		class _IllExport RefCountedObject : public NoCopyObject
+		class CORE_DLL RefCountedObject : public NoCopyObject
 		{
 		public:
-			CLASS(RefCountedObject,NoCopyObject);
+			CLASS( RefCountedObject, NoCopyObject );
 
-			CONSTRUCTOR(public,RefCountedObject,())
+			CONSTRUCTOR( CORE_DLL, public, RefCountedObject, () )
 				: m_iRefCount( 0 ) 
 			{}
 

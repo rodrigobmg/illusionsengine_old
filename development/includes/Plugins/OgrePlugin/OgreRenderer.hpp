@@ -1,38 +1,42 @@
-#ifndef ILL_OGREGRAPHICS_OGRERENDERER
-#define ILL_OGREGRAPHICS_OGRERENDERER
+#ifndef ILL_OGREPLUGIN_OGRERENDERER_HPP
+#define ILL_OGREPLUGIN_OGRERENDERER_HPP
 
-// This function will be exported to load our Ogre graphics renderer.
-extern Ill::Graphics::GraphicsRenderer* gs_GraphicsRenderer;
+#include <Ill/Graphics/GraphicsRenderer.hpp>
+#include <Ill/Graphics/GraphicsTypes.hpp>
+
+// These functions will be exported to load our OgrePlugin.
+extern "C" OGREPLUGIN_DLL Ill::Graphics::GraphicsRenderer* GetGraphicsRenderer();
+extern "C" OGREPLUGIN_DLL void DestroyGraphicsRenderer();
 
 // Forward-declaration of Ogre types
-namespace Ogre
-{
-    class Root;
-    class SceneManager;
-    class Camera;
-    class RenderWindow;
-}
+//namespace Ogre
+//{
+//    class Root;
+//    class SceneManager;
+//    class Camera;
+//    class RenderWindow;
+//}
 
 namespace Ill
 {
-    namespace OgreGraphics
+    namespace OgrePlugin
     {
-        class _IllExport OgreRenderer : public Ill::Graphics::GraphicsRenderer
+        class OGREPLUGIN_DLL OgreRenderer : public Ill::Graphics::GraphicsRenderer
         {
         public:
             CLASS( OgreRenderer, Ill::Graphics::GraphicsRenderer );
-            CONSTRUCTOR(public,OgreRenderer,());
+            CONSTRUCTOR( OGREPLUGIN_DLL, public, OgreRenderer, () );
 
-            VIRTUAL_METHOD(public,bool,GetProperties,(const PropertyMap& properties));
-            VIRTUAL_METHOD(public,bool,Initialize,());
-            VIRTUAL_METHOD(public,bool,Terminate,());
+            VIRTUAL_METHOD( OGREPLUGIN_DLL, public, bool, GetProperties, (const Ill::Core::PropertyMap& properties) );
+            VIRTUAL_METHOD( OGREPLUGIN_DLL, public, bool, Initialize, () );
+            VIRTUAL_METHOD( OGREPLUGIN_DLL, public, bool, Terminate, () );
 
         protected:
             /**
             * Setup the resource paths.  
             * This method is called in the @see(Startup) method.
             */
-            VIRTUAL_METHOD(protected,void,SetupResourcesPaths,() );
+            VIRTUAL_METHOD( OGREPLUGIN_DLL, protected, void, SetupResourcesPaths, () );
 
             /**
             * Default implementation is to show a configure dialog box.
@@ -41,7 +45,7 @@ namespace Ill
             * @return true if configuration was successful, false if the user canceled the configuration
             * or the configuration options were not valid.
             */
-            VIRTUAL_METHOD(protected,bool,ConfigureRenderer,() );
+            VIRTUAL_METHOD( OGREPLUGIN_DLL, protected, bool, ConfigureRenderer, () );
 
             /**
             * If the configuration worked, we can create a render window
@@ -49,66 +53,66 @@ namespace Ill
             * the @see(Startup) method.
             * @precondition Configurations have been read and are valid.
             */
-            VIRTUAL_METHOD(protected,void,CreateRenderWindow,() );
+            VIRTUAL_METHOD( OGREPLUGIN_DLL, protected, void, CreateRenderWindow, () );
 
             /**
             * Initialise the scene manager.
             */
-            VIRTUAL_METHOD(protected,void,CreateSceneManager,() );
+            VIRTUAL_METHOD( OGREPLUGIN_DLL, protected, void, CreateSceneManager, () );
 
             /**
             * Create a default camera for our scene.
             */
-            VIRTUAL_METHOD(protected,void,CreateCamera,() );
+            VIRTUAL_METHOD( OGREPLUGIN_DLL, protected, void, CreateCamera, () );
 
             /**
             * Setup the camera's properties like position, orientation, FOV, clip planes..
             */
-            VIRTUAL_METHOD(protected,void,SetupCamera,() );
+            VIRTUAL_METHOD( OGREPLUGIN_DLL, protected, void, SetupCamera, () );
 
             /**
             * Create a viewport
             */
-            VIRTUAL_METHOD(protected,void,CreateViewport,() );
+            VIRTUAL_METHOD( OGREPLUGIN_DLL, protected, void, CreateViewport, () );
 
             /**
             * Create a default resource listener (used for loading screens)
             * Override this method to implement your resource listener.
             */
-            VIRTUAL_METHOD(protected,void,CreateResourceListener,() ) {}
+            VIRTUAL_METHOD( OGREPLUGIN_DLL, protected, void, CreateResourceListener, () ) {}
 
             /**
             * Optionally override this method to handle resource group loading.
             * At a minimum, it must invoke the ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
             * method, which is all this function actually does.
             */
-            VIRTUAL_METHOD(protected,void,LoadResources,() );
+            VIRTUAL_METHOD( OGREPLUGIN_DLL, protected, void, LoadResources, () );
 
             /**
             * Create the initial scene.
             * This method must be overridden if you want to see anything in your render window.
             */
-            VIRTUAL_METHOD(protected,void,CreateScene,() );
+            VIRTUAL_METHOD( OGREPLUGIN_DLL, protected, void, CreateScene, () );
 
         private:
-            String                  m_ConfigFilename;
-            String                  m_ResourceFilename;
-            String                  m_PluginFilename;
-            String                  m_LogFilename;
+            std::wstring            m_ConfigFilename;
+            std::wstring            m_ResourceFilename;
+            std::wstring            m_PluginFilename;
+            std::wstring            m_LogFilename;
 
-            String                  m_DefaultSceneInstanceName;
+            std::string             m_DefaultSceneInstanceName;
             Graphics::SceneType     m_DefaultSceneType;
 
-            String                  m_DefaultCameraName;
+            std::string             m_DefaultCameraName;
 
             
             // Ogre specific types
-            Ogre::Root*             m_pOgreRoot;
-            Ogre::Camera*           m_pOgreCamera;
-            Ogre::SceneManager*     m_pOgreSceneManager;
-            Ogre::RenderWindow*     m_pRenderWindow;
+            //Ogre::Root*             m_pOgreRoot;
+            //Ogre::Camera*           m_pOgreCamera;
+            //Ogre::SceneManager*     m_pOgreSceneManager;
+            //Ogre::RenderWindow*     m_pRenderWindow;
         };
     }
 }
 
-#endif // ILL_SYSTEM_OGREGRAPHICS_OGRERENDERER
+#endif // ILL_OGREPLUGIN_OGRERENDERER_HPP

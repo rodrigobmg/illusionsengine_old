@@ -23,11 +23,11 @@ namespace Ill
 {
 	namespace Core
 	{
-		class _IllExport Object : public NoCopyObject
+		class CORE_DLL Object : public NoCopyObject
 		{
 		public:
-			CLASS(Object,NoCopyObject);
-			CONSTRUCTOR(public,Object,() );
+			CLASS( Object, NoCopyObject );
+			CONSTRUCTOR( CORE_DLL, public, Object, () );
 
 			// TODO: Implement object serialization methods (see boost/Serialization)
 		protected:
@@ -45,8 +45,8 @@ namespace Ill
             boost::uuids::uuid m_UUID;
 
         public:
-            PROPERTY( const std::string&, Name );
-            PROPERTY( const boost::uuids::uuid&, UUID );
+            PROPERTY( CORE_DLL, const std::string&, Name );
+            PROPERTY( CORE_DLL, const boost::uuids::uuid&, UUID );
 
 		};
 	}

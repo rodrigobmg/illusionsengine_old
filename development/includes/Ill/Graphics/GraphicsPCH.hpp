@@ -2,8 +2,8 @@
  * @file
  */
 
-#ifndef ILL_SYSTEM_GRAPHICS_PRECOMPILED_HEADER_HPP
-#define ILL_SYSTEM_GRAPHICS_PRECOMPILED_HEADER_HPP
+#ifndef ILL_GRAPHICS_PCH_HPP
+#define ILL_GRAPHICS_PCH_HPP
 
 #pragma warning( push )
 #pragma warning( disable : 4244 ) // Argument conversion - possible loss of data.
@@ -20,9 +20,10 @@
 
 // Generic Math Template Library
 #include <gmtl/gmtl.h>
-
-
+// Boost includes
 #include <Ill/Core/BoostInclude.hpp>
-#include <Ill/Core/Core.hpp>
 
-#endif
+#include <Ill/Core/CorePlatform.hpp>
+#include <Ill/Graphics/GraphicsExports.hpp>
+
+#endif // ILL_GRAPHICS_PCH_HPP

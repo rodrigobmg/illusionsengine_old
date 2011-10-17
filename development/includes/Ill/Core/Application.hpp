@@ -30,14 +30,13 @@ namespace Ill
 {
 	namespace Core
 	{
-        class _IllExport Application : public Object, public boost::enable_shared_from_this<Application>
+        class CORE_DLL Application : public Object, public boost::enable_shared_from_this<Application>
 		{
 		public:
-
             typedef std::vector< SubsystemPtr > SubsystemList;
 
-			CLASS(Application,Object);
-			CONSTRUCTOR(public,Application,());
+			CLASS( Application, Object );
+			CONSTRUCTOR( CORE_DLL, public, Application, () );
 
 			virtual ~Application();
 
@@ -46,7 +45,7 @@ namespace Ill
             * 
             * @returns true if all memory allocations were successful.
             */
-            VIRTUAL_METHOD(public,void,Initialize,());
+            VIRTUAL_METHOD( CORE_DLL, public, void, Initialize, () );
 
             /**
             * Deallocate the memory that was allocated in Initialize.
@@ -56,7 +55,7 @@ namespace Ill
             * 
             * @returns true if all memory allocations were successful.
             */
-            VIRTUAL_METHOD(public,void,Terminiate,());
+            VIRTUAL_METHOD( CORE_DLL, public, void, Terminiate, () );
 
             /**
 			* Register a subsystem class that is associated with this application.
@@ -86,7 +85,7 @@ namespace Ill
 			* the passed-in class is NULL or it is not of the correct type, that is, 
 			* not derrived from the Subsystem class.
 			*/
-			VIRTUAL_METHOD(public,bool,RegisterSubsystem,(const Class& subsystemClass) );
+			VIRTUAL_METHOD( CORE_DLL, public, bool, RegisterSubsystem, (const Class& subsystemClass) );
 
 			/**
 			* Parse the command line options and configuration options and store them
@@ -96,7 +95,7 @@ namespace Ill
 			* @param argv The array of command line arguments passed to the application.
 			* @param options Populate the property map with the parsed configuration options.
 			*/ 
-			VIRTUAL_METHOD(public,bool,ParseConfigurations,( int argc, char* argv[], PropertyMap& options ) );
+			VIRTUAL_METHOD( CORE_DLL, public, bool, ParseConfigurations, ( int argc, char* argv[], PropertyMap& options ) );
 
 			/**
 			* Start up the application subsystem.
@@ -105,18 +104,18 @@ namespace Ill
 			* been either, parsed from the application config file, or parsed
 			* on the command line.
 			*/
-			VIRTUAL_METHOD(public,bool,StartUp,(const PropertyMap& startupOptions));
+			VIRTUAL_METHOD( CORE_DLL, public, bool, StartUp, (const PropertyMap& startupOptions) );
 
 			/**
 			* Run the application with the options specified application 
 			* options specified in StartUp.
 			*/
-			VIRTUAL_METHOD(public,bool,Run,());
+			VIRTUAL_METHOD( CORE_DLL, public, bool, Run, () );
 
 			/**
 			* Shutdown the subsystems used by this application.
 			*/
-			VIRTUAL_METHOD(public,bool,Shutdown,());
+			VIRTUAL_METHOD( CORE_DLL, public, bool, Shutdown, () );
 
 			/**
 			* Retrieve a pointer to the subsystem that matches

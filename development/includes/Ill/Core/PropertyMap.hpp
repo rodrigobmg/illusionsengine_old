@@ -14,15 +14,15 @@ namespace Ill
 {
 	namespace Core
 	{
-		class _IllExport PropertyMap : public Object
+		class CORE_DLL PropertyMap : public Object
 		{
 		public:
 			typedef std::map< std::string, boost::any > map;
 			typedef map::iterator						iterator;
 			typedef map::const_iterator					const_iterator;
 
-			CLASS(PropertyMap,Object);
-			CONSTRUCTOR(public,PropertyMap,());
+			CLASS( PropertyMap, Object );
+			CONSTRUCTOR( CORE_DLL, public, PropertyMap,() );
 			virtual ~PropertyMap();
 
 			/**

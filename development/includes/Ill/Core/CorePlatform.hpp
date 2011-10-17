@@ -3,7 +3,6 @@
  * @date September 25, 2009
  *
  * Create some platform specific macros from platform specific macros.
- * Note: These macros are pretty much just ripped from Ogre's (version 1.6.3) OgrePlatform.h
  */
 
 #ifndef ILL_CORE_PLATFORM_HPP
@@ -71,13 +70,8 @@
  */ 
 #if defined( __WIN32__ ) || defined( _WIN32 )
 #   define ILL_PLATFORM ILL_PLATFORM_WIN32
-#   define WIN32_LEAN_AND_MEAN
-#   include <windows.h>
-
 #elif defined( __APPLE_CC__)
 #   define ILL_PLATFORM ILL_PLATFORM_APPLE
-#   include "macPlugins.h"
-
 #else
 #   define ILL_PLATFORM ILL_PLATFORM_LINUX
 #endif
@@ -96,97 +90,15 @@
 #define ILL_QUOTE(x) ILL_QUOTE_INPLACE(x)
 #define ILL_WARN( x )  message( __FILE__ "(" QUOTE( __LINE__ ) ") : " x "\n" )
 
-//----------------------------------------------------------------------------
-// Windows Settings
-#if ILL_PLATFORM == ILL_PLATFORM_WIN32
 
-// If we're not including this from a client build, specify that the stuff
-// should get exported. Otherwise, import it.
-#	if defined( ILL_STATIC_LIB )
-// Linux compilers don't have symbol import/export directives.
-#   	define _IllExport
-#   	define _IllPrivate
-#   else
-#   	if defined( ILL_EXPORT )
-#       	define _IllExport __declspec( dllexport )
-#   	else
-#           if defined( __MINGW32__ )
-#               define _IllExport
-#           else
-#       	    define _IllExport __declspec( dllimport )
-#           endif
-#   	endif
-#   	define _IllPrivate
-#	endif
-// Win32 compilers use _DEBUG for specifying debug builds.
-#   ifdef _DEBUG
-#       define ILL_DEBUG_MODE 1
-#   else
-#       define ILL_DEBUG_MODE 0
-#   endif
-
-// Disable unicode support on MingW at the moment, poorly supported in stdlibc++
-// STLPORT fixes this though so allow if found
-// MinGW C++ Toolkit supports unicode and sets the define __MINGW32_TOOLKIT_UNICODE__ in _mingw.h
-#if defined( __MINGW32__ ) && !defined(_STLPORT_VERSION)
-#   include<_mingw.h>
-#   if defined(__MINGW32_TOOLBOX_UNICODE__)
-#	    define ILL_UNICODE_SUPPORT 1
-#   else
-#       define ILL_UNICODE_SUPPORT 0
-#   endif
-#else
-#	define ILL_UNICODE_SUPPORT 1
-#endif
-
-#endif
-//----------------------------------------------------------------------------
-
-//----------------------------------------------------------------------------
-// Linux/Apple Settings
-#if ILL_PLATFORM == ILL_PLATFORM_LINUX || ILL_PLATFORM == ILL_PLATFORM_APPLE
-
-// Enable GCC symbol visibility
-#   if defined( ILL_GCC_VISIBILITY )
-#       define _IllExport  __attribute__ ((visibility("default")))
-#       define _IllPrivate __attribute__ ((visibility("hidden")))
-#   else
-#       define _IllExport
-#       define _IllPrivate
-#   endif
+// Win32 compilers use _DEBUG for specifying debug builds. Other compilers
+// may define the DEBUG symbol if debug is enabled.
+#if defined _DEBUG || defined DEBUG
+#   define ILL_DEBUG 1
+#endif // defined _DEBUG || defined DEBUG
 
 // A quick define to overcome different names for the same function
-#   define stricmp strcasecmp
-
-// Unlike the Win32 compilers, Linux compilers seem to use DEBUG for when
-// specifying a debug build.
-// (??? this is wrong, on Linux debug builds aren't marked in any way unless
-// you mark it yourself any way you like it -- zap ???)
-#   ifdef DEBUG
-#       define ILL_DEBUG_MODE 1
-#   else
-#       define ILL_DEBUG_MODE 0
-#   endif
-
-#if ILL_PLATFORM == ILL_PLATFORM_APPLE
-#define ILL_PLATFORM_LIB "OgrePlatform.bundle"
-#else
-//ILL_PLATFORM_LINUX
-#define ILL_PLATFORM_LIB "libOgrePlatform.so"
-#endif
-
-// Always enable unicode support for the moment
-// Perhaps disable in old versions of gcc if necessary
-#define ILL_UNICODE_SUPPORT 1
-
-#endif
-
-//For apple, we always have a custom config.h file
-//#if ILL_PLATFORM == ILL_PLATFORM_APPLE
-//#    include "config.h"
-//#endif
-
-//----------------------------------------------------------------------------
+#define stricmp strcasecmp
 
 //----------------------------------------------------------------------------
 // Endian Settings
@@ -207,5 +119,17 @@ typedef unsigned char uint8;
 #else
     typedef unsigned long long uint64;
 #endif
+
+// Include the Platform specific headers.
+#if ILL_PLATFORM == ILL_PLATFORM_WIN32
+#   include <Ill/Core/CoreWin32.hpp>
+#elif ILL_PLATFORM == ILL_PLATFORM_APPLE
+#   include <Ill/Core/CoreApple.hpp>
+#elif ILL_PLATFORM == ILL_PLATFORM_LINUX
+#   include <Ill/Core/CoreLinux.hpp>
+#endif // ILL_PLATFORM == ILL_PLATFORM_WIN32
+
+// Include the DLL export definitions.
+#include <Ill/Core/CoreExports.hpp>
 
 #endif // ILL_CORE_PLATFORM_HPP

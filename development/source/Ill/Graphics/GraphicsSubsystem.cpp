@@ -3,11 +3,15 @@
  * @date: September 18, 2009
  *
  */
-
 #include <Ill/Graphics/GraphicsPCH.hpp>
+
+#include <Ill/Core/CoreUtils.hpp>
+#include <Ill/Core/Application.hpp>
+#include <Ill/Core/PluginSubsystem.hpp>
+#include <Ill/Core/Plugin.hpp>
+
 #include <Ill/Graphics/GraphicsSubsystem.hpp>
 #include <Ill/Graphics/GraphicsRenderer.hpp>
-#include <Ill/Core/PluginSubsystem.hpp>
 
 // Define a function that will be used to get a pointer to our graphics renderer implementation.
 typedef Ill::Graphics::GraphicsRenderer* (*GET_RENDERER_FUNC)(void);

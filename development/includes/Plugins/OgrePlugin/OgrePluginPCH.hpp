@@ -1,5 +1,5 @@
-#ifndef ILL_OGREGRAPHICS_PRECOMPILED_HEADER_HPP
-#define ILL_OGREGRAPHICS_PRECOMPILED_HEADER_HPP
+#ifndef ILL_OGREPLUGIN_PCH_HPP
+#define ILL_OGREPLUGIN_PCH_HPP
 
 // STL includes
 #include <iostream>
@@ -7,10 +7,13 @@
 // Try to disable the plethora of warnings that Ogre produces.
 #pragma warning( push )
 #pragma warning( disable : 4100 4127 4245 )
-#include <Ogre.h>
+// #include <Ogre.h>
 #pragma warning( pop )
 
-#include <Ill/Core/System.hpp>
-#include <Ill/Graphics/Graphics.hpp>
+#include <Ill/Core/BoostInclude.hpp>
+#include <Ill/Core/CorePlatform.hpp>
+#include <Ill/Graphics/GraphicsExports.hpp>
 
-#endif // ILL_OGREGRAPHICS_PRECOMPILED_HEADER_HPP
+#include <Plugins/OgrePlugin/OgrePluginExports.hpp>
+
+#endif // ILL_OGREPLUGIN_PCH_HPP

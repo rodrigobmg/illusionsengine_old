@@ -1,20 +1,20 @@
-#ifndef ILL_OGREGRAPHICS_OGRECONVERT_HPP
-#define ILL_OGREGRAPHICS_OGRECONVERT_HPP
+#ifndef ILL_OGREPLUGIN_OGRECONVERT_HPP
+#define ILL_OGREPLUGIN_OGRECONVERT_HPP
 
 namespace Ill
 {
-    namespace OgreGraphics
+    namespace OgrePlugin
     {
-        class OgreConvert
+        class OGREPLUGIN_DLL OgreConvert
         {
         public:
             /**
              * Convert Ill::System::Graphics::SceneType to Ogre::SceneType
              */
-            static Ogre::SceneType Convert( Graphics::SceneType sceneType );
+//            static Ogre::SceneType Convert( Graphics::SceneType sceneType );
         };
     }
 }
 
 
-#endif // ILL_OGREGRAPHICS_OGRECONVERT_HPP
+#endif // ILL_OGREPLUGIN_OGRECONVERT_HPP

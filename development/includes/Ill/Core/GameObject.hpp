@@ -21,23 +21,23 @@ namespace Ill
 {
     namespace Core
     {
-        class _IllExport GameObject : public Object
+        class CORE_DLL GameObject : public Object
         {
         public:
             typedef std::vector<ComponentWeakPtr> ComponentList;
 
             CLASS( GameObject, Object );
-            CONSTRUCTOR( public, GameObject, () );
+            CONSTRUCTOR( CORE_DLL, public, GameObject, () );
 
             // Add a component to the GameObject's component list.
             // @returns the component that was added to the list.
-            METHOD( public, ComponentPtr, AddComponent, ( ComponentPtr component ) );
+            METHOD( CORE_DLL, public, ComponentPtr, AddComponent, ( ComponentPtr component ) );
 
             // Retrieve the first component in the component list that matches the class type.
-            METHOD( public, ComponentWeakPtr, GetComponent, ( const Class& type ) );
+            METHOD( CORE_DLL, public, ComponentWeakPtr, GetComponent, ( const Class& type ) );
 
             // Retrieve all the components in the component list that matches the class type.
-            METHOD( public, ComponentList, GetComponents, ( const Class& type ) );
+            METHOD( CORE_DLL, public, ComponentList, GetComponents, ( const Class& type ) );
         protected:
             
 
@@ -53,7 +53,7 @@ namespace Ill
             ComponentMap m_Components;
 
         public:
-            PROPERTY( const TransformComponentWeakPtr, Transform );
+            PROPERTY( CORE_DLL, const TransformComponentWeakPtr, Transform );
         };
     }
 }

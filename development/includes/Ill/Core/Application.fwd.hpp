@@ -8,7 +8,7 @@ namespace Ill
 {
     namespace Core
     {
-        class Application;
+        class CORE_DLL Application;
 //        DECLARE_PTR( Application );
         typedef boost::shared_ptr<Application> ApplicationPtr;
         typedef boost::weak_ptr<Application> ApplicationWeakPtr;

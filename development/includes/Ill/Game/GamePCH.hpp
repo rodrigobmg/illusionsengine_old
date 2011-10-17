@@ -2,16 +2,15 @@
  * @file
  */
 
-#ifndef ILL_GAME_PRECOMPILED_HEADER_HPP
-#define ILL_GAME_PRECOMPILED_HEADER_HPP
+#ifndef ILL_GAME_PCH_HPP
+#define ILL_GAME_PCH_HPP
 
 // STL types
 #include <iostream>
 
 // Boost include
 #include <Ill/Core/BoostInclude.hpp>
+#include <Ill/Core/CorePlatform.hpp>
+#include <Ill/Game/GameExports.hpp>
 
-#include <Ill/Core/Core.hpp>
-#include <Ill/Graphics/Graphics.hpp>
-
-#endif // ILL_GAME_PRECOMPILED_HEADER_HPP
+#endif // ILL_GAME_PCH_HPP

@@ -16,33 +16,33 @@ namespace Ill
 {
     namespace Core
     {
-        class _IllExport PluginSubsystem : public Subsystem
+        class CORE_DLL PluginSubsystem : public Subsystem
         {
         public:
-            CLASS(PluginSubsystem,Subsystem);
-            CONSTRUCTOR(public,PluginSubsystem,());
+            CLASS( PluginSubsystem, Subsystem );
+            CONSTRUCTOR( CORE_DLL, public, PluginSubsystem, () );
             virtual ~PluginSubsystem();
 
             /**
             * Startup
             */
-            VIRTUAL_METHOD(public,bool,Startup,( const PropertyMap& startupOptions ));
+            VIRTUAL_METHOD( CORE_DLL, public, bool, Startup, ( const PropertyMap& startupOptions ) );
 
             /**
             * Shutdown
             */
-            VIRTUAL_METHOD(public,bool,Shutdown,());
+            VIRTUAL_METHOD( CORE_DLL, public, bool, Shutdown, () );
 
             /**
              * Loads a .DLL or an .SO by filename.
              * @returns a pointer to the loaded lib, or a NULL pointer if the plugin can't be loaded.
              */
-            VIRTUAL_METHOD(public, PluginPtr, Load,( const std::wstring& pluginName ) );
+            VIRTUAL_METHOD( CORE_DLL, public, PluginPtr, Load, ( const std::wstring& pluginName ) );
 
             /**
              * Unloads a dynamic loaded lib
              */
-            VIRTUAL_METHOD(public,void,Unload, ( PluginPtr plugin ) );
+            VIRTUAL_METHOD( CORE_DLL, public, void, Unload, ( PluginPtr plugin ) );
 
         private:
             typedef std::map<std::wstring, PluginPtr > PluginList;

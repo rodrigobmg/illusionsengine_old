@@ -30,11 +30,11 @@ namespace Ill
 {
     namespace Core
     {
-        class _IllExport Plugin : public Object
+        class CORE_DLL Plugin : public Object
         {
         public:
-            CLASS(Plugin,Object);
-            CONSTRUCTOR(public,Plugin,( const std::wstring& libName ) );
+            CLASS( Plugin, Object );
+            CONSTRUCTOR( CORE_DLL, public, Plugin, ( const std::wstring& libName ) );
             /**
              * Default destructor
              */
@@ -82,7 +82,7 @@ namespace Ill
             }
 
         public:
-            PROPERTY( const std::wstring&, PluginName );
+            PROPERTY( CORE_DLL, const std::wstring&, PluginName );
         };
     }
 }

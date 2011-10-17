@@ -5,8 +5,8 @@
  * The game application base class.
  */
 
-#ifndef ILL_GAME_GAMEAPPLICATION_HEADER_HPP
-#define ILL_GAME_GAMEAPPLICATION_HEADER_HPP
+#ifndef ILL_GAME_GAMEAPPLICATION_HPP
+#define ILL_GAME_GAMEAPPLICATION_HPP
 
 #include <Ill/Core/Application.hpp>
 #include <Ill/Game/GameApplication.fwd.hpp>
@@ -15,13 +15,13 @@ namespace Ill
 {
     namespace Game
     {
-		class _IllExport GameApplication : public Ill::Core::Application
+		class GAME_DLL GameApplication : public Ill::Core::Application
         {
         public:
             CLASS( GameApplication, Ill::Core::Application );
-            CONSTRUCTOR(public,GameApplication,());            
+            CONSTRUCTOR( GAME_DLL, public, GameApplication, () );  
        };
     }
 }
 
-#endif // ILL_GAME_GAMEAPPLICATION_HEADER_HPP
+#endif // ILL_GAME_GAMEAPPLICATION_HPP

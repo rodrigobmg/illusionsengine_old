@@ -27,12 +27,12 @@ int main( int argc, char* argv[] )
     // A property map to store the game options.
     Ill::Core::PropertyMap gameOptions;
 
-#ifdef _DEBUG
+#ifdef ILL_DEBUG
     gameOptions.AddValue( "PluginFilename", std::wstring(L"../Configuration/Plugins_Debug.cfg") );
-    gameOptions.AddValue( "GraphicsLibName", std::wstring(L"Ill.System.OgreGraphics_d.dll") );
+    gameOptions.AddValue( "GraphicsLibName", std::wstring(L"Ill.OgrePlugin_d.dll") );
 #else
     gameOptions.AddValue( "PluginFilename", std::wstring(L"../Configuration/Plugins.cfg") );
-    gameOptions.AddValue( "GraphicsLibName", std::wstring(L"Ill.System.OgreGraphics.dll") );
+    gameOptions.AddValue( "GraphicsLibName", std::wstring(L"Ill.OgrePlugin.dll") );
 #endif
 
     gameOptions.AddValue( "ConfigFilename", std::wstring(L"../Configuration/ogre.cfg") );

@@ -20,27 +20,27 @@ namespace Ill
 {
 	namespace Core
 	{
-		class _IllExport Subsystem : public Object
+		class CORE_DLL Subsystem : public Object
 		{
 		public:
-			CLASS(Subsystem,Object);
-			CONSTRUCTOR(public,Subsystem,());
+			CLASS( Subsystem, Object );
+			CONSTRUCTOR( CORE_DLL, public, Subsystem, () );
 
 			/**
 			* Startup
 			*/
-			VIRTUAL_METHOD(public,bool,Startup,( const PropertyMap& startupOptions ));
+			VIRTUAL_METHOD( CORE_DLL, public, bool, Startup, ( const PropertyMap& startupOptions ) );
 
 			/**
 			* Shutdown
 			*/
-			VIRTUAL_METHOD(public,bool,Shutdown,());
+			VIRTUAL_METHOD( CORE_DLL, public, bool, Shutdown, () );
 
         protected:
             /**
             * Populate my defined properties from the passed-in property map
             */
-            VIRTUAL_METHOD(public,void,GetProperties,(const PropertyMap& properties) );
+            VIRTUAL_METHOD( CORE_DLL, public, void, GetProperties, (const PropertyMap& properties) );
 
             ApplicationWeakPtr get_App() const;
             void set_App( ApplicationWeakPtr application );
@@ -51,7 +51,7 @@ namespace Ill
             ApplicationWeakPtr m_pApplication;
 
         public:
-            PROPERTY( ApplicationWeakPtr, App );
+            PROPERTY( CORE_DLL, ApplicationWeakPtr, App );
 		};
 	}
 }

@@ -5,8 +5,8 @@
  * Scene description is used to create a physics scene.
  */
 
-#ifndef ILL_PHYSICS_SCENEDESCRIPTION_HEADER_HPP
-#define ILL_PHYSICS_SCENEDESCRIPTION_HEADER_HPP
+#ifndef ILL_PHYSICS_SCENEDESCRIPTION_HPP
+#define ILL_PHYSICS_SCENEDESCRIPTION_HPP
 
 #include <Ill/Core/Object.hpp>
 
@@ -18,12 +18,10 @@ namespace Ill
 		{
 		public:
 			CLASS( SceneDescription, Ill::Core::Object );
-			CONSTRUCTOR( public, SceneDescription, () );
-
-
+			CONSTRUCTOR( PHYSICS_DLL, public, SceneDescription, () );
 
 		};
 	}
 }
 
-#endif // ILL_PHYSICS_SCENEDESCRIPTION_HEADER_HPP
+#endif // ILL_PHYSICS_SCENEDESCRIPTION_HPP

@@ -19,36 +19,36 @@ namespace Ill
     {
         class GraphicsRenderer;
 
-        class GrapicsSubsystem : public Ill::Core::Subsystem
+        class GRAPHICS_DLL GrapicsSubsystem : public Ill::Core::Subsystem
         {
         public:
 
             CLASS( GrapicsSubsystem, Ill::Core::Subsystem );
-            CONSTRUCTOR(public,GrapicsSubsystem,());
+            CONSTRUCTOR( GRAPHICS_DLL, public, GrapicsSubsystem, () );
 
             /**
             * Startup the graphics subsystem.
             */
-            VIRTUAL_METHOD(public,bool,Startup,( const Ill::Core::PropertyMap& startupOptions ));
+            VIRTUAL_METHOD( GRAPHICS_DLL, public, bool, Startup, ( const Ill::Core::PropertyMap& startupOptions ) );
 
             /**
             * Shutdown
             */
-            VIRTUAL_METHOD(public,bool,Shutdown,());
+            VIRTUAL_METHOD( GRAPHICS_DLL, public, bool, Shutdown, () );
 
             /**
              * Retrieve a pointer to the GraphicsRenderer implementation.
              * @precondition The subsystem must have been initialized before
              * you can get a pointer to the GraphicsRenderer implementation.
              */
-            VIRTUAL_METHOD(public, GraphicsRenderer*, GetGraphicsRenderer, () );
+            VIRTUAL_METHOD( GRAPHICS_DLL, public, GraphicsRenderer*, GetGraphicsRenderer, () );
 
         protected:
 
             /**
             * Populate my defined properties from the passed-in property map
             */
-            VIRTUAL_METHOD(public,void,GetProperties,(const Ill::Core::PropertyMap& properties) );
+            VIRTUAL_METHOD( GRAPHICS_DLL, public, void, GetProperties, (const Ill::Core::PropertyMap& properties) );
 
         private:
             // Getters and setters for property types
@@ -70,7 +70,7 @@ namespace Ill
         public:
             // Define properties at the bottom of the class to avoid VAssistX getting confused and hiding 
             // my member variables from using code-completion.
-            PROPERTY(const std::wstring&,  GraphicsLibName );
+            PROPERTY( GRAPHICS_DLL, const std::wstring&, GraphicsLibName );
         };
     }
 }

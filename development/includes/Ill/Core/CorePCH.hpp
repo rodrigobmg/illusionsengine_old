@@ -22,8 +22,8 @@
 // Generic Math Template Library
 #include <gmtl/gmtl.h>
 
-#include <Ill/Core/Platform.hpp>
-#include <Ill/Core/SystemTypes.hpp>
+#include <Ill/Core/CorePlatform.hpp>
+#include <Ill/Core/CoreUtils.hpp>
 
 // Boost specific headers should go in BoostInclude.h
 #include <Ill/Core/BoostInclude.hpp>

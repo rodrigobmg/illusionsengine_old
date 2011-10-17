@@ -3,8 +3,8 @@
 	ProjectType="Visual C++"
 	Version="9.00"
 	Name="Ill.Graphics"
-	ProjectGUID="{0586457C-9061-4054-97A1-058B235EEB77}"
-	RootNamespace="IllSystem"
+	ProjectGUID="{066712EA-B22E-41D5-9B70-6919841284C6}"
+	RootNamespace="IllGraphics"
 	Keyword="Win32Proj"
 	TargetFrameworkVersion="196613"
 	>
@@ -20,7 +20,7 @@
 			Name="Debug|Win32"
 			OutputDirectory="..\..\..\libs"
 			IntermediateDirectory="..\..\..\intermediate\$(ConfigurationName)\$(ProjectName)"
-			ConfigurationType="4"
+			ConfigurationType="2"
 			CharacterSet="1"
 			>
 			<Tool
@@ -42,13 +42,13 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\external\boost_1_46_1;&quot;..\..\..\external\gmtl-0.6.0&quot;"
-				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;ILL_STATIC_LIB"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;GRAPHICS_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderThrough="Ill/Graphics/GraphicsPCH.hpp"
-				WarningLevel="4"
+				PrecompiledHeaderThrough="Ill\Graphics\GraphicsPCH.hpp"
+				WarningLevel="3"
 				DebugInformationFormat="4"
 			/>
 			<Tool
@@ -61,12 +61,20 @@
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="$(OutDir)\$(ProjectName)_d.lib"
-				AdditionalLibraryDirectories=""
+				Name="VCLinkerTool"
+				AdditionalDependencies="Ill.Core_d.lib"
+				OutputFile="$(OutDir)\$(ProjectName)_d.dll"
+				LinkIncremental="2"
+				AdditionalLibraryDirectories="..\..\..\external\boost_1_46_1\lib;..\..\..\libs"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				TargetMachine="1"
 			/>
 			<Tool
 				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -78,6 +86,9 @@
 				Name="VCFxCopTool"
 			/>
 			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
 				Name="VCPostBuildEventTool"
 			/>
 		</Configuration>
@@ -85,7 +96,7 @@
 			Name="Release|Win32"
 			OutputDirectory="..\..\..\libs"
 			IntermediateDirectory="..\..\..\intermediate\$(ConfigurationName)\$(ProjectName)"
-			ConfigurationType="4"
+			ConfigurationType="2"
 			CharacterSet="1"
 			WholeProgramOptimization="1"
 			>
@@ -109,12 +120,12 @@
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
 				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\external\boost_1_46_1;&quot;..\..\..\external\gmtl-0.6.0&quot;"
-				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;ILL_STATIC_LIB"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;GRAPHICS_EXPORTS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderThrough="Ill/Graphics/GraphicsPCH.hpp"
-				WarningLevel="4"
+				PrecompiledHeaderThrough="Ill\Graphics\GraphicsPCH.hpp"
+				WarningLevel="3"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -127,11 +138,21 @@
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
-				Name="VCLibrarianTool"
-				AdditionalLibraryDirectories=""
+				Name="VCLinkerTool"
+				AdditionalDependencies="Ill.Core.lib"
+				LinkIncremental="1"
+				AdditionalLibraryDirectories="..\..\..\external\boost_1_46_1\lib;..\..\..\libs"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				TargetMachine="1"
 			/>
 			<Tool
 				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -141,6 +162,9 @@
 			/>
 			<Tool
 				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
@@ -195,6 +219,10 @@
 			>
 			<File
 				RelativePath="..\..\..\includes\Ill\Graphics\Graphics.hpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\includes\Ill\Graphics\GraphicsExports.hpp"
 				>
 			</File>
 			<File

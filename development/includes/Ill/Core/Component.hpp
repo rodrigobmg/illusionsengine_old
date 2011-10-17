@@ -13,12 +13,12 @@ namespace Ill
 {
 	namespace Core
 	{
-		class Component : public Object
+		class CORE_DLL Component : public Object
 		{
 		public:
             
-			CLASS(Component,Object);
-			CONSTRUCTOR(public,Component,());
+			CLASS( Component, Object );
+			CONSTRUCTOR( CORE_DLL, public, Component, () );
 			virtual ~Component();
 
 			/**
@@ -28,7 +28,7 @@ namespace Ill
 			* 
 			* @returns true if serialization was successful.
 			*/
-			VIRTUAL_METHOD(public,void,Serialize,());
+			VIRTUAL_METHOD( CORE_DLL, public, void, Serialize,() );
 
             /**
 			* Initialize any memory needed by this component.
@@ -37,7 +37,7 @@ namespace Ill
             *
 			* @returns true if all memory allocations were successful.
 			*/
-			VIRTUAL_METHOD(public,void,Initialize,());
+			VIRTUAL_METHOD( CORE_DLL, public, void, Initialize, () );
 
 			/**
 			* Load any resources from disc.
@@ -46,21 +46,21 @@ namespace Ill
 			*
 			* @returns true if all resources were loaded successfully.
 			*/
-			VIRTUAL_METHOD(public,void,LoadResources,());
+			VIRTUAL_METHOD( CORE_DLL, public, void, LoadResources, () );
 
             /**
              * Allows this component to be updated using a variable time-step.
              * If you need the component to be updated using a fixed time-step,
              * override the @see(FixedUpdate) method instead.
              */
-            VIRTUAL_METHOD(public,void,Update,(float elapsedTime) );
+            VIRTUAL_METHOD( CORE_DLL, public, void, Update, (float elapsedTime) );
 
             /**
              * Allows this component to be updated using a fixed time-step.
              * If you need the component to be updated with a variable time-step,
              * override the @see(Update) method instead.
              */
-            VIRTUAL_METHOD(public,void,FixedUpdate,(float elapsedTime) );
+            VIRTUAL_METHOD( CORE_DLL, public, void, FixedUpdate, (float elapsedTime) );
 
 			/**
 			* Resources should be released here.
@@ -70,7 +70,7 @@ namespace Ill
 			*
 			* @returns true if all resources were released properly.
 			*/
-			VIRTUAL_METHOD(public,void,FlushResources,());
+			VIRTUAL_METHOD( CORE_DLL, public, void, FlushResources, () );
 
 			/**
 			* Deallocate the memory that was allocated in Initialize.
@@ -80,7 +80,7 @@ namespace Ill
             * 
 			* @returns true if all memory allocations were successful.
 			*/
-			VIRTUAL_METHOD(public,void,Terminiate,());
+			VIRTUAL_METHOD( CORE_DLL, public, void, Terminiate, () );
 
 		protected:
 

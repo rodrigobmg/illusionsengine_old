@@ -11,20 +11,20 @@ namespace Ill
 {
 	namespace Physics
 	{
-		class PhysicsSubsystem : public Ill::Core::Subsystem
+		class PHYSICS_DLL PhysicsSubsystem : public Ill::Core::Subsystem
 		{
-			CLASS(PhysicsSubsystem,Ill::Core::Subsystem);
-			CONSTRUCTOR(public,PhysicsSubsystem,());
+			CLASS( PhysicsSubsystem, Ill::Core::Subsystem );
+			CONSTRUCTOR( PHYSICS_DLL, public, PhysicsSubsystem, () );
 
 			/**
 			* Startup
 			*/
-			VIRTUAL_METHOD(public,bool,Startup,( const Ill::Core::PropertyMap& startupOptions ));
+			VIRTUAL_METHOD( PHYSICS_DLL, public, bool, Startup, ( const Ill::Core::PropertyMap& startupOptions ) );
 
 			/**
 			* Shutdown
 			*/
-			VIRTUAL_METHOD(public,bool,Shutdown,());
+			VIRTUAL_METHOD( PHYSICS_DLL, public, bool, Shutdown, () );
 
 		};
 	}

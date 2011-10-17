@@ -22,12 +22,13 @@ namespace Ill
 {
 	namespace Core
 	{
-		class _IllExport NoCopyObject
+		class CORE_DLL NoCopyObject
 		{
 		public:
-			CLASS(NoCopyObject,NullClass);
+			CLASS( NoCopyObject, NullClass );
+
 			// Object can still be created or destroyed
-			CONSTRUCTOR(public,NoCopyObject,());
+			CONSTRUCTOR( CORE_DLL, public, NoCopyObject, () );
 			virtual ~NoCopyObject();
 
 		private:
