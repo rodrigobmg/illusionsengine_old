@@ -290,6 +290,11 @@ m_name(name),
 
 }
 
+Class::~Class()
+{
+    // TODO: Unregister and remove this class from the class map.
+}
+
 
 bool Class::isBase(const Class &cl) const {
     for(const Class *c = cl.m_super; c; c = c->m_super) {

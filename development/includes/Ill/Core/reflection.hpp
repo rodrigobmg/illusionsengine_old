@@ -2053,7 +2053,7 @@ public:
 
     //the default constructor
     Class(const char *name, const Class *super, size_t s, _new_instance_fun fun, _super_cast_fun super_case, _super_cast_const_fun super_cast_const, const std::type_info & tid, const std::type_info &ctid, const std::type_info &ptid, const std::type_info &cptid);
-    
+    virtual ~Class();
 
     /** returns the class name
         @return the class name

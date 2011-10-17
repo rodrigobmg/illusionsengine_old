@@ -14,6 +14,7 @@
 void InstantiateTypes()
 {
     Ill::Core::InstantiateTypes();
+    Ill::Game::InstantiateTypes();
     Ill::Graphics::InstantiateTypes();
 }
 
@@ -63,15 +64,15 @@ int main( int argc, char* argv[] )
 	{
 		std::cerr << "The application failed to start... Shutting down." << std::endl;
 	}
-    
-    g_pGameApp->Shutdown();
-    g_pGameApp->Terminiate();
-    g_pGameApp.reset();
 
 #ifdef _DEBUG
     // Run a small test to see what classes the reflection system knows about.
     TestReflection();
 #endif
+    
+    g_pGameApp->Shutdown();
+    g_pGameApp->Terminiate();
+    g_pGameApp.reset();
 
     return 0;
 }

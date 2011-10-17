@@ -19,11 +19,11 @@ namespace Ill
 	{
         class Frame;
 
-		class EditorApp : public wxApp
+		class EDITOR_DLL EditorApp : public wxApp
 		{
 		public:
-			CLASS(EditorApp,NullClass);
-			CONSTRUCTOR(public,EditorApp,());
+			CLASS( EditorApp, NullClass );
+			CONSTRUCTOR( EDITOR_DLL, public, EditorApp, () );
 
 			/**
 			 * wxApp interface

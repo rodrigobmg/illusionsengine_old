@@ -12,8 +12,7 @@
 
 // Boost includes
 #include <Ill/Core/BoostInclude.hpp>
+#include <Ill/Core/CorePlatform.hpp>
 
-// Core types
-#include <Ill/Core/Core.hpp>
-
+#include <Ill/Editor/EditorExports.hpp>
 #endif

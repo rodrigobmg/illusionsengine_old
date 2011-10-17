@@ -1,6 +1,8 @@
 #include <Ill/Editor/EditorPCH.hpp>
+
+#include <Ill/Core/Core.hpp>
+
 #include <Ill/Editor/Frame.hpp>
-#include <Ill/Core/Application.hpp>
 #include <Ill/Editor/EditorApp.hpp>
 
 namespace Ill

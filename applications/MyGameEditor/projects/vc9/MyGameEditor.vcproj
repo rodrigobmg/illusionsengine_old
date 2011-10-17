@@ -18,8 +18,8 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="$(ProjectDir)..\..\binaries"
-			IntermediateDirectory="$(ProjectDir)..\..\intermediate\$(ConfigurationName)\$(ProjectName)"
+			OutputDirectory="..\..\binaries"
+			IntermediateDirectory="..\..\intermediate\$(ConfigurationName)\$(ProjectName)"
 			ConfigurationType="1"
 			CharacterSet="1"
 			>
@@ -42,7 +42,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="..\..\includes;..\..\..\..\development\includes;..\..\..\..\development\external\boost_1_46_1;&quot;..\..\..\..\development\external\gmtl-0.6.0&quot;;&quot;..\..\..\..\development\external\wxWidgets-2.9.2\include&quot;;&quot;..\..\..\..\development\external\wxWidgets-2.9.2\include\msvc&quot;"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;WXUSINGDLL"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
@@ -61,10 +61,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="wxmsw29ud_core.lib wxbase29ud.lib winmm.lib comctl32.lib rpcrt4.lib"
+				AdditionalDependencies="Ill.Core_d.lib Ill.Editor_d.lib wxmsw29ud_core.lib wxbase29ud.lib winmm.lib comctl32.lib rpcrt4.lib"
 				OutputFile="$(OutDir)\$(ProjectName)_d.exe"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="..\..\libs;..\..\..\..\development\libs;..\..\..\..\development\external\boost_1_46_1\lib;&quot;..\..\..\..\development\external\wxWidgets-2.9.2\lib\vc_lib&quot;"
+				AdditionalLibraryDirectories="..\..\libs;..\..\..\..\development\libs;..\..\..\..\development\external\boost_1_46_1\lib;&quot;..\..\..\..\development\external\wxWidgets-2.9.2\lib\vc_dll&quot;"
 				IgnoreAllDefaultLibraries="false"
 				GenerateDebugInformation="true"
 				SubSystem="2"
@@ -94,8 +94,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="$(ProjectDir)..\..\binaries"
-			IntermediateDirectory="$(ProjectDir)..\..\intermediate\$(ConfigurationName)\$(ProjectName)"
+			OutputDirectory="..\..\binaries"
+			IntermediateDirectory="..\..\intermediate\$(ConfigurationName)\$(ProjectName)"
 			ConfigurationType="1"
 			CharacterSet="1"
 			WholeProgramOptimization="1"
@@ -120,7 +120,7 @@
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
 				AdditionalIncludeDirectories="..\..\includes;..\..\..\..\development\includes;..\..\..\..\development\external\boost_1_46_1;&quot;..\..\..\..\development\external\gmtl-0.6.0&quot;;&quot;..\..\..\..\development\external\wxWidgets-2.9.2\include&quot;;&quot;..\..\..\..\development\external\wxWidgets-2.9.2\include\msvc&quot;"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;WXUSINGDLL"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="0"
@@ -138,9 +138,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="wxmsw29u_core.lib wxbase29u.lib winmm.lib comctl32.lib rpcrt4.lib"
+				AdditionalDependencies="Ill.Core.lib Ill.Editor.lib wxmsw29u_core.lib wxbase29u.lib winmm.lib comctl32.lib rpcrt4.lib"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="..\..\libs;..\..\..\..\development\libs;..\..\..\..\development\external\boost_1_46_1\lib;&quot;..\..\..\..\development\external\wxWidgets-2.9.2\lib\vc_lib&quot;"
+				AdditionalLibraryDirectories="..\..\libs;..\..\..\..\development\libs;..\..\..\..\development\external\boost_1_46_1\lib;&quot;..\..\..\..\development\external\wxWidgets-2.9.2\lib\vc_dll&quot;"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				OptimizeReferences="2"

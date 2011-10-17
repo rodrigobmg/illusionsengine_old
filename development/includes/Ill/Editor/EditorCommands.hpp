@@ -6,6 +6,8 @@
 * @brief 	The event IDs used in the editor must be unique.  Define unique event 
 * ID's in this file.
 */
+#ifndef ILL_EDITOR_EDITORCOMMANDS_HPP
+#define ILL_EDITOR_EDITORCOMMANDS_HPP
 
 namespace Ill
 {
@@ -18,3 +20,5 @@ namespace Ill
 		};
 	}
 }
+
+#endif

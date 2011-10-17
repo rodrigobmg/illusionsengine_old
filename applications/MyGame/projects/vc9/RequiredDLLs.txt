@@ -1,0 +1,9 @@
+..\..\..\..\development\libs\Ill.Core.dll
+..\..\..\..\development\libs\Ill.Core_d.dll
+..\..\..\..\development\libs\Ill.Graphics.dll
+..\..\..\..\development\libs\Ill.Graphics_d.dll
+..\..\..\..\development\libs\Ill.Game.dll
+..\..\..\..\development\libs\Ill.Game_d.dll
+..\..\..\..\development\libs\Ill.OgrePlugin.dll
+..\..\..\..\development\libs\Ill.OgrePlugin_d.dll
+

@@ -18,8 +18,8 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="$(ProjectDir)..\..\binaries"
-			IntermediateDirectory="$(ProjectDir)..\..\intermediate\$(ConfigurationName)\$(ProjectName)"
+			OutputDirectory="..\..\binaries"
+			IntermediateDirectory="..\..\intermediate\$(ConfigurationName)\$(ProjectName)"
 			ConfigurationType="1"
 			CharacterSet="1"
 			>
@@ -95,8 +95,8 @@
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="$(ProjectDir)..\..\binaries"
-			IntermediateDirectory="$(ProjectDir)..\..\intermediate\$(ConfigurationName)\$(ProjectName)"
+			OutputDirectory="..\..\binaries"
+			IntermediateDirectory="..\..\intermediate\$(ConfigurationName)\$(ProjectName)"
 			ConfigurationType="1"
 			CharacterSet="1"
 			WholeProgramOptimization="1"

@@ -13,7 +13,7 @@ namespace Ill
 {
 	namespace Editor
 	{
-		class Frame : public wxFrame
+		class EDITOR_DLL Frame : public wxFrame
 		{
 		public:
 			Frame( const wxString& title, const wxPoint& pos = wxDefaultPosition, const wxSize& size = wxDefaultSize );

@@ -3,7 +3,7 @@
 	ProjectType="Visual C++"
 	Version="9.00"
 	Name="Ill.Editor"
-	ProjectGUID="{09C3A9C7-B2CE-41B9-8675-343C1F26CF03}"
+	ProjectGUID="{15D2C7B3-FF23-4FB1-99F1-F12AA6CC67DF}"
 	RootNamespace="IllEditor"
 	Keyword="Win32Proj"
 	TargetFrameworkVersion="196613"
@@ -18,9 +18,9 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory="$(SolutionDir)..\..\libs\"
-			IntermediateDirectory="$(SolutionDir)..\..\intermediate\$(ConfigurationName)\$(ProjectName)"
-			ConfigurationType="4"
+			OutputDirectory="..\..\..\libs"
+			IntermediateDirectory="..\..\..\intermediate\$(ConfigurationName)\$(ProjectName)"
+			ConfigurationType="2"
 			CharacterSet="1"
 			>
 			<Tool
@@ -41,15 +41,14 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\external\boost_1_46_1;&quot;..\..\..\external\gmtl-0.6.0&quot;;&quot;..\..\..\external\wxWidgets-2.9.2\include&quot;;&quot;..\..\..\external\wxWidgets-2.9.2\include\msvc&quot;"
-				PreprocessorDefinitions="WIN32;_DEBUG;_LIB;ILL_STATIC_LIB"
+				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\external\boost_1_46_1;&quot;..\..\..\external\wxWidgets-2.9.2\include&quot;;&quot;..\..\..\external\wxWidgets-2.9.2\include\msvc&quot;;&quot;..\..\..\external\gmtl-0.6.0&quot;"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;EDITOR_EXPORTS;WXUSINGDLL"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderThrough="Ill/Editor/EditorPCH.hpp"
-				WarningLevel="4"
-				WarnAsError="true"
+				PrecompiledHeaderThrough="Ill\Editor\EditorPCH.hpp"
+				WarningLevel="3"
 				DebugInformationFormat="4"
 			/>
 			<Tool
@@ -62,11 +61,20 @@
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
-				Name="VCLibrarianTool"
-				OutputFile="$(OutDir)\$(ProjectName)_d.lib"
+				Name="VCLinkerTool"
+				AdditionalDependencies="Ill.Core_d.lib"
+				OutputFile="$(OutDir)\$(ProjectName)_d.dll"
+				LinkIncremental="2"
+				AdditionalLibraryDirectories="..\..\..\libs;..\..\..\external\boost_1_46_1\lib;&quot;..\..\..\external\wxWidgets-2.9.2\lib\vc_dll&quot;"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				TargetMachine="1"
 			/>
 			<Tool
 				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -78,14 +86,17 @@
 				Name="VCFxCopTool"
 			/>
 			<Tool
+				Name="VCAppVerifierTool"
+			/>
+			<Tool
 				Name="VCPostBuildEventTool"
 			/>
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
-			OutputDirectory="$(SolutionDir)..\..\libs\"
-			IntermediateDirectory="$(SolutionDir)..\..\intermediate\$(ConfigurationName)\$(ProjectName)"
-			ConfigurationType="4"
+			OutputDirectory="..\..\..\libs"
+			IntermediateDirectory="..\..\..\intermediate\$(ConfigurationName)\$(ProjectName)"
+			ConfigurationType="2"
 			CharacterSet="1"
 			WholeProgramOptimization="1"
 			>
@@ -108,14 +119,13 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\external\boost_1_46_1;&quot;..\..\..\external\gmtl-0.6.0&quot;;&quot;..\..\..\external\wxWidgets-2.9.2\include&quot;;&quot;..\..\..\external\wxWidgets-2.9.2\include\msvc&quot;"
-				PreprocessorDefinitions="WIN32;NDEBUG;_LIB;ILL_STATIC_LIB"
+				AdditionalIncludeDirectories="..\..\..\includes;..\..\..\external\boost_1_46_1;&quot;..\..\..\external\wxWidgets-2.9.2\include&quot;;&quot;..\..\..\external\wxWidgets-2.9.2\include\msvc&quot;;&quot;..\..\..\external\gmtl-0.6.0&quot;"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;EDITOR_EXPORTS;WXUSINGDLL"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
 				UsePrecompiledHeader="2"
-				PrecompiledHeaderThrough="Ill/Editor/EditorPCH.hpp"
-				WarningLevel="4"
-				WarnAsError="true"
+				PrecompiledHeaderThrough="Ill\Editor\EditorPCH.hpp"
+				WarningLevel="3"
 				DebugInformationFormat="3"
 			/>
 			<Tool
@@ -128,10 +138,21 @@
 				Name="VCPreLinkEventTool"
 			/>
 			<Tool
-				Name="VCLibrarianTool"
+				Name="VCLinkerTool"
+				AdditionalDependencies="Ill.Core.lib"
+				LinkIncremental="1"
+				AdditionalLibraryDirectories="..\..\..\libs;..\..\..\external\boost_1_46_1\lib;&quot;..\..\..\external\wxWidgets-2.9.2\lib\vc_dll&quot;"
+				GenerateDebugInformation="true"
+				SubSystem="2"
+				OptimizeReferences="2"
+				EnableCOMDATFolding="2"
+				TargetMachine="1"
 			/>
 			<Tool
 				Name="VCALinkTool"
+			/>
+			<Tool
+				Name="VCManifestTool"
 			/>
 			<Tool
 				Name="VCXDCMakeTool"
@@ -141,6 +162,9 @@
 			/>
 			<Tool
 				Name="VCFxCopTool"
+			/>
+			<Tool
+				Name="VCAppVerifierTool"
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
@@ -199,6 +223,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\includes\Ill\Editor\EditorCommands.hpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\includes\Ill\Editor\EditorExports.hpp"
 				>
 			</File>
 			<File
