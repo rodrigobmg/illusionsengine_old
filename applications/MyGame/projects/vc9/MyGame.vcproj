@@ -91,6 +91,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				CommandLine="CopyDLLs.bat"
 			/>
 		</Configuration>
 		<Configuration
@@ -170,6 +171,7 @@
 			/>
 			<Tool
 				Name="VCPostBuildEventTool"
+				CommandLine="CopyDLLs.bat"
 			/>
 		</Configuration>
 	</Configurations>

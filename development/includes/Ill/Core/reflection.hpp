@@ -2329,7 +2329,7 @@ private:
     typedef std::map<std::string, const Property *> _PropertyMap;
 
     bool registerClassMap(MAP_TYPE t, const std::string& name);
-    
+    void unregisterClassMap( MAP_TYPE t, const std::string& name );
 
     static const Class * findClassMap(MAP_TYPE t, const std::string& name);
     
@@ -2347,6 +2347,8 @@ private:
     const size_t m_size;
     const std::type_info & m_class_typeinfo;
     const std::type_info & m_class_ptr_typeinfo;
+    const std::type_info & m_class_const_typeinfo;
+    const std::type_info & m_class_const_ptr_typeinfo;
     const std::string m_fullname;
     const _super_cast_fun m_supercast;
     const _super_cast_const_fun m_supercastconst;

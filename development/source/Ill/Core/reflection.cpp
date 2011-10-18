@@ -270,29 +270,36 @@ MemberBase(pclass, ACCESS_PUBLIC, type, name),
 
 
     //the default constructor
-Class::Class(const char *name, const Class *super, size_t s, _new_instance_fun fun, _super_cast_fun super_case, _super_cast_const_fun super_cast_const, const std::type_info & tid, const std::type_info &ctid, const std::type_info &ptid, const std::type_info &cptid) :
-m_name(name),
+Class::Class(const char *name, const Class *super, size_t s, _new_instance_fun fun, _super_cast_fun super_case, _super_cast_const_fun super_cast_const, const std::type_info & tid, const std::type_info &ctid, const std::type_info &ptid, const std::type_info &cptid) 
+:   m_name(name),
     m_super(super),
     m_new(fun),
     m_size(s),
     m_class_typeinfo(tid),
     m_class_ptr_typeinfo(ptid),
+    m_class_const_typeinfo(ctid),
+    m_class_const_ptr_typeinfo(cptid),
     m_fullname(unmangle(tid.name())),
     m_supercast(super_case),
     m_supercastconst(super_cast_const)
 {
     getClassList().push_back(this);
     registerClassMap(MAP_CLASSFULLNAME, m_fullname);
-    registerClassMap(MAP_CLASSNAME, tid.name() );
-    registerClassMap(MAP_CLASSNAME_CONST, ctid.name() );
-    registerClassMap(MAP_CLASSNAME_PTR, ptid.name() );
-    registerClassMap(MAP_CLASSNAME_PTR_CONST, cptid.name() );
+    registerClassMap(MAP_CLASSNAME, m_class_typeinfo.name() );
+    registerClassMap(MAP_CLASSNAME_CONST, m_class_const_typeinfo.name() );
+    registerClassMap(MAP_CLASSNAME_PTR, m_class_ptr_typeinfo.name() );
+    registerClassMap(MAP_CLASSNAME_PTR_CONST, m_class_const_ptr_typeinfo.name() );
 
 }
 
 Class::~Class()
 {
-    // TODO: Unregister and remove this class from the class map.
+    getClassList().remove(this);
+    unregisterClassMap(MAP_CLASSFULLNAME, m_fullname);
+    unregisterClassMap(MAP_CLASSNAME, m_class_typeinfo.name() );
+    unregisterClassMap(MAP_CLASSNAME_CONST, m_class_const_typeinfo.name() );
+    unregisterClassMap(MAP_CLASSNAME_PTR, m_class_ptr_typeinfo.name() );
+    unregisterClassMap(MAP_CLASSNAME_PTR_CONST, m_class_const_ptr_typeinfo.name() );
 }
 
 
@@ -441,6 +448,16 @@ bool Class::registerClassMap(Class::MAP_TYPE t, const std::string& name) {
 	throw ClassRegistrationError(m_name);
     }
     return result.second;
+}
+
+void Class::unregisterClassMap(Class::MAP_TYPE t, const std::string& name )
+{
+    ClassMap& classMap = getClassMap(t);
+    ClassMap::iterator iter = classMap.find(name);
+    if ( iter != classMap.end() )
+    {
+        classMap.erase(iter);
+    }
 }
 
 const Class * Class::findClassMap(Class::MAP_TYPE t, const std::string& name) {

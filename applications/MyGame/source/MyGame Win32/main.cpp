@@ -74,5 +74,10 @@ int main( int argc, char* argv[] )
     g_pGameApp->Terminiate();
     g_pGameApp.reset();
 
+#ifdef _DEBUG
+    // Run a small test to see what classes the reflection system knows about.
+    TestReflection();
+#endif
+
     return 0;
 }

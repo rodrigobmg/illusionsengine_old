@@ -1,0 +1,12 @@
+..\..\..\..\development\libs\Ill.Core.dll
+..\..\..\..\development\libs\Ill.Core_d.dll
+..\..\..\..\development\libs\Ill.Graphics.dll
+..\..\..\..\development\libs\Ill.Graphics_d.dll
+..\..\..\..\development\libs\Ill.Editor.dll
+..\..\..\..\development\libs\Ill.Editor_d.dll
+..\..\..\..\development\external\wxWidgets-2.9.2\lib\vc_dll\wxbase292u_vc_custom.dll
+..\..\..\..\development\external\wxWidgets-2.9.2\lib\vc_dll\wxbase292ud_vc_custom.dll
+..\..\..\..\development\external\wxWidgets-2.9.2\lib\vc_dll\wxmsw292u_core_vc_custom.dll
+..\..\..\..\development\external\wxWidgets-2.9.2\lib\vc_dll\wxmsw292ud_core_vc_custom.dll
+..\..\..\..\development\external\wxWidgets-2.9.2\lib\vc_dll\wxmsw292u_aui_vc_custom.dll
+..\..\..\..\development\external\wxWidgets-2.9.2\lib\vc_dll\wxmsw292ud_aui_vc_custom.dll
