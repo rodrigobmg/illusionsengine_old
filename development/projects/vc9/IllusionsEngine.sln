@@ -179,6 +179,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ill.Game", "Game\Ill.Game.v
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ill.Physics", "Engine\Ill.Physics.vcproj", "{2E9A57F4-FB77-43BD-AF2D-344D22617C94}"
+	ProjectSection(ProjectDependencies) = postProject
+		{320384DB-55D2-4AC5-99EA-E477D5B6D85F} = {320384DB-55D2-4AC5-99EA-E477D5B6D85F}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Ill.Editor", "Editor\Ill.Editor.vcproj", "{15D2C7B3-FF23-4FB1-99F1-F12AA6CC67DF}"
 	ProjectSection(ProjectDependencies) = postProject
