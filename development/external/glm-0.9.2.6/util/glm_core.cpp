@@ -5,6 +5,8 @@
 // GLSL vector types: ['tvec2', 'tvec3', 'tvec4']
 // GLSL matrix types: ['tmat2x2', 'tmat2x3', 'tmat2x4', 'tmat3x2', 'tmat3x3', 'tmat3x4', 'tmat4x2', 'tmat4x3', 'tmat4x4']
 //
+#pragma warning(push)
+#pragma warning(disable:4146)
 
 #include <glm/glm.hpp>
 
@@ -168,3 +170,5 @@ template struct tmat4x4<double>;
 
 } // namespace detail
 } // namespace glm
+
+#pragma warning(pop)
