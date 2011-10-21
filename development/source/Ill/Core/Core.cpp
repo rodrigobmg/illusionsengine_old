@@ -13,7 +13,7 @@ namespace Ill
             GameObject();
 			Component();
 			Subsystem();
-			PluginSubsystem();
+			DynamicLibSubsystem();
 			Application();
 			PropertyMap();
 		}

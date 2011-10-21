@@ -17,7 +17,7 @@
 #include <Ill/Core/Subsystem.hpp>
 #include <Ill/Core/Application.hpp>
 #include <Ill/Core/Plugin.hpp>
-#include <Ill/Core/PluginSubsystem.hpp>
+#include <Ill/Core/DynamicLibSubsystem.hpp>
 
 namespace Ill
 {

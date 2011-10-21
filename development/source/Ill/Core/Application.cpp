@@ -1,7 +1,7 @@
 #include <Ill/Core/CorePCH.hpp>
 
 #include <Ill/Core/Subsystem.hpp>
-#include <Ill/Core/PluginSubsystem.hpp>
+#include <Ill/Core/DynamicLibSubsystem.hpp>
 #include <Ill/Core/Application.hpp>
 
 namespace Ill
@@ -19,9 +19,9 @@ namespace Ill
 
         void Application::Initialize()
         {
-            // Before we can load plugins, we need the plugin subsystem  
+            // Before we can load plugins, we need the Dynamic Library subsystem  
             // to be available.  So register that one by default.
-            RegisterSubsystem( PluginSubsystem::getClassStatic() );
+            RegisterSubsystem( DynamicLibSubsystem::getClassStatic() );
         }
 
         void Application::Terminiate()
@@ -52,6 +52,10 @@ namespace Ill
 				m_Subsystems.push_back( subsystem );
 				return true;
 			}
+            else
+            {
+                std::cerr << "ERROR: Failed to register type: \"" << subsystemClass.getName() << "\" Application::RegisterSubsystem." << std::endl; 
+            }
 
 			return false;
 		}

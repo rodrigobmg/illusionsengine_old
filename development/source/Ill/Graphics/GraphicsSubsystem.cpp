@@ -7,15 +7,11 @@
 
 #include <Ill/Core/CoreUtils.hpp>
 #include <Ill/Core/Application.hpp>
-#include <Ill/Core/PluginSubsystem.hpp>
-#include <Ill/Core/Plugin.hpp>
+#include <Ill/Core/DynamicLibSubsystem.hpp>
+#include <Ill/Core/DynamicLib.hpp>
 
 #include <Ill/Graphics/GraphicsSubsystem.hpp>
 #include <Ill/Graphics/GraphicsRenderer.hpp>
-
-// Define a function that will be used to get a pointer to our graphics renderer implementation.
-typedef Ill::Graphics::GraphicsRenderer* (*GET_RENDERER_FUNC)(void);
-typedef void (*DESTROY_RENDERER_FUNC)(void);
 
 namespace Ill
 {
@@ -31,57 +27,14 @@ namespace Ill
             Super::Startup(startupOptions);
 
             // Populate our properties from our startup options.
-            GetProperties( startupOptions );
+            SetProperties( startupOptions );
        
-            Ill::Core::ApplicationPtr app = get_App().lock();
-            Ill::Core::PluginSubsystemPtr pluginMgr = (app->GetSubsystem<Ill::Core::PluginSubsystem>()).lock();
-			Ill::Core::PluginPtr plugin;
-			try
-			{
-				plugin = pluginMgr->Load( m_GraphicsLibName );
-                GET_RENDERER_FUNC pFunc = (GET_RENDERER_FUNC)plugin->GetSymbol( "GetGraphicsRenderer" );
-
-                if ( pFunc != NULL )
-                {
-                    m_pGraphicsRenderer = pFunc();
-
-                    BOOST_ASSERT( m_pGraphicsRenderer != NULL );
-
-                    m_pGraphicsRenderer->GetProperties( startupOptions );
-                    m_pGraphicsRenderer->Initialize();
-                }
-			}
-			catch ( std::exception& exp )
-			{
-				std::cerr << "Could not load graphics lib: " << ConvertString( m_GraphicsLibName ) << exp.what() << std::endl;
-				return false;
-			}
-
             return true;
         }
 
         bool GrapicsSubsystem::Shutdown()
         {
             Super::Shutdown();
-
-            Ill::Core::ApplicationPtr app = get_App().lock();
-            Ill::Core::PluginSubsystemPtr pluginMgr = (app->GetSubsystem<Ill::Core::PluginSubsystem>()).lock();
-            Ill::Core::PluginPtr plugin;
-
-            try
-            {
-                plugin = pluginMgr->Load( m_GraphicsLibName );
-                DESTROY_RENDERER_FUNC pFunc = (DESTROY_RENDERER_FUNC)plugin->GetSymbol( "DestroyGraphicsRenderer" );
-                if ( pFunc != NULL )
-                {
-                    pFunc();
-                }
-            }
-            catch ( std::exception& exp )
-            {
-                std::cerr << "Could not destroy graphics lib: " << ConvertString( m_GraphicsLibName ) << exp.what() << std::endl;
-            }
-
 
             return true;
         }
@@ -91,10 +44,9 @@ namespace Ill
             return m_pGraphicsRenderer;
         }
 
-        void GrapicsSubsystem::GetProperties(const Ill::Core::PropertyMap& properties)
+        void GrapicsSubsystem::SetProperties(const Ill::Core::PropertyMap& properties)
         {
-            Super::GetProperties( properties );
-
+            Super::SetProperties( properties );
             properties.GetValue( "GraphicsLibName", m_GraphicsLibName );
         }
     }

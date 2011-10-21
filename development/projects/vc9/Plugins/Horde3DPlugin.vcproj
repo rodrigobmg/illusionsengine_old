@@ -2,9 +2,9 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9.00"
-	Name="OgrePlugin"
-	ProjectGUID="{412E4C3A-0500-4849-BD43-5EE472100582}"
-	RootNamespace="OgrePlugin"
+	Name="Horde3DPlugin"
+	ProjectGUID="{A52437B4-1C02-4219-B540-3C718B86BB41}"
+	RootNamespace="Horde3DPlugin"
 	Keyword="Win32Proj"
 	TargetFrameworkVersion="196613"
 	>
@@ -40,15 +40,12 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
-				AdditionalOptions="/Zm110"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\..\includes;&quot;..\..\..\external\ogre-v1-6-3\OgreMain\include&quot;;..\..\..\external\boost_1_46_1"
-				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;OGREPLUGIN_EXPORTS"
+				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;HORDE3DPLUGIN_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
-				UsePrecompiledHeader="2"
-				PrecompiledHeaderThrough="Plugins/OgrePlugin/OgrePluginPCH.hpp"
+				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				DebugInformationFormat="4"
 			/>
@@ -63,10 +60,10 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="Ill.Core_d.lib Ill.Graphics_d.lib"
+				AdditionalDependencies="Ill.Core_d.lib Ill.Graphics_d.lib Horde3D.lib"
 				OutputFile="$(OutDir)\$(ProjectName)_d.dll"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="..\..\..\libs;&quot;..\..\..\external\ogre-v1-6-3\lib&quot;;..\..\..\external\boost_1_46_1\lib"
+				AdditionalLibraryDirectories="..\..\..\libs;..\..\..\external\boost_1_46_1\lib;..\..\..\external\Horde3D_SDK_1.0.0_Beta5\Horde3D\Binaries\Debug"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				TargetMachine="1"
@@ -120,12 +117,10 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="..\..\..\includes;&quot;..\..\..\external\ogre-v1-6-3\OgreMain\include&quot;;..\..\..\external\boost_1_46_1"
-				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;OGREPLUGIN_EXPORTS"
+				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;HORDE3DPLUGIN_EXPORTS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
-				UsePrecompiledHeader="2"
-				PrecompiledHeaderThrough="Plugins/OgrePlugin/OgrePluginPCH.hpp"
+				UsePrecompiledHeader="0"
 				WarningLevel="3"
 				DebugInformationFormat="3"
 			/>
@@ -140,9 +135,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="Ill.Core.lib Ill.Graphics.lib"
+				AdditionalDependencies="Ill.Core.lib Ill.Graphics.lib Horde3D.lib"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="..\..\..\libs;&quot;..\..\..\external\ogre-v1-6-3\lib&quot;;..\..\..\external\boost_1_46_1\lib"
+				AdditionalLibraryDirectories="..\..\..\libs;..\..\..\external\boost_1_46_1\lib;..\..\..\external\Horde3D_SDK_1.0.0_Beta5\Horde3D\Binaries\Release"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -180,64 +175,12 @@
 			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
-			<File
-				RelativePath="..\..\..\source\Plugins\OgrePlugin\OgreConvert.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\source\Plugins\OgrePlugin\OgrePlugin.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\source\Plugins\OgrePlugin\OgrePluginPCH.cpp"
-				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						UsePrecompiledHeader="1"
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						UsePrecompiledHeader="1"
-					/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath="..\..\..\source\Plugins\OgrePlugin\OgreRenderer.cpp"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
-			<File
-				RelativePath="..\..\..\includes\Plugins\OgrePlugin\OgreConvert.hpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\includes\Plugins\OgrePlugin\OgrePlugin.hpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\includes\Plugins\OgrePlugin\OgrePluginExports.hpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\includes\Plugins\OgrePlugin\OgrePluginPCH.hpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\includes\Plugins\OgrePlugin\OgreRenderer.hpp"
-				>
-			</File>
 		</Filter>
 		<Filter
 			Name="Resource Files"

@@ -63,7 +63,6 @@
 				RuntimeTypeInfo="true"
 				AssemblerListingLocation="Debug"
 				ObjectFile="$(IntDir)\"
-				ProgramDataBaseFileName="C:\Projects\IllusionsEngine\development\external\Horde3D_SDK_1.0.0_Beta5\Horde3D\Binaries\Debug/Horde3D.pdb"
 				WarningLevel="3"
 				DebugInformationFormat="3"
 				CompileAs="2"
@@ -74,7 +73,7 @@
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="WIN32,_WINDOWS,_DEBUG,CMAKE,CMAKE_INTDIR=\&quot;Debug\&quot;,Horde3D_EXPORTS"
-				AdditionalIncludeDirectories="C:\Projects\IllusionsEngine\development\external\Horde3D_SDK_1.0.0_Beta5\Horde3D\Source\Horde3DEngine\.;C:\Projects\IllusionsEngine\development\external\Horde3D_SDK_1.0.0_Beta5\Horde3D\Source\Horde3DEngine\..\Shared;C:\Projects\IllusionsEngine\development\external\Horde3D_SDK_1.0.0_Beta5\Horde3D\Source\Horde3DEngine\..\..\Bindings\C++;C:\Projects\IllusionsEngine\development\external\Horde3D_SDK_1.0.0_Beta5\Horde3D\Source\Horde3DEngine\..\..\..;C:\Projects\IllusionsEngine\development\external\Horde3D_SDK_1.0.0_Beta5\CMake;"
+				AdditionalIncludeDirectories="..\..\..\..\\Horde3D\Source\Horde3DEngine\.;..\..\..\..\\Horde3D\Source\Horde3DEngine\..\Shared;..\..\..\..\\Horde3D\Source\Horde3DEngine\..\..\Bindings\C++;..\..\..\..\\Horde3D\Source\Horde3DEngine\..\..\..;..\..\..\..\\CMake;"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
@@ -89,7 +88,6 @@
 				LinkIncremental="2"
 				AdditionalLibraryDirectories=""
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile="C:\Projects\IllusionsEngine\development\external\Horde3D_SDK_1.0.0_Beta5\Horde3D\Binaries\Debug\Horde3D.pdb"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -159,7 +157,6 @@
 				RuntimeTypeInfo="true"
 				AssemblerListingLocation="Release"
 				ObjectFile="$(IntDir)\"
-				ProgramDataBaseFileName="C:\Projects\IllusionsEngine\development\external\Horde3D_SDK_1.0.0_Beta5\Horde3D\Binaries\Release/Horde3D.pdb"
 				WarningLevel="3"
 				CompileAs="2"
 			/>
@@ -169,7 +166,7 @@
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,SECURE_SCL=0,CMAKE,CMAKE_INTDIR=\&quot;Release\&quot;,Horde3D_EXPORTS"
-				AdditionalIncludeDirectories="C:\Projects\IllusionsEngine\development\external\Horde3D_SDK_1.0.0_Beta5\Horde3D\Source\Horde3DEngine\.;C:\Projects\IllusionsEngine\development\external\Horde3D_SDK_1.0.0_Beta5\Horde3D\Source\Horde3DEngine\..\Shared;C:\Projects\IllusionsEngine\development\external\Horde3D_SDK_1.0.0_Beta5\Horde3D\Source\Horde3DEngine\..\..\Bindings\C++;C:\Projects\IllusionsEngine\development\external\Horde3D_SDK_1.0.0_Beta5\Horde3D\Source\Horde3DEngine\..\..\..;C:\Projects\IllusionsEngine\development\external\Horde3D_SDK_1.0.0_Beta5\CMake;"
+				AdditionalIncludeDirectories="..\..\..\..\\Horde3D\Source\Horde3DEngine\.;..\..\..\..\\Horde3D\Source\Horde3DEngine\..\Shared;..\..\..\..\\Horde3D\Source\Horde3DEngine\..\..\Bindings\C++;..\..\..\..\\Horde3D\Source\Horde3DEngine\..\..\..;..\..\..\..\\CMake;"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
@@ -183,7 +180,6 @@
 				Version="0.0"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories=""
-				ProgramDatabaseFile="C:\Projects\IllusionsEngine\development\external\Horde3D_SDK_1.0.0_Beta5\Horde3D\Binaries\Release\Horde3D.pdb"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -253,7 +249,6 @@
 				RuntimeTypeInfo="true"
 				AssemblerListingLocation="MinSizeRel"
 				ObjectFile="$(IntDir)\"
-				ProgramDataBaseFileName="C:\Projects\IllusionsEngine\development\external\Horde3D_SDK_1.0.0_Beta5\Horde3D\Binaries\MinSizeRel/Horde3D.pdb"
 				WarningLevel="3"
 				CompileAs="2"
 			/>
@@ -263,7 +258,7 @@
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,CMAKE,CMAKE_INTDIR=\&quot;MinSizeRel\&quot;,Horde3D_EXPORTS"
-				AdditionalIncludeDirectories="C:\Projects\IllusionsEngine\development\external\Horde3D_SDK_1.0.0_Beta5\Horde3D\Source\Horde3DEngine\.;C:\Projects\IllusionsEngine\development\external\Horde3D_SDK_1.0.0_Beta5\Horde3D\Source\Horde3DEngine\..\Shared;C:\Projects\IllusionsEngine\development\external\Horde3D_SDK_1.0.0_Beta5\Horde3D\Source\Horde3DEngine\..\..\Bindings\C++;C:\Projects\IllusionsEngine\development\external\Horde3D_SDK_1.0.0_Beta5\Horde3D\Source\Horde3DEngine\..\..\..;C:\Projects\IllusionsEngine\development\external\Horde3D_SDK_1.0.0_Beta5\CMake;"
+				AdditionalIncludeDirectories="..\..\..\..\Horde3D\Source\Horde3DEngine\.;..\..\..\..\Horde3D\Source\Horde3DEngine\..\Shared;..\..\..\..\Horde3D\Source\Horde3DEngine\..\..\Bindings\C++;..\..\..\..\Horde3D\Source\Horde3DEngine\..\..\..;..\..\..\..\CMake;"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
@@ -277,7 +272,6 @@
 				Version="0.0"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories=""
-				ProgramDatabaseFile="C:\Projects\IllusionsEngine\development\external\Horde3D_SDK_1.0.0_Beta5\Horde3D\Binaries\MinSizeRel\Horde3D.pdb"
 			/>
 			<Tool
 				Name="VCALinkTool"
@@ -347,7 +341,6 @@
 				RuntimeTypeInfo="true"
 				AssemblerListingLocation="RelWithDebInfo"
 				ObjectFile="$(IntDir)\"
-				ProgramDataBaseFileName="C:\Projects\IllusionsEngine\development\external\Horde3D_SDK_1.0.0_Beta5\Horde3D\Binaries\RelWithDebInfo/Horde3D.pdb"
 				WarningLevel="3"
 				DebugInformationFormat="3"
 				CompileAs="2"
@@ -358,7 +351,7 @@
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,CMAKE,CMAKE_INTDIR=\&quot;RelWithDebInfo\&quot;,Horde3D_EXPORTS"
-				AdditionalIncludeDirectories="C:\Projects\IllusionsEngine\development\external\Horde3D_SDK_1.0.0_Beta5\Horde3D\Source\Horde3DEngine\.;C:\Projects\IllusionsEngine\development\external\Horde3D_SDK_1.0.0_Beta5\Horde3D\Source\Horde3DEngine\..\Shared;C:\Projects\IllusionsEngine\development\external\Horde3D_SDK_1.0.0_Beta5\Horde3D\Source\Horde3DEngine\..\..\Bindings\C++;C:\Projects\IllusionsEngine\development\external\Horde3D_SDK_1.0.0_Beta5\Horde3D\Source\Horde3DEngine\..\..\..;C:\Projects\IllusionsEngine\development\external\Horde3D_SDK_1.0.0_Beta5\CMake;"
+				AdditionalIncludeDirectories="..\..\..\..\\Horde3D\Source\Horde3DEngine\.;..\..\..\..\\Horde3D\Source\Horde3DEngine\..\Shared;..\..\..\..\\Horde3D\Source\Horde3DEngine\..\..\Bindings\C++;..\..\..\..\\Horde3D\Source\Horde3DEngine\..\..\..;..\..\..\..\\CMake;"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
@@ -373,7 +366,6 @@
 				LinkIncremental="2"
 				AdditionalLibraryDirectories=""
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile="C:\Projects\IllusionsEngine\development\external\Horde3D_SDK_1.0.0_Beta5\Horde3D\Binaries\RelWithDebInfo\Horde3D.pdb"
 			/>
 			<Tool
 				Name="VCALinkTool"

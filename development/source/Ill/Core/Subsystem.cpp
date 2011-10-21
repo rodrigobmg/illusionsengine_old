@@ -28,7 +28,7 @@ namespace Ill
 			return true;
 		}
 
-        void Subsystem::GetProperties(const PropertyMap& properties)
+        void Subsystem::SetProperties(const PropertyMap& properties)
         {
 
             const Class& myClass = getClass();

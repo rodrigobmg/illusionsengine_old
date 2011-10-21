@@ -214,6 +214,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\source\Ill\Core\DynamicLib.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\source\Ill\Core\DynamicLibSubsystem.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\source\Ill\Core\GameObject.cpp"
 				>
 			</File>
@@ -227,10 +235,6 @@
 			</File>
 			<File
 				RelativePath="..\..\..\source\Ill\Core\Plugin.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\source\Ill\Core\PluginSubsystem.cpp"
 				>
 			</File>
 			<File
@@ -312,6 +316,22 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\includes\Ill\Core\DynamicLib.fwd.hpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\includes\Ill\Core\DynamicLib.hpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\includes\Ill\Core\DynamicLibSubsystem.fwd.hpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\includes\Ill\Core\DynamicLibSubsystem.hpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\includes\Ill\Core\GameObject.hpp"
 				>
 			</File>
@@ -333,14 +353,6 @@
 			</File>
 			<File
 				RelativePath="..\..\..\includes\Ill\Core\Plugin.hpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\includes\Ill\Core\PluginSubsystem.fwd.hpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\includes\Ill\Core\PluginSubsystem.hpp"
 				>
 			</File>
 			<File

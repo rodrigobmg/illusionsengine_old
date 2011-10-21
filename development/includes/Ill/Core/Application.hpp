@@ -129,6 +129,7 @@ namespace Ill
 
 		private:
 			SubsystemList m_Subsystems;
+            bool          m_IsInitialized;
 		};
 
 	} // namespace Ill

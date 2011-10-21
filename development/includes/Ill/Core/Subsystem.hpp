@@ -40,7 +40,7 @@ namespace Ill
             /**
             * Populate my defined properties from the passed-in property map
             */
-            VIRTUAL_METHOD( CORE_DLL, public, void, GetProperties, (const PropertyMap& properties) );
+            VIRTUAL_METHOD( CORE_DLL, public, void, SetProperties, (const PropertyMap& properties) );
 
             ApplicationWeakPtr get_App() const;
             void set_App( ApplicationWeakPtr application );

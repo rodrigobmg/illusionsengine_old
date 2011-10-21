@@ -63,7 +63,6 @@
 				RuntimeTypeInfo="true"
 				AssemblerListingLocation="Debug"
 				ObjectFile="$(IntDir)\"
-				ProgramDataBaseFileName="C:\Projects\IllusionsEngine\development\external\Horde3D_SDK_1.0.0_Beta5\Horde3D\Binaries\Debug/ColladaConv.pdb"
 				WarningLevel="3"
 				DebugInformationFormat="3"
 				CompileAs="2"
@@ -74,7 +73,7 @@
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="WIN32,_WINDOWS,_DEBUG,CMAKE_INTDIR=\&quot;Debug\&quot;"
-				AdditionalIncludeDirectories="C:\Projects\IllusionsEngine\development\external\Horde3D_SDK_1.0.0_Beta5\Horde3D\Source\ColladaConverter\..\Shared;"
+				AdditionalIncludeDirectories="..\..\..\..\Horde3D_SDK_1.0.0_Beta5\Horde3D\Source\ColladaConverter\..\Shared;"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
@@ -90,7 +89,6 @@
 				LinkIncremental="2"
 				AdditionalLibraryDirectories=""
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile="C:\Projects\IllusionsEngine\development\external\Horde3D_SDK_1.0.0_Beta5\Horde3D\Binaries\Debug/ColladaConv.pdb"
 				SubSystem="1"
 			/>
 			<Tool
@@ -161,7 +159,6 @@
 				RuntimeTypeInfo="true"
 				AssemblerListingLocation="Release"
 				ObjectFile="$(IntDir)\"
-				ProgramDataBaseFileName="C:\Projects\IllusionsEngine\development\external\Horde3D_SDK_1.0.0_Beta5\Horde3D\Binaries\Release/ColladaConv.pdb"
 				WarningLevel="3"
 				CompileAs="2"
 			/>
@@ -171,7 +168,7 @@
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,CMAKE_INTDIR=\&quot;Release\&quot;"
-				AdditionalIncludeDirectories="C:\Projects\IllusionsEngine\development\external\Horde3D_SDK_1.0.0_Beta5\Horde3D\Source\ColladaConverter\..\Shared;"
+				AdditionalIncludeDirectories="..\..\..\..\Horde3D_SDK_1.0.0_Beta5\Horde3D\Source\ColladaConverter\..\Shared;"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
@@ -186,7 +183,6 @@
 				Version="0.0"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories=""
-				ProgramDatabaseFile="C:\Projects\IllusionsEngine\development\external\Horde3D_SDK_1.0.0_Beta5\Horde3D\Binaries\Release/ColladaConv.pdb"
 				SubSystem="1"
 			/>
 			<Tool
@@ -257,7 +253,6 @@
 				RuntimeTypeInfo="true"
 				AssemblerListingLocation="MinSizeRel"
 				ObjectFile="$(IntDir)\"
-				ProgramDataBaseFileName="C:\Projects\IllusionsEngine\development\external\Horde3D_SDK_1.0.0_Beta5\Horde3D\Binaries\MinSizeRel/ColladaConv.pdb"
 				WarningLevel="3"
 				CompileAs="2"
 			/>
@@ -267,7 +262,7 @@
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,CMAKE_INTDIR=\&quot;MinSizeRel\&quot;"
-				AdditionalIncludeDirectories="C:\Projects\IllusionsEngine\development\external\Horde3D_SDK_1.0.0_Beta5\Horde3D\Source\ColladaConverter\..\Shared;"
+				AdditionalIncludeDirectories="..\..\..\..\Horde3D_SDK_1.0.0_Beta5\Horde3D\Source\ColladaConverter\..\Shared;"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
@@ -282,7 +277,6 @@
 				Version="0.0"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories=""
-				ProgramDatabaseFile="C:\Projects\IllusionsEngine\development\external\Horde3D_SDK_1.0.0_Beta5\Horde3D\Binaries\MinSizeRel/ColladaConv.pdb"
 				SubSystem="1"
 			/>
 			<Tool
@@ -353,7 +347,6 @@
 				RuntimeTypeInfo="true"
 				AssemblerListingLocation="RelWithDebInfo"
 				ObjectFile="$(IntDir)\"
-				ProgramDataBaseFileName="C:\Projects\IllusionsEngine\development\external\Horde3D_SDK_1.0.0_Beta5\Horde3D\Binaries\RelWithDebInfo/ColladaConv.pdb"
 				WarningLevel="3"
 				DebugInformationFormat="3"
 				CompileAs="2"
@@ -364,7 +357,7 @@
 			<Tool
 				Name="VCResourceCompilerTool"
 				PreprocessorDefinitions="WIN32,_WINDOWS,NDEBUG,CMAKE_INTDIR=\&quot;RelWithDebInfo\&quot;"
-				AdditionalIncludeDirectories="C:\Projects\IllusionsEngine\development\external\Horde3D_SDK_1.0.0_Beta5\Horde3D\Source\ColladaConverter\..\Shared;"
+				AdditionalIncludeDirectories="..\..\..\..\Horde3D_SDK_1.0.0_Beta5\Horde3D\Source\ColladaConverter\..\Shared;"
 			/>
 			<Tool
 				Name="VCPreLinkEventTool"
@@ -380,7 +373,6 @@
 				LinkIncremental="2"
 				AdditionalLibraryDirectories=""
 				GenerateDebugInformation="true"
-				ProgramDatabaseFile="C:\Projects\IllusionsEngine\development\external\Horde3D_SDK_1.0.0_Beta5\Horde3D\Binaries\RelWithDebInfo/ColladaConv.pdb"
 				SubSystem="1"
 			/>
 			<Tool
