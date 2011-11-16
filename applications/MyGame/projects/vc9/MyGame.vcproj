@@ -41,7 +41,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\..\includes;..\..\..\..\development\includes;..\..\..\..\development\external\boost_1_46_1;&quot;..\..\..\..\development\external\SDL-1.2.14\include&quot;"
+				AdditionalIncludeDirectories="..\..\includes;..\..\..\..\development\includes;..\..\..\..\development\external\boost_1_46_1;&quot;..\..\..\..\development\external\glm-0.9.2.6&quot;;&quot;..\..\..\..\development\external\SDL-1.2.14\include&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -121,7 +121,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
-				AdditionalIncludeDirectories="..\..\includes;..\..\..\..\development\includes;..\..\..\..\development\external\boost_1_46_1;&quot;..\..\..\..\development\external\SDL-1.2.14\include&quot;"
+				AdditionalIncludeDirectories="..\..\includes;..\..\..\..\development\includes;..\..\..\..\development\external\boost_1_46_1;&quot;..\..\..\..\development\external\glm-0.9.2.6&quot;;&quot;..\..\..\..\development\external\SDL-1.2.14\include&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"

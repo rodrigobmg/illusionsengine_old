@@ -19,13 +19,13 @@
 
 #pragma warning( pop )
 
-// Generic Math Template Library
-#include <gmtl/gmtl.h>
-
-#include <Ill/Core/CorePlatform.hpp>
-#include <Ill/Core/CoreUtils.hpp>
+// GLM math library.
+#include <Ill/Core/GlmInclude.hpp>
 
 // Boost specific headers should go in BoostInclude.h
 #include <Ill/Core/BoostInclude.hpp>
+
+#include <Ill/Core/CorePlatform.hpp>
+#include <Ill/Core/CoreUtils.hpp>
 
 #endif // ILL_CORE_PRECOMPILED_HEADER_HPP

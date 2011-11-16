@@ -8,10 +8,12 @@
 #include <wx/wxprec.h>
 #include <wx/aui/aui.h>
 
-#include <gmtl/gmtl.h>
-
 // Boost includes
 #include <Ill/Core/BoostInclude.hpp>
+
+// GLM math library
+#include <Ill/Core/GlmInclude.hpp>
+
 #include <Ill/Core/CorePlatform.hpp>
 
 #include <Ill/Editor/EditorExports.hpp>

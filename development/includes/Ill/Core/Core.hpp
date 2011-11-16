@@ -6,6 +6,7 @@
 #define ILL_CORE_HPP
 
 #include <Ill/Core/CorePlatform.hpp>
+#include <Ill/Core/Events.hpp>
 #include <Ill/Core/CoreUtils.hpp>
 #include <Ill/Core/Singleton.hpp>
 #include <Ill/Core/NoCopyObject.hpp>

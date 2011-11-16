@@ -41,7 +41,7 @@ namespace Ill
 
         int EditorApp::OnExit()
         {
-            m_App->Terminiate();
+            m_App->Terminate();
             m_App.reset();
             return wxApp::OnExit();
         }

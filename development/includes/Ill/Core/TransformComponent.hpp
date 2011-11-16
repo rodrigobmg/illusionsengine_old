@@ -32,28 +32,28 @@ namespace Ill
         private:
 
             // Accessor methods.
-            gmtl::Vec3f get_Scale() const;
-            void set_Scale( gmtl::Vec3f scale );
+            glm::vec3 get_Scale() const;
+            void set_Scale( glm::vec3 scale );
 
-            gmtl::Vec3f get_Position() const;
-            void set_Position( gmtl::Vec3f position );
+            glm::vec3 get_Position() const;
+            void set_Position( glm::vec3 position );
 
-            gmtl::Quatf get_Rotation() const;
-            void set_Rotation( gmtl::Quatf rotation );
+            glm::quat get_Rotation() const;
+            void set_Rotation( glm::quat rotation );
 
             // Private member variables.            
-            gmtl::Vec3f     m_Scale;
-            gmtl::Vec3f     m_Position;
-            gmtl::Quatf     m_Rotation;
+            glm::vec3   m_Scale;
+            glm::vec3   m_Position;
+            glm::quat   m_Rotation;
 
-            gmtl::Matrix44f m_LocalToWorldMatrix;
-            gmtl::Matrix44f m_WorldToLocalMatrix;
+            glm::mat4   m_LocalToWorldMatrix;
+            glm::mat4   m_WorldToLocalMatrix;
 
-            bool            m_bTransformDirty;
+            bool        m_bTransformDirty;
         public:
-            PROPERTY( CORE_DLL, gmtl::Vec3f, Scale );
-            PROPERTY( CORE_DLL, gmtl::Vec3f, Position );
-            PROPERTY( CORE_DLL, gmtl::Quatf, Rotation );
+            PROPERTY( CORE_DLL, glm::vec3, Scale );
+            PROPERTY( CORE_DLL, glm::vec3, Position );
+            PROPERTY( CORE_DLL, glm::quat, Rotation );
             
         };
     }

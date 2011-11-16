@@ -9,6 +9,7 @@ namespace Ill
 	namespace Core
 	{
 		Application::Application()
+            : m_IsInitialized(false)
 		{
         }
 
@@ -19,15 +20,21 @@ namespace Ill
 
         void Application::Initialize()
         {
-            // Before we can load plugins, we need the Dynamic Library subsystem  
+            // Before we can load plug-ins, we need the Dynamic Library subsystem  
             // to be available.  So register that one by default.
             RegisterSubsystem( DynamicLibSubsystem::getClassStatic() );
+
+            m_IsInitialized = true;
+
+            OnInitialized( EventArgs( *this ) );
         }
 
-        void Application::Terminiate()
+        void Application::Terminate()
         {
             // Make sure our application has been shutdown.
             Shutdown();
+
+            OnTerminated( EventArgs( *this ) );
         }
 
 		bool Application::ParseConfigurations( int argc, char* argv[], PropertyMap& options )
@@ -81,9 +88,9 @@ namespace Ill
 			return true;
 		}
 
-		bool Application::Run()
+		int Application::Run()
 		{
-			return true;
+			return 0;
 		}
 
 		bool Application::Shutdown()
@@ -101,5 +108,16 @@ namespace Ill
 
 			return true;
 		}
+
+        void Application::OnInitialized( EventArgs& e )
+        {
+            Initialized( e );
+        }
+
+        void Application::OnTerminated( EventArgs& e )
+        {
+            Terminated( e );
+        }
+
 	}
 }

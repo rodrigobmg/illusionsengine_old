@@ -12,42 +12,42 @@ namespace Ill
         {
             if ( m_bTransformDirty )
             {
-                gmtl::Matrix44f translateMatrix = gmtl::makeTrans<gmtl::Matrix44f>( m_Position );
-                gmtl::Matrix44f scaleMatrix = gmtl::makeScale<gmtl::Matrix44f>( m_Scale );
-                gmtl::Matrix44f rotationMatrix = gmtl::makeRot<gmtl::Matrix44f>( m_Rotation );
-
-                m_LocalToWorldMatrix = translateMatrix * rotationMatrix * scaleMatrix;
+                glm::mat4 translate = glm::translate( m_Position );
+                glm::mat4 rotate = glm::toMat4( m_Rotation );
+                glm::mat4 scale = glm::scale( m_Scale );
+                // TODO: Find out if this is the right order 
+                m_LocalToWorldMatrix = translate * rotate * scale;
             }
         }
 
-        gmtl::Vec3f TransformComponent::get_Scale() const
+        glm::vec3 TransformComponent::get_Scale() const
         {
             return m_Scale;
         }
 
-        void TransformComponent::set_Scale( gmtl::Vec3f scale )
+        void TransformComponent::set_Scale( glm::vec3 scale )
         {
             m_Scale = scale;
             m_bTransformDirty = true;
         }
 
-        gmtl::Vec3f TransformComponent::get_Position() const
+        glm::vec3 TransformComponent::get_Position() const
         {
             return m_Position;
         }
 
-        void TransformComponent::set_Position( gmtl::Vec3f position )
+        void TransformComponent::set_Position( glm::vec3 position )
         {
             m_Position = position;
             m_bTransformDirty = true;
         }
 
-        gmtl::Quatf TransformComponent::get_Rotation() const
+        glm::quat TransformComponent::get_Rotation() const
         {
             return m_Rotation;
         }
 
-        void TransformComponent::set_Rotation( gmtl::Quatf rotation )
+        void TransformComponent::set_Rotation( glm::quat rotation )
         {
             m_Rotation = rotation;
             m_bTransformDirty = true;

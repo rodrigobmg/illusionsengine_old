@@ -31,6 +31,9 @@ namespace fs = boost::filesystem;
     typedef boost::shared_ptr<CLASS_NAME> CLASS_NAME##Ptr; \
     typedef boost::weak_ptr<CLASS_NAME> CLASS_NAME##WeakPtr;
 
+#include <boost/bind.hpp>
+#include <boost/function.hpp>
+#include <boost/signal.hpp>
 #include <boost/any.hpp>
 
 // UUID's and Hash

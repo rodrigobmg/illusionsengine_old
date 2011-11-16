@@ -22,6 +22,7 @@
 */
 
 #include <Ill/Core/Object.hpp>
+#include <Ill/Core/Events.hpp>
 #include <Ill/Core/PropertyMap.hpp>
 #include <Ill/Core/Subsystem.fwd.hpp>
 #include <Ill/Core/Application.fwd.hpp>
@@ -55,7 +56,7 @@ namespace Ill
             * 
             * @returns true if all memory allocations were successful.
             */
-            VIRTUAL_METHOD( CORE_DLL, public, void, Terminiate, () );
+            VIRTUAL_METHOD( CORE_DLL, public, void, Terminate, () );
 
             /**
 			* Register a subsystem class that is associated with this application.
@@ -110,12 +111,17 @@ namespace Ill
 			* Run the application with the options specified application 
 			* options specified in StartUp.
 			*/
-			VIRTUAL_METHOD( CORE_DLL, public, bool, Run, () );
+			VIRTUAL_METHOD( CORE_DLL, public, int, Run, () );
 
 			/**
 			* Shutdown the subsystems used by this application.
 			*/
 			VIRTUAL_METHOD( CORE_DLL, public, bool, Shutdown, () );
+
+            /**
+             * Check to see if the application has been initialized.
+             */
+            bool IsInitialized() const;
 
 			/**
 			* Retrieve a pointer to the subsystem that matches
@@ -126,6 +132,22 @@ namespace Ill
 			*/
 			template<class T>
 			boost::weak_ptr<T> GetSubsystem();
+
+            /** 
+             * Events supported by the application class
+             */
+            Event           Initialized;
+            Event           Terminated;
+
+        protected:
+            /** 
+             * Derived classes should override these methods to handle 
+             * specific events.  Don't forget to call the super class's implementation
+             * otherwise the event will not be called.
+             */
+            virtual void OnInitialized( EventArgs& e );
+            // The application instance has been terminated.
+            virtual void OnTerminated( EventArgs& e );
 
 		private:
 			SubsystemList m_Subsystems;

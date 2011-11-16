@@ -18,7 +18,7 @@ void InstantiateTypes()
     Ill::Graphics::InstantiateTypes();
 }
 
-// Gloabals
+// Globals
 Ill::Game::GameApplicationPtr g_pGameApp;
 
 int main( int argc, char* argv[] )
@@ -43,7 +43,7 @@ int main( int argc, char* argv[] )
 
 
     // Create the game application class
-    g_pGameApp = Ill::Game::GameApplicationPtr( new Ill::Game::GameApplication() );
+    g_pGameApp = boost::make_shared<Ill::Game::GameApplication>(); // Ill::Game::GameApplicationPtr( new Ill::Game::GameApplication() );
     g_pGameApp->Initialize();
 
     // Parse the command-line options
@@ -71,7 +71,7 @@ int main( int argc, char* argv[] )
 #endif
     
     g_pGameApp->Shutdown();
-    g_pGameApp->Terminiate();
+    g_pGameApp->Terminate();
     g_pGameApp.reset();
 
 #ifdef _DEBUG
