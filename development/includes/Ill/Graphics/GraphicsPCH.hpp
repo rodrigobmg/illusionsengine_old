@@ -18,10 +18,14 @@
 
 #pragma warning( pop )
 
-// Generic Math Template Library
-#include <gmtl/gmtl.h>
+// SDL
+#include <SDL.h>
+#include <SDL_opengl.h>
+
 // Boost includes
 #include <Ill/Core/BoostInclude.hpp>
+// GLM
+#include <Ill/Core/GlmInclude.hpp>
 
 #include <Ill/Core/CorePlatform.hpp>
 #include <Ill/Graphics/GraphicsExports.hpp>

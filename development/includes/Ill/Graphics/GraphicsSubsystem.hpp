@@ -30,7 +30,7 @@ namespace Ill
             * Startup the graphics subsystem.
             */
             VIRTUAL_METHOD( GRAPHICS_DLL, public, bool, Startup, ( const Ill::Core::PropertyMap& startupOptions ) );
-
+       
             /**
             * Shutdown
             */

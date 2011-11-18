@@ -14,9 +14,11 @@
 void InstantiateTypes()
 {
     Ill::Core::InstantiateTypes();
-    Ill::Game::InstantiateTypes();
     Ill::Graphics::InstantiateTypes();
+    Ill::Game::InstantiateTypes();
 }
+
+void OnKeyPressed( Ill::Graphics::KeyEventArgs& e );
 
 // Globals
 Ill::Game::GameApplicationPtr g_pGameApp;
@@ -44,6 +46,10 @@ int main( int argc, char* argv[] )
 
     // Create the game application class
     g_pGameApp = boost::make_shared<Ill::Game::GameApplication>(); // Ill::Game::GameApplicationPtr( new Ill::Game::GameApplication() );
+
+    // Register the event handlers.
+    g_pGameApp->KeyPressed += &OnKeyPressed;
+
     g_pGameApp->Initialize();
 
     // Parse the command-line options
@@ -80,4 +86,13 @@ int main( int argc, char* argv[] )
 #endif
 
     return 0;
+}
+
+void OnKeyPressed( Ill::Graphics::KeyEventArgs& e )
+{
+    if ( e.Key == SDLK_ESCAPE )
+    {
+        // Stop the application
+        g_pGameApp->Stop();
+    }
 }

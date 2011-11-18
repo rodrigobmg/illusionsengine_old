@@ -113,6 +113,12 @@ namespace Ill
 			*/
 			VIRTUAL_METHOD( CORE_DLL, public, int, Run, () );
 
+            /**
+             * Stop the application.  This will cause the game application
+             * to return from the Run loop.
+             */
+            VIRTUAL_METHOD( CORE_DLL, public, void, Stop, () );
+
 			/**
 			* Shutdown the subsystems used by this application.
 			*/

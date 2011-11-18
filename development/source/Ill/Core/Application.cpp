@@ -93,6 +93,11 @@ namespace Ill
 			return 0;
 		}
 
+        void Application::Stop()
+        {
+
+        }
+
 		bool Application::Shutdown()
 		{
 			// Shutdown our subsystems in the opposite order as they were registered.

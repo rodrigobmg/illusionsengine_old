@@ -27,8 +27,9 @@ namespace fs = boost::filesystem;
 #include <boost/make_shared.hpp>
 #include <boost/enable_shared_from_this.hpp>
 
-#define DECLARE_PTR( CLASS_NAME ) \
-    typedef boost::shared_ptr<CLASS_NAME> CLASS_NAME##Ptr; \
+#define DECLARE_PTR( CLASS_NAME )                                       \
+    class CLASS_NAME;                                                   \
+    typedef boost::shared_ptr<CLASS_NAME> CLASS_NAME##Ptr;              \
     typedef boost::weak_ptr<CLASS_NAME> CLASS_NAME##WeakPtr;
 
 #include <boost/bind.hpp>

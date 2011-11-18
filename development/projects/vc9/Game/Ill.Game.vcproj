@@ -62,7 +62,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="Ill.Core_d.lib SDL.lib"
+				AdditionalDependencies="Ill.Core_d.lib Ill.Graphics_d.lib SDL.lib"
 				OutputFile="$(OutDir)\$(ProjectName)_d.dll"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="..\..\..\libs;..\..\..\external\boost_1_46_1\lib;&quot;..\..\..\external\SDL-1.2.14\lib&quot;"
@@ -139,7 +139,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="Ill.Core.lib SDL.lib"
+				AdditionalDependencies="Ill.Core.lib Ill.Graphics.lib SDL.lib"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="..\..\..\libs;..\..\..\external\boost_1_46_1\lib;&quot;..\..\..\external\SDL-1.2.14\lib&quot;"
 				GenerateDebugInformation="true"

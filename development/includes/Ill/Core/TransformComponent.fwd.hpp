@@ -1,3 +1,5 @@
+#ifndef ILL_CORE_TRANSFORMCOMPONENT_FWD_HPP
+#define ILL_CORE_TRANSFORMCOMPONENT_FWD_HPP
 /**
  * Forward declaration for the TransformComponent type.
  */
@@ -13,3 +15,5 @@ namespace Ill
 
     }
 }
+
+#endif // ILL_CORE_TRANSFORMCOMPONENT_FWD_HPP

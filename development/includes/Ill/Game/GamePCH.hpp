@@ -19,7 +19,8 @@
 #include <Ill/Core/GlmInclude.hpp>
 
 #include <Ill/Core/CorePlatform.hpp>
-
+// DLL import/export definitions.
+#include <Ill/Graphics/GraphicsExports.hpp>
 #include <Ill/Game/GameExports.hpp>
 
 #endif // ILL_GAME_PCH_HPP

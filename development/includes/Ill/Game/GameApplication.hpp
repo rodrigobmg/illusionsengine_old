@@ -9,9 +9,11 @@
 #define ILL_GAME_GAMEAPPLICATION_HPP
 
 #include <Ill/Core/Application.hpp>
+#include <Ill/Graphics/GraphicsWindow.fwd.hpp>
+#include <Ill/Graphics/WindowEvents.hpp>
+
 #include <Ill/Game/GameEvents.hpp>
 #include <Ill/Game/GameApplication.fwd.hpp>
-
 
 namespace Ill
 {
@@ -47,6 +49,16 @@ namespace Ill
 			VIRTUAL_METHOD( GAME_DLL, public, int, Run, () );
 
             /**
+             * Request that the application should stop running.
+             * This will add an event on the event queue that will invoke
+             * the Exit event from the GraphicsWindow. We can handle the @see(OnExit)
+             * method to set the running flag to false to break out of the Run loop.
+             *
+             * @see(OnExit)
+             */
+            VIRTUAL_METHOD( GAME_DLL, public, void, Stop, () );
+
+            /**
              * Deallocate the memory that was allocated in Initialize.
              * It should be possible to invoke this method many times
              * without an error or exception being thrown.  This way, 
@@ -59,6 +71,10 @@ namespace Ill
             /**
              * Events supported by the GameApplication class
              */
+            // Application specific events
+            Ill::Core::UpdateEvent      Update;
+            Ill::Core::RenderEvent      Render;
+
             // Window events
             Ill::Core::Event            InputFocus;
             Ill::Core::Event            InputBlur;
@@ -70,26 +86,19 @@ namespace Ill
             Ill::Core::Event            Expose;
             Ill::Core::Event            Exit;
 
-            Ill::Core::UpdateEvent      Update;
-            Ill::Core::RenderEvent      Render;
-
             // Keyboard events
-            Ill::Game::KeyboardEvent    KeyPressed;
-            Ill::Game::KeyboardEvent    KeyReleased;
+            Ill::Graphics::KeyboardEvent    KeyPressed;
+            Ill::Graphics::KeyboardEvent    KeyReleased;
 
             // Mouse events
-            Ill::Game::MouseMotionEvent MouseMoved;
-            Ill::Game::MouseButtonEvent MouseButtonPressed;
-            Ill::Game::MouseButtonEvent MouseButtonReleased;
+            Ill::Graphics::MouseMotionEvent MouseMoved;
+            Ill::Graphics::MouseButtonEvent MouseButtonPressed;
+            Ill::Graphics::MouseButtonEvent MouseButtonReleased;
 
             // User events
             Ill::Core::UserEvent        UserEvent;
 
         protected:
-
-            // The generic event handler will dispatch events to the proper
-            // event handlers
-            virtual void EventHandler( SDL_Event& event );
 
             virtual void OnUpdate( Ill::Core::UpdateEventArgs& e );
             virtual void OnRender( Ill::Core::RenderEventArgs& e );
@@ -110,15 +119,15 @@ namespace Ill
             virtual void OnRestore( Ill::Core::EventArgs& e );
 
             // A keyboard key was pressed
-            virtual void OnKeyPressed( KeyEventArgs& e );
+            virtual void OnKeyPressed( Ill::Graphics::KeyEventArgs& e );
             // A keyboard key was released
-            virtual void OnKeyReleased( KeyEventArgs& e );
+            virtual void OnKeyReleased( Ill::Graphics::KeyEventArgs& e );
             // The mouse was moved
-            virtual void OnMouseMoved( MouseMotionEventArgs& e );
+            virtual void OnMouseMoved( Ill::Graphics::MouseMotionEventArgs& e );
             // A button on the mouse was pressed
-            virtual void OnMouseButtonPressed( MouseButtonEventArgs& e );
+            virtual void OnMouseButtonPressed( Ill::Graphics::MouseButtonEventArgs& e );
             // A button on the mouse was released
-            virtual void OnMouseButtonReleased( MouseButtonEventArgs& e );
+            virtual void OnMouseButtonReleased( Ill::Graphics::MouseButtonEventArgs& e );
 
             // The application window has be resized
             virtual void OnResize( Ill::Core::ResizeEventArgs& e );
@@ -136,6 +145,9 @@ namespace Ill
 
             // Accumulated timer for application time.
             float           m_fTotalTime;
+
+            // A handle to the window that will be rendered to..
+            Ill::Graphics::GraphicsWindowPtr m_pRenderWindow;
        };
     }
 }

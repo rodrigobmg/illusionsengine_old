@@ -6,6 +6,16 @@
  */
 
 #include <Ill/Game/GamePCH.hpp>
+
+// Un-define the windows CreateWindow macro as it 
+// messes up the GraphicsWindow::CreateWindow function
+// definition.
+#ifdef CreateWindow
+#undef CreateWindow
+#endif
+
+#include <Ill/Graphics/GraphicsWindow.hpp>
+
 #include <Ill/Game/ElapsedTime.hpp>
 #include <Ill/Game/GameApplication.hpp>
 
@@ -16,11 +26,38 @@ namespace Ill
         GameApplication::GameApplication()
             : m_bIsRunning( false )
             , m_fTotalTime( 0.0f )
-        {}
+            , m_pRenderWindow( new Ill::Graphics::GraphicsWindow() )
+        {
+            // Window events
+            m_pRenderWindow->InputFocus += boost::bind( &GameApplication::OnInputFocus, this, _1 );
+            m_pRenderWindow->InputBlur += boost::bind( &GameApplication::OnInputBlur, this, _1 );
+            m_pRenderWindow->MouseFocus += boost::bind( &GameApplication::OnMouseFocus, this, _1 );
+            m_pRenderWindow->MouseBlur += boost::bind( &GameApplication::OnMouseBlur, this, _1 );
+            m_pRenderWindow->Minimize += boost::bind( &GameApplication::OnMinimize, this, _1 );
+            m_pRenderWindow->Restore += boost::bind( &GameApplication::OnRestore, this, _1 );
+            m_pRenderWindow->Resize += boost::bind( &GameApplication::OnResize, this, _1 );
+            m_pRenderWindow->Expose += boost::bind( &GameApplication::OnExpose, this, _1 );
+            m_pRenderWindow->Exit += boost::bind( &GameApplication::OnExit, this, _1 );
+
+            // Keyboard events
+            m_pRenderWindow->KeyPressed += boost::bind( &GameApplication::OnKeyPressed, this, _1 );
+            m_pRenderWindow->KeyReleased += boost::bind( &GameApplication::OnKeyReleased, this, _1 );
+
+            // Mouse events
+            m_pRenderWindow->MouseMoved += boost::bind( &GameApplication::OnMouseMoved, this, _1 );
+            m_pRenderWindow->MouseButtonPressed += boost::bind( &GameApplication::OnMouseButtonPressed, this, _1 );
+            m_pRenderWindow->MouseButtonReleased += boost::bind( &GameApplication::OnMouseButtonReleased, this, _1 );
+            
+            // User events
+            m_pRenderWindow->UserEvent += boost::bind( &GameApplication::OnUserEvent, this, _1 );
+            
+        }
 
         void GameApplication::Initialize()
         {
             Super::Initialize();
+
+            m_pRenderWindow->Initialize();
         }
 
         bool GameApplication::StartUp(const Ill::Core::PropertyMap& startupOptions)
@@ -28,25 +65,29 @@ namespace Ill
             bool bSuccess = Super::StartUp( startupOptions );
             if ( bSuccess )
             {
-                
+                // TODO: Parse the startup options to find window settings.
+                // For now, the default window description should do.
+                Ill::Graphics::GraphicsWindow::WindowDescription windowDescription;
+
+                // Create the render window
+                bSuccess = m_pRenderWindow->CreateWindow( windowDescription );
             }
-            return true;
+
+            return bSuccess;
         }
 
         int GameApplication::Run()
         {
-
             static ElapsedTime elapsedTime;
 
-            SDL_Event event;
             m_bIsRunning = true;
 
             while ( m_bIsRunning )
             {
-                while ( SDL_PollEvent(&event) )
-                {
-                    EventHandler( event );
-                }
+                // Allow the render window to process the event queue.
+                // The appropriate event handlers in the application 
+                // class should be called when the specified events occur.
+                m_pRenderWindow->ProcessEvents();
 
                 float fDeltaTime = elapsedTime.GetElapsedTime();
 
@@ -64,124 +105,40 @@ namespace Ill
             return 0;
         }
 
+        void GameApplication::Stop()
+        {
+            Super::Stop();
+            // Closing the window will cause the OnExit event handler to be invoked
+            // at the right time.
+            m_pRenderWindow->CloseWindow();
+        }
 
         void GameApplication::Terminate()
         {
             Super::Terminate();
-        }
 
-        void GameApplication::EventHandler( SDL_Event& event )
-        {
-            switch ( event.type )
-            {
-            case SDL_ACTIVEEVENT:
-                {
-                    Ill::Core::EventArgs activeEventArgs(*this);
-                    switch ( event.active.state )
-                    {
-                    case SDL_APPMOUSEFOCUS:
-                        {
-                            if ( event.active.gain > 0 )
-                            {
-                                OnMouseFocus( activeEventArgs );
-                            }
-                            else
-                            {
-                                OnMouseBlur( activeEventArgs );
-                            }
-                        }
-                        break;
-                    case SDL_APPINPUTFOCUS:
-                        {
-                            if ( event.active.gain > 0 )
-                            {
-                                OnInputFocus( activeEventArgs );
-                            }
-                            else 
-                            {
-                                OnInputBlur( activeEventArgs );
-                            }
-                        }
-                        break;
-                    case SDL_APPACTIVE:
-                        {
-                            if ( event.active.gain > 0 )
-                            {
-                                OnRestore( activeEventArgs );
-                            }
-                            else
-                            {
-                                OnMinimize( activeEventArgs );
-                            }
-                        }
-                        break;
-                    }
-                }
-                break; // SDL_ACTIVEEVENT
-            case SDL_KEYDOWN:
-                {
-                    KeyEventArgs keyEventArgs( *this, event.key.keysym.sym, event.key.keysym.mod, event.key.state, event.key.keysym.unicode );
-                    OnKeyPressed( keyEventArgs );
-                }
-                break;
-            case SDL_KEYUP:
-                {
-                    KeyEventArgs keyEventArgs( *this, event.key.keysym.sym, event.key.keysym.mod, event.key.state, event.key.keysym.unicode );
-                    OnKeyReleased( keyEventArgs );
-                }
-                break;
-            case SDL_MOUSEMOTION:
-                {
-                    MouseMotionEventArgs mouseMotionEventArgs( *this, event.motion.state, event.motion.x, event.motion.y, event.motion.xrel, event.motion.yrel );
-                    OnMouseMoved( mouseMotionEventArgs );
-                }
-                break;
-            case SDL_MOUSEBUTTONDOWN:
-                {
-                    MouseButtonEventArgs mouseButtonEventArgs( *this, event.button.button, event.button.state, event.button.x, event.button.y );
-                    OnMouseButtonPressed( mouseButtonEventArgs );
-                }
-                break;
-            case SDL_MOUSEBUTTONUP:
-                {
-                    MouseButtonEventArgs mouseButtonEventArgs( *this, event.button.button, event.button.state, event.button.x, event.button.y );
-                    OnMouseButtonReleased( mouseButtonEventArgs );
-                }
-                break;
-            case SDL_VIDEORESIZE:
-                {
-                    Ill::Core::ResizeEventArgs resizeEventArgs( *this, event.resize.w, event.resize.h );
-                    OnResize( resizeEventArgs );
-                }
-                break;
-            case SDL_VIDEOEXPOSE:
-                {
-                    Ill::Core::EventArgs exposeEventArgs( *this );
-                    OnExpose( exposeEventArgs );
-                }
-                break;
-            case SDL_QUIT:
-                {
-                    Ill::Core::EventArgs quitEventArgs( *this );
-                    OnExit( quitEventArgs );
-                }
-                break;
-            default:
-                {
-                    Ill::Core::UserEventArgs userEventArgs( *this, event.user.code, event.user.data1, event.user.data2 );
-                    OnUserEvent( userEventArgs );
-                }
-                break;
-            }
+            // Destroying the window will actually clean-up the memory allocated
+            // by the window object.
+            m_pRenderWindow->DestroyWindow();
+            // Terminating the window will cause the windowing subsystem
+            // to be terminated.
+            m_pRenderWindow->Terminate();
+
+            Ill::Core::EventArgs terminatedEventArgs( *this );
+            OnTerminated( terminatedEventArgs );
         }
 
         void GameApplication::OnUpdate( Ill::Core::UpdateEventArgs& e )
         {
+            // Invoke the update event for listeners to 
+            // perform game logic.
             Update( e );    
         }
 
         void GameApplication::OnRender( Ill::Core::RenderEventArgs& e )
         {
+            // Invoke the render event for listeners to render
+            // the game scene.
             Render( e );
         }
 
@@ -210,31 +167,31 @@ namespace Ill
         }
 
         // A keyboard key was pressed
-        void GameApplication::OnKeyPressed( KeyEventArgs& e )
+        void GameApplication::OnKeyPressed( Ill::Graphics::KeyEventArgs& e )
         {
             KeyPressed( e );
         }
 
         // A keyboard key was released
-        void GameApplication::OnKeyReleased( KeyEventArgs& e )
+        void GameApplication::OnKeyReleased( Ill::Graphics::KeyEventArgs& e )
         {
             KeyReleased( e );
         }
 
         // The mouse was moved
-        void GameApplication::OnMouseMoved( MouseMotionEventArgs& e )
+        void GameApplication::OnMouseMoved( Ill::Graphics::MouseMotionEventArgs& e )
         {
             MouseMoved( e );
         }
 
         // A button on the mouse was pressed
-        void GameApplication::OnMouseButtonPressed( MouseButtonEventArgs& e )
+        void GameApplication::OnMouseButtonPressed( Ill::Graphics::MouseButtonEventArgs& e )
         {
             MouseButtonPressed( e );
         }
 
         // A button on the mouse was released
-        void GameApplication::OnMouseButtonReleased( MouseButtonEventArgs& e )
+        void GameApplication::OnMouseButtonReleased( Ill::Graphics::MouseButtonEventArgs& e )
         {
             MouseButtonReleased( e );
         }
