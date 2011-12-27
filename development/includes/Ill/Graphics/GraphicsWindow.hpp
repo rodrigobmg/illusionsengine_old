@@ -5,6 +5,12 @@
 #include <Ill/Graphics/WindowEvents.hpp>
 #include <Ill/Graphics/GraphicsWindow.fwd.hpp>
 
+// The windows CreateWindow macro causes issues for my own 
+// CreateWindow function (even though the scopes are different..)
+#ifdef CreateWindow
+#undef CreateWindow
+#endif
+
 namespace Ill
 {
     namespace Graphics

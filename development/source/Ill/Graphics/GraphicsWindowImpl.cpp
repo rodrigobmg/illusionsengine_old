@@ -1,11 +1,4 @@
 #include <Ill/Graphics/GraphicsPCH.hpp>
-
-// Windows headers defines this macros which clashes with my own 
-// function definitions.
-#ifdef CreateWindow
-#undef CreateWindow
-#endif
-
 #include "GraphicsWindowImpl.hpp"
 
 namespace Ill

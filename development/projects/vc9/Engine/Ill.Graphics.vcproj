@@ -262,6 +262,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\includes\Ill\Graphics\SDLInclude.hpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\includes\Ill\Graphics\WindowEvents.hpp"
 				>
 			</File>

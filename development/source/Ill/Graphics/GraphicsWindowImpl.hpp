@@ -3,6 +3,7 @@
 
 #include <Ill/Core/Object.hpp>
 #include <Ill/Core/Events.hpp>
+
 #include <Ill/Graphics/GraphicsWindow.hpp>
 
 namespace Ill

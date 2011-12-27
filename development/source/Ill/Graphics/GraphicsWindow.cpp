@@ -1,11 +1,5 @@
 #include <Ill/Graphics/GraphicsPCH.hpp>
 
-// The windows CreateWindow macro causes issues for my own 
-// CreateWindow function (even though the scopes are different..)
-#ifdef CreateWindow
-#undef CreateWindow
-#endif
-
 #include <Ill/Graphics/GraphicsWindow.hpp>
 #include "GraphicsWindowImpl.hpp"
 

@@ -19,8 +19,7 @@
 #pragma warning( pop )
 
 // SDL
-#include <SDL.h>
-#include <SDL_opengl.h>
+#include <Ill/Graphics/SDLInclude.hpp>
 
 // Boost includes
 #include <Ill/Core/BoostInclude.hpp>

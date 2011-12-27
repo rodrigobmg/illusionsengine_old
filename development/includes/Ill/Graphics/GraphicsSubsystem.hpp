@@ -47,7 +47,7 @@ namespace Ill
             /**
              * Populate my defined properties from the passed-in property map
              */
-            VIRTUAL_METHOD( CORE_DLL, public, void, SetProperties, (const Ill::Core::PropertyMap& properties) );
+            VIRTUAL_METHOD( GRAPHICS_DLL, public, void, SetProperties, (const Ill::Core::PropertyMap& properties) );
 
         private:
             GraphicsRenderer*   m_pGraphicsRenderer;

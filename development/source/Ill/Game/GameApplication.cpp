@@ -7,13 +7,6 @@
 
 #include <Ill/Game/GamePCH.hpp>
 
-// Un-define the windows CreateWindow macro as it 
-// messes up the GraphicsWindow::CreateWindow function
-// definition.
-#ifdef CreateWindow
-#undef CreateWindow
-#endif
-
 #include <Ill/Graphics/GraphicsWindow.hpp>
 
 #include <Ill/Game/ElapsedTime.hpp>

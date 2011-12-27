@@ -18,7 +18,7 @@ namespace Ill
     namespace Graphics
     {
         GrapicsSubsystem::GrapicsSubsystem()
-            , m_pGraphicsRenderer( NULL )
+            : m_pGraphicsRenderer( NULL )
         {}
 
         bool GrapicsSubsystem::Startup( const Ill::Core::PropertyMap& startupOptions )

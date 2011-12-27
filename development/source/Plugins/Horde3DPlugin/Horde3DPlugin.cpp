@@ -1,15 +1,25 @@
+#include <Plugins/Horde3DPlugin/Horde3DPluginPCH.hpp>
 #include <Plugins/Horde3DPlugin/Horde3DPlugin.h>
 
-namespace Ill
+NAMESPACE_H3D_BEGIN
+void InstantiateTypes()
 {
-    namespace Plugins
-    {
-        namespace Horde3D
-        {
-            void InstantiateTypes()
-            {
-                // TODO: Instantiate the type we need in our type system.
-            }
-        }
-    }
+    Horde3DPlugin();
 }
+
+Horde3DPlugin::Horde3DPlugin()
+{
+
+}
+
+bool Horde3DPlugin::Initialize()
+{
+    return Super::Initialize();
+}
+
+void Horde3DPlugin::Terminiate()
+{
+    Super::Initialize();
+}
+
+NAMESPACE_H3D_END

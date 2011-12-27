@@ -19,6 +19,7 @@
 #include <Ill/Core/Application.hpp>
 #include <Ill/Core/Plugin.hpp>
 #include <Ill/Core/DynamicLibSubsystem.hpp>
+#include <Ill/Core/DynamicLib.hpp>
 
 namespace Ill
 {
