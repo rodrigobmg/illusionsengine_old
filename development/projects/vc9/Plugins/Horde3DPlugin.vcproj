@@ -41,11 +41,13 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
+				AdditionalIncludeDirectories="..\..\..\includes;&quot;..\..\..\external\Horde3D_SDK_1.0.0_Beta5\Horde3D\Bindings\C++&quot;"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;_USRDLL;HORDE3DPLUGIN_EXPORTS"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="3"
-				UsePrecompiledHeader="0"
+				UsePrecompiledHeader="2"
+				PrecompiledHeaderThrough="Plugins\Horde3DPlugin\Horde3DPluginPCH.hpp"
 				WarningLevel="3"
 				DebugInformationFormat="4"
 			/>
@@ -63,7 +65,7 @@
 				AdditionalDependencies="Ill.Core_d.lib Ill.Graphics_d.lib Horde3D.lib"
 				OutputFile="$(OutDir)\$(ProjectName)_d.dll"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="..\..\..\libs;..\..\..\external\boost_1_46_1\lib;..\..\..\external\Horde3D_SDK_1.0.0_Beta5\Horde3D\Binaries\Debug"
+				AdditionalLibraryDirectories="..\..\..\development\libs"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				TargetMachine="1"
@@ -117,10 +119,12 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				EnableIntrinsicFunctions="true"
+				AdditionalIncludeDirectories="..\..\..\includes;&quot;..\..\..\external\Horde3D_SDK_1.0.0_Beta5\Horde3D\Bindings\C++&quot;"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_USRDLL;HORDE3DPLUGIN_EXPORTS"
 				RuntimeLibrary="2"
 				EnableFunctionLevelLinking="true"
-				UsePrecompiledHeader="0"
+				UsePrecompiledHeader="2"
+				PrecompiledHeaderThrough="Plugins\Horde3DPlugin\Horde3DPluginPCH.hpp"
 				WarningLevel="3"
 				DebugInformationFormat="3"
 			/>
@@ -137,7 +141,7 @@
 				Name="VCLinkerTool"
 				AdditionalDependencies="Ill.Core.lib Ill.Graphics.lib Horde3D.lib"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="..\..\..\libs;..\..\..\external\boost_1_46_1\lib;..\..\..\external\Horde3D_SDK_1.0.0_Beta5\Horde3D\Binaries\Release"
+				AdditionalLibraryDirectories="..\..\..\development\libs"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -175,12 +179,48 @@
 			Filter="cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx"
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
+			<File
+				RelativePath="..\..\..\source\Plugins\Horde3DPlugin\Horde3DPlugin.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\source\Plugins\Horde3DPlugin\Horde3DPluginPCH.cpp"
+				>
+				<FileConfiguration
+					Name="Debug|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="1"
+					/>
+				</FileConfiguration>
+				<FileConfiguration
+					Name="Release|Win32"
+					>
+					<Tool
+						Name="VCCLCompilerTool"
+						UsePrecompiledHeader="1"
+					/>
+				</FileConfiguration>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
+			<File
+				RelativePath="..\..\..\includes\Plugins\Horde3DPlugin\Horde3DPlugin.h"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\includes\Plugins\Horde3DPlugin\Horde3DPluginExports.hpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\includes\Plugins\Horde3DPlugin\Horde3DPluginPCH.hpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Resource Files"

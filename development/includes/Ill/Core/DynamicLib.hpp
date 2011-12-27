@@ -71,19 +71,19 @@ namespace Ill
 
         private:
             // Private getters and setters for the properties defined later.
-            const std::wstring& get_LibName() const
+            const std::wstring& get_FileName() const
             {
                 return m_LibName;
             }
 
-            void set_LibName( const std::wstring& )
+            void set_FileName( const std::wstring& )
             {
                 // Throw an exception that this variable should not be set.
                 throw std::exception("ReadOnlyError: DynamicLib::PluginName can only be set in the constructor.");
             }
 
         public:
-            PROPERTY( CORE_DLL, const std::wstring&, LibName );
+            PROPERTY( CORE_DLL, const std::wstring&, FileName );
         };
     }
 }

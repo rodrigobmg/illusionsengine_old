@@ -33,8 +33,21 @@ namespace Ill
             VIRTUAL_METHOD( CORE_DLL, public, void, Terminiate, () );
 
         protected:
+            const std::wstring& get_PluginName() const;
+            void set_PluginName( const std::wstring& pluginName );
+
+            const std::wstring& get_FileName() const;
+            void set_FileName( const std::wstring& fileName );
 
         private:
+            // The plug-in name is the name of the library file name without 
+            // paths or extensions where this plug-in was loaded from.
+            std::wstring    m_PluginName;
+            std::wstring    m_FileName;
+
+        public:
+            PROPERTY( CORE_DLL, const std::wstring&, PluginName );
+            PROPERTY( CORE_DLL, const std::wstring&, FileName );
         };
     }
 }

@@ -18,15 +18,12 @@ namespace Ill
     namespace Graphics
     {
         GrapicsSubsystem::GrapicsSubsystem()
-            : m_GraphicsLibName( TEXT("") )
             , m_pGraphicsRenderer( NULL )
         {}
 
         bool GrapicsSubsystem::Startup( const Ill::Core::PropertyMap& startupOptions )
         {
             Super::Startup(startupOptions);
-
-            // Populate our properties from our startup options.
             SetProperties( startupOptions );
        
             return true;
@@ -47,7 +44,6 @@ namespace Ill
         void GrapicsSubsystem::SetProperties(const Ill::Core::PropertyMap& properties)
         {
             Super::SetProperties( properties );
-            properties.GetValue( "GraphicsLibName", m_GraphicsLibName );
         }
     }
 }

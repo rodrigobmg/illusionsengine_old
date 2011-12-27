@@ -104,90 +104,105 @@ namespace Ill
         // The  window has received focus.
         void GraphicsWindow::OnInputFocus( Ill::Core::EventArgs& e )
         {
-            InputFocus( e );
+            Ill::Core::EventArgs eventArgs(*this);
+            InputFocus( eventArgs );
         }
 
         // The window has lost focus
         void GraphicsWindow::OnInputBlur( Ill::Core::EventArgs& e )
         {
-            InputBlur( e );
+            Ill::Core::EventArgs eventArgs(*this);
+            InputBlur( eventArgs );
         }
 
         // The window has received mouse focus.
         void GraphicsWindow::OnMouseFocus( Ill::Core::EventArgs& e )
         {
-            MouseFocus( e );
+            Ill::Core::EventArgs eventArgs(*this);
+            MouseFocus( eventArgs );
         }
 
         // The window has lost mouse focus.
         void GraphicsWindow::OnMouseBlur( Ill::Core::EventArgs& e )
         {
-            MouseBlur( e );
+            Ill::Core::EventArgs eventArgs(*this);
+            MouseBlur( eventArgs );
         }
 
         // The window has been minimized.
         void GraphicsWindow::OnMinimize( Ill::Core::EventArgs& e )
         {
-            Minimize( e );
+            Ill::Core::EventArgs eventArgs(*this);
+            Minimize( eventArgs );
         }
 
         // The application window has been restored.
         void GraphicsWindow::OnRestore( Ill::Core::EventArgs& e )
         {
-            Restore( e );
+            Ill::Core::EventArgs eventArgs(*this);
+            Restore( eventArgs );
         }
 
         // A keyboard key was pressed.
         void GraphicsWindow::OnKeyPressed( KeyEventArgs& e )
         {
-            KeyPressed( e );
+            KeyEventArgs keyEventArgs( *this, e.Key, e.Modifier, e.State, e.Unicode );
+            KeyPressed( keyEventArgs );
         }
 
         // A keyboard key was released.
         void GraphicsWindow::OnKeyReleased( KeyEventArgs& e )
         {
-            KeyReleased( e );
+            KeyEventArgs keyEventArgs( *this, e.Key, e.Modifier, e.State, e.Unicode );
+            KeyReleased( keyEventArgs );
         }
 
         // The mouse was moved.
         void GraphicsWindow::OnMouseMoved( MouseMotionEventArgs& e )
         {
-            MouseMoved( e );
+            MouseMotionEventArgs mouseMotionEventArgs( *this, e.ButtonState, e.AbsPosition.x, e.AbsPosition.y, e.RelPosition.x, e.RelPosition.y );
+            MouseMoved( mouseMotionEventArgs );
         }
 
         // A button on the mouse was pressed.
         void GraphicsWindow::OnMouseButtonPressed( MouseButtonEventArgs& e )
         {
-            MouseButtonPressed( e );
+            MouseButtonEventArgs mouseButtonEventArgs( *this, e.ButtonID, e.State, e.AbsPosition.x, e.AbsPosition.y );
+            MouseButtonPressed( mouseButtonEventArgs );
         }
 
         // A button on the mouse was released.
         void GraphicsWindow::OnMouseButtonReleased( MouseButtonEventArgs& e )
         {
-            MouseButtonReleased( e );
+            MouseButtonEventArgs mouseButtonEventArgs( *this, e.ButtonID, e.State, e.AbsPosition.x, e.AbsPosition.y );
+            MouseButtonReleased( mouseButtonEventArgs );
         }   
 
         // The window has been resized.
         void GraphicsWindow::OnResize( Ill::Core::ResizeEventArgs& e )
         {
-            Resize( e );
+            Ill::Core::ResizeEventArgs resizeEventArgs( *this, e.Dimensions.x, e.Dimensions.y );
+            Resize( resizeEventArgs );
         }
 
         // The window contents should be repainted.
         void GraphicsWindow::OnExpose( Ill::Core::EventArgs& e )
         {
-            Expose( e );
+            Ill::Core::EventArgs eventArgs( *this );
+            Expose( eventArgs );
         }
 
         // The user requested to exit the application.
         void GraphicsWindow::OnExit( Ill::Core::EventArgs& e )
         {
-            Exit( e );
+            Ill::Core::EventArgs eventArgs( *this );
+            Exit( eventArgs );
         }
 
         void GraphicsWindow::OnUserEvent( Ill::Core::UserEventArgs& e )
         {
-            UserEvent( e );
+            Ill::Core::UserEventArgs userEventArgs( *this, e.Code, e.Data1, e.Data2 );
+            UserEvent( userEventArgs );
         }
     }
 }

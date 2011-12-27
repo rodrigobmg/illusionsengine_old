@@ -46,10 +46,10 @@ namespace Ill
 
         DynamicLibWeakPtr DynamicLibSubsystem::Load( const std::wstring& libPath )
         {
-            LibraryList::iterator iter = m_Libs.find( libPath );
-            if ( iter != m_Libs.end() )
+            DynamicLibPtr ptrLib = GetLibrary( libPath );
+            if ( ptrLib )
             {
-                return iter->second;
+                return ptrLib;
             }
 
             DynamicLibPtr pLib = boost::make_shared<DynamicLib>( libPath );
@@ -59,11 +59,23 @@ namespace Ill
             return pLib;
         }
 
+        DynamicLibPtr DynamicLibSubsystem::GetLibrary( const std::wstring& libPath )
+        {
+            DynamicLibPtr ptrLib;
+            LibraryList::iterator iter = m_Libs.find(libPath);
+            if ( iter != m_Libs.end() )
+            {
+                ptrLib = (iter->second);
+            }
+
+            return ptrLib;
+        }
+
         void DynamicLibSubsystem::Unload( DynamicLibWeakPtr lib )
         {            
 			if ( DynamicLibPtr pLib = lib.lock() )
 			{
-                LibraryList::iterator iter = m_Libs.find( pLib->LibName );
+                LibraryList::iterator iter = m_Libs.find( pLib->FileName );
                 if ( iter != m_Libs.end() )
 				{
                     m_Libs.erase( iter );

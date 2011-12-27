@@ -36,9 +36,16 @@ namespace Ill
 
             /**
              * Loads a .DLL or an .SO by filename.
-             * @returns a weak-pointer to the loaded library, or a NULL pointer if the library can't be loaded.
+             * @returns a weak-pointer to the loaded library.
+             * @throws This method will throw an exception if the library couldn't be loaded.
              */
             VIRTUAL_METHOD( CORE_DLL, public, DynamicLibWeakPtr, Load, ( const std::wstring& libPath ) );
+
+            /**
+             * Returns a pointer to a previously loaded library or NULL if the library wasn't found.
+             * @returns a pointer to the loaded library, or a empty pointer if the library isn't loaded.
+             */
+            VIRTUAL_METHOD( CORE_DLL, public, DynamicLibPtr, GetLibrary, ( const std::wstring& libPath ) );
 
             /**
              * Unloads a dynamic loaded lib
