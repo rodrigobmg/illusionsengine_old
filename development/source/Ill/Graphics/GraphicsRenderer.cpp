@@ -5,11 +5,25 @@
  */
 
 #include <Ill/Graphics/GraphicsPCH.hpp>
-#include <Ill/Graphics/GraphicsSubsystem.hpp>
+#include <Ill/Graphics/GraphicsRenderer.hpp>
 
 namespace Ill
 {
     namespace Graphics
     {
+        bool GraphicsRenderer::GetProperties( const Ill::Core::PropertyMap& properties )
+        {
+            return true;
+        }
+
+        bool GraphicsRenderer::Initialize()
+        {
+            return true;
+        }
+
+        void GraphicsRenderer::Terminate()
+        {
+
+        }
     }
 }

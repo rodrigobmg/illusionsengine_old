@@ -29,5 +29,15 @@ namespace Ill
 		{
 			m_Properties.clear();
 		}
+
+        PropertyMap& PropertyMap::operator=( const PropertyMap& other )
+        {
+            // Prevent copy to self.
+            if ( this != &other )
+            {
+                m_Properties = other.m_Properties;
+            }
+            return *this;
+        }
 	}
 }

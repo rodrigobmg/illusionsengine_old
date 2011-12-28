@@ -44,7 +44,7 @@ namespace Ill
             return true;
         }
 
-        DynamicLibWeakPtr DynamicLibSubsystem::Load( const std::wstring& libPath )
+        DynamicLibPtr DynamicLibSubsystem::Load( const std::wstring& libPath )
         {
             DynamicLibPtr ptrLib = GetLibrary( libPath );
             if ( ptrLib )
@@ -71,17 +71,17 @@ namespace Ill
             return ptrLib;
         }
 
-        void DynamicLibSubsystem::Unload( DynamicLibWeakPtr lib )
+        void DynamicLibSubsystem::Unload( DynamicLibPtr lib )
         {            
-			if ( DynamicLibPtr pLib = lib.lock() )
+			if ( lib )
 			{
-                LibraryList::iterator iter = m_Libs.find( pLib->FileName );
+                LibraryList::iterator iter = m_Libs.find( lib->FileName );
                 if ( iter != m_Libs.end() )
 				{
                     m_Libs.erase( iter );
 				}
 
-				pLib->Unload();
+				lib->Unload();
 			}
         }
 

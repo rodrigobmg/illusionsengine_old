@@ -16,7 +16,7 @@ namespace Ill
 {
     namespace Graphics
     {
-        void GRAPHICS_DLL InstantiateTypes();
+        GRAPHICS_DLL void InstantiateTypes();
     }
 }
 

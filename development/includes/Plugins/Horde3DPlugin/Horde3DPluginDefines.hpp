@@ -1,0 +1,7 @@
+#ifndef ILL_PLUGINS_HORDE3DPLUGIN_DEFINES_HPP
+#define ILL_PLUGINS_HORDE3DPLUGIN_DEFINES_HPP
+
+#define NAMESPACE_H3D_BEGIN namespace Ill { namespace Plugins { namespace Horde3D {
+#define NAMESPACE_H3D_END } } }
+
+#endif // ILL_PLUGINS_HORDE3DPLUGIN_DEFINES_HPP

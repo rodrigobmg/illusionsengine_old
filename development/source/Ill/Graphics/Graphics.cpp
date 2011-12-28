@@ -7,7 +7,7 @@ namespace Ill
     {
         void InstantiateTypes()
         {
-            GrapicsSubsystem();
+            // GrapicsSubsystem(); // This class is abstract and cannot be instantiated.
             // GraphicsRenderer(); // This class is abstract and cannot be instantiated.
             GraphicsWindow();
         }

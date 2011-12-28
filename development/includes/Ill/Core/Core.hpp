@@ -29,7 +29,7 @@ namespace Ill
 		* This method is used to instantiate all the class types that use reflection.
 		* This is necessary to ensure the class types can be queried from the reflection system.
 		*/
-		void CORE_DLL InstantiateTypes();
+		CORE_DLL void InstantiateTypes();
 	}
 }
 

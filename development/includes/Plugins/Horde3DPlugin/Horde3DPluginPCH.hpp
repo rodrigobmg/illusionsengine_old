@@ -1,3 +1,6 @@
+#ifndef ILL_PLUGINS_HORDE3DPLUGIN_PCH_HPP
+#define ILL_PLUGINS_HORDE3DPLUGIN_PCH_HPP
+
 // STL includes
 #include <string>
 #include <vector>
@@ -11,9 +14,13 @@
 // GLM
 #include <Ill/Core/GlmInclude.hpp>
 
+// Horde 3D
+#include <Horde3D.h>
+#include <Horde3DUtils.h>
+
 // Core includes
 #include <Ill/Core/CorePlatform.hpp>
+#include <Ill/Graphics/GraphicsExports.hpp>
 #include <Plugins/Horde3DPlugin/Horde3DPluginExports.hpp>
 
-#define NAMESPACE_H3D_BEGIN namespace Ill { namespace Plugins { namespace Horde3D {
-#define NAMESPACE_H3D_END } } }
+#endif // ILL_PLUGINS_HORDE3DPLUGIN_PCH_HPP

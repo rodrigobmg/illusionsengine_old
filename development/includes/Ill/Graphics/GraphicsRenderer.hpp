@@ -11,6 +11,7 @@
 
 #include <Ill/Core/Object.hpp>
 #include <Ill/Core/PropertyMap.hpp>
+#include <Ill/Graphics/GraphicsRenderer.fwd.hpp>
 
 namespace Ill
 {
@@ -37,7 +38,7 @@ namespace Ill
              * Terminiate the graphics renderer.  Cleanup any memory used by the renderer
              * in this method.
              */
-            VIRTUAL_METHOD( GRAPHICS_DLL, public, bool, Terminate, () ) = 0;
+            VIRTUAL_METHOD( GRAPHICS_DLL, public, void, Terminate, () ) = 0;
 
         protected:
             

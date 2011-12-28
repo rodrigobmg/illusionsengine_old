@@ -130,7 +130,7 @@ namespace Ill
              *
              * @see GetPlugin
              */
-            VIRTUAL_METHOD( CORE_DLL, public, Plugin*, LoadPlugin, ( const std::wstring& filePath ) );
+            VIRTUAL_METHOD( CORE_DLL, public, PluginPtr, LoadPlugin, ( const std::wstring& filePath ) );
 
             /**
              * Unloads a previously loaded plugin.
@@ -141,7 +141,7 @@ namespace Ill
              *
              * @see LoadPlugin
              */
-            VIRTUAL_METHOD( CORE_DLL, public, void, UnloadPlugin, ( Plugin* plugin ) );
+            VIRTUAL_METHOD( CORE_DLL, public, void, UnloadPlugin, ( PluginPtr plugin ) );
 
             /**
              * Gets the pointer to a plug-in that has previously been loaded using @see(LoadPlugin).
@@ -155,7 +155,7 @@ namespace Ill
              * @returns A pointer to the plug-in with the given name otherwise NULL if the plugin
              * wasn't loaded yet.
              */
-            VIRTUAL_METHOD( CORE_DLL, public, Plugin*, GetPluginByName, ( const std::wstring& pluginName ) );
+            VIRTUAL_METHOD( CORE_DLL, public, PluginPtr, GetPluginByName, ( const std::wstring& pluginName ) );
 
 			/**
 			* Parse the command line options and configuration options and store them
@@ -242,8 +242,11 @@ namespace Ill
             PluginNameMap   m_PluginsByName;
             PluginFileMap   m_PluginsByFileName;
 
+            PropertyMap     m_StartupProperties;
+
             DynamicLibSubsystemPtr m_DynamicLibSubsystem;
-            bool          m_IsInitialized;
+            bool            m_IsInitialized;
+            bool            m_IsStarted;
 
 		};
 

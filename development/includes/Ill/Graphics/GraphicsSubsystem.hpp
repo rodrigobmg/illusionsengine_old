@@ -12,19 +12,18 @@
 #include <Ill/Core/Subsystem.hpp>
 #include <Ill/Core/Application.fwd.hpp>
 #include <Ill/Graphics/GraphicsTypes.hpp>
+#include <Ill/Graphics/GraphicsRenderer.fwd.hpp>
 
 namespace Ill
 {
     namespace Graphics
     {
-        class GraphicsRenderer;
-
         class GRAPHICS_DLL GrapicsSubsystem : public Ill::Core::Subsystem
         {
         public:
 
             CLASS( GrapicsSubsystem, Ill::Core::Subsystem );
-            CONSTRUCTOR( GRAPHICS_DLL, public, GrapicsSubsystem, () );
+//            CONSTRUCTOR( GRAPHICS_DLL, public, GrapicsSubsystem, () );
 
             /**
             * Startup the graphics subsystem.
@@ -41,7 +40,7 @@ namespace Ill
              * @precondition The subsystem must have been initialized before
              * you can get a pointer to the GraphicsRenderer implementation.
              */
-            VIRTUAL_METHOD( GRAPHICS_DLL, public, GraphicsRenderer*, GetGraphicsRenderer, () );
+            VIRTUAL_METHOD( GRAPHICS_DLL, public, GraphicsRendererPtr, GetGraphicsRenderer, () ) = 0;
 
         protected:
             /**
@@ -49,8 +48,6 @@ namespace Ill
              */
             VIRTUAL_METHOD( GRAPHICS_DLL, public, void, SetProperties, (const Ill::Core::PropertyMap& properties) );
 
-        private:
-            GraphicsRenderer*   m_pGraphicsRenderer;
         };
     }
 }

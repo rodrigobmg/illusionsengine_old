@@ -62,6 +62,10 @@ namespace Ill
 			*/
 			void Clear();
 
+            /**
+             * Allow copies of the property map.
+             */
+            PropertyMap& operator=( const PropertyMap& other );
 
 		private:
 			map		m_Properties;

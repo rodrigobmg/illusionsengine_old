@@ -17,9 +17,6 @@ namespace Ill
 {
     namespace Graphics
     {
-        GrapicsSubsystem::GrapicsSubsystem()
-            : m_pGraphicsRenderer( NULL )
-        {}
 
         bool GrapicsSubsystem::Startup( const Ill::Core::PropertyMap& startupOptions )
         {
@@ -34,11 +31,6 @@ namespace Ill
             Super::Shutdown();
 
             return true;
-        }
-
-        GraphicsRenderer* GrapicsSubsystem::GetGraphicsRenderer()
-        {
-            return m_pGraphicsRenderer;
         }
 
         void GrapicsSubsystem::SetProperties(const Ill::Core::PropertyMap& properties)

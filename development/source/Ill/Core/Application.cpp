@@ -11,7 +11,7 @@
 //     This method should create the plug-in instance and return a pointer to it.
 // 2) void DestroyPlugin(void) 
 //     This method should destroy the plug-in releasing any dynamically allocated memory.
-typedef Ill::Core::Plugin* (*CreatePluginFP)(void);
+typedef Ill::Core::PluginPtr (*CreatePluginFP)(void);
 typedef void (*DestroyPluginFP)(void);
 
 namespace Ill
@@ -22,6 +22,7 @@ namespace Ill
 
 		Application::Application()
             : m_IsInitialized(false)
+            , m_IsStarted(false)
 		{
         }
 
@@ -83,6 +84,11 @@ namespace Ill
 				subsystem->Name = subsystemClass.getFullName();
                 subsystem->App = shared_from_this();
 
+                if ( m_IsStarted )
+                {
+                    subsystem->Startup( m_StartupProperties );
+                }
+
 				m_Subsystems.push_back( subsystem );
 				return true;
 			}
@@ -94,19 +100,19 @@ namespace Ill
 			return false;
 		}
 
-        Plugin* Application::LoadPlugin( const std::wstring& filename )
+        PluginPtr Application::LoadPlugin( const std::wstring& filename )
         {
             BOOST_ASSERT( m_IsInitialized && "The application is not yet initialized." );
             
             fs::wpath filePath( filename );
             fs::wpath pluginName = filePath.stem();
-            Plugin* plugin = GetPluginByName( pluginName.wstring() );
+            PluginPtr plugin = GetPluginByName( pluginName.wstring() );
 
-            if ( plugin == NULL )
+            if ( !plugin )
             {
                 // Try to load the dynamic lib from the provided filename.
-                DynamicLibWeakPtr pluginLibWP = m_DynamicLibSubsystem->Load( filename );
-                if ( DynamicLibPtr pluginLib = pluginLibWP.lock() )
+                DynamicLibPtr pluginLib = m_DynamicLibSubsystem->Load( filename );
+                if ( pluginLib )
                 {
                     CreatePluginFP createPluginFunc = (CreatePluginFP)pluginLib->GetSymbol( "CreatePlugin" );
                     if ( createPluginFunc != NULL )
@@ -116,6 +122,7 @@ namespace Ill
                         {
                             plugin->FileName = filePath.wstring();
                             plugin->PluginName = filePath.stem().wstring();
+
                             PluginPtr pluginPtr( plugin );
                             AddPlugin( pluginPtr );
                         }
@@ -139,9 +146,9 @@ namespace Ill
             return plugin;
         }
 
-        void Application::UnloadPlugin( Plugin* plugin )
+        void Application::UnloadPlugin( PluginPtr plugin )
         {
-            if ( plugin != NULL )
+            if ( plugin )
             {
                 plugin->Terminiate();
 
@@ -171,18 +178,17 @@ namespace Ill
                 }
 
                 // Remove the plug-in from the list of known plug-ins.
-                PluginPtr ptrPlugin( plugin );
-                RemovePlugin( ptrPlugin );
+                RemovePlugin( plugin );
             }
         }
 
-        Plugin* Application::GetPluginByName( const std::wstring& pluginName )
+        PluginPtr Application::GetPluginByName( const std::wstring& pluginName )
         {
-            Plugin* ptrPlugin = NULL;
+            PluginPtr ptrPlugin;
             PluginNameMap::iterator iter = m_PluginsByName.find( pluginName );
             if ( iter != m_PluginsByName.end() )
             {
-                ptrPlugin = (iter->second).get();
+                ptrPlugin = (iter->second);
             }
 
             return ptrPlugin;
@@ -217,6 +223,8 @@ namespace Ill
 
 		bool Application::StartUp( const PropertyMap& options )
 		{
+            m_StartupProperties = options;
+
 			// Startup our registered subsystems.
             SubsystemList::iterator iter = m_Subsystems.begin();
 
@@ -233,6 +241,8 @@ namespace Ill
 
 				++iter;
 			}
+            m_IsStarted = true;
+
 			return true;
 		}
 
@@ -252,10 +262,11 @@ namespace Ill
             PluginList::iterator pluginIter = m_Plugins.begin();
             while ( pluginIter != m_Plugins.end() )
             {
-                PluginPtr ptrPlugin = (*pluginIter);
-                UnloadPlugin( ptrPlugin.get() );
+                PluginPtr plugin = (*pluginIter);
+                UnloadPlugin( plugin );
                 ++pluginIter;
             }
+
             m_PluginsByName.clear();
             m_PluginsByFileName.clear();
             m_Plugins.clear();
@@ -269,7 +280,7 @@ namespace Ill
 
 				++iter;
 			}
-			m_Subsystems.clear();
+            m_IsStarted = false;
 
 			return true;
 		}
@@ -281,6 +292,7 @@ namespace Ill
 
         void Application::OnTerminated( EventArgs& e )
         {
+            m_Subsystems.clear();
             Terminated( e );
         }
 

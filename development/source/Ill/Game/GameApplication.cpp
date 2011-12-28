@@ -42,31 +42,26 @@ namespace Ill
             m_pRenderWindow->MouseButtonReleased += boost::bind( &GameApplication::OnMouseButtonReleased, this, _1 );
             
             // User events
-            m_pRenderWindow->UserEvent += boost::bind( &GameApplication::OnUserEvent, this, _1 );
-            
+            m_pRenderWindow->UserEvent += boost::bind( &GameApplication::OnUserEvent, this, _1 );            
         }
 
         void GameApplication::Initialize()
         {
-            Super::Initialize();
-
             m_pRenderWindow->Initialize();
+            Super::Initialize();
         }
 
         bool GameApplication::StartUp(const Ill::Core::PropertyMap& startupOptions)
         {
-            bool bSuccess = Super::StartUp( startupOptions );
-            if ( bSuccess )
-            {
-                // TODO: Parse the startup options to find window settings.
-                // For now, the default window description should do.
-                Ill::Graphics::GraphicsWindow::WindowDescription windowDescription;
+            // TODO: Parse the startup options to find window settings.
+            // For now, the default window description should do.
+            Ill::Graphics::GraphicsWindow::WindowDescription windowDescription;
 
-                // Create the render window
-                bSuccess = m_pRenderWindow->CreateWindow( windowDescription );
-            }
+            // Create the render window. This will also create the OpenGL context
+            // and associate it with this window.
+            bool bSuccess = m_pRenderWindow->CreateWindow( windowDescription );
 
-            return bSuccess;
+            return bSuccess && Super::StartUp( startupOptions );
         }
 
         int GameApplication::Run()

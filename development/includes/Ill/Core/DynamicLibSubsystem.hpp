@@ -39,7 +39,7 @@ namespace Ill
              * @returns a weak-pointer to the loaded library.
              * @throws This method will throw an exception if the library couldn't be loaded.
              */
-            VIRTUAL_METHOD( CORE_DLL, public, DynamicLibWeakPtr, Load, ( const std::wstring& libPath ) );
+            VIRTUAL_METHOD( CORE_DLL, public, DynamicLibPtr, Load, ( const std::wstring& libPath ) );
 
             /**
              * Returns a pointer to a previously loaded library or NULL if the library wasn't found.
@@ -50,7 +50,7 @@ namespace Ill
             /**
              * Unloads a dynamic loaded lib
              */
-            VIRTUAL_METHOD( CORE_DLL, public, void, Unload, ( DynamicLibWeakPtr lib ) );
+            VIRTUAL_METHOD( CORE_DLL, public, void, Unload, ( DynamicLibPtr lib ) );
 
         private:
             typedef std::map<std::wstring, DynamicLibPtr > LibraryList;
