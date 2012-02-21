@@ -101,7 +101,7 @@ namespace Ill
              */
             VIRTUAL_METHOD( GRAPHICS_DLL, public, void, SetIcon, ( const std::string& iconImage ) );
 
-                        /**
+            /**
              * Set the text that appears in the window title and the iconified window title.
              * This should be called before the window is created.  The window will be created 
              * with the specified window and iconified window titles. @see(CreateWindow).
@@ -169,9 +169,9 @@ namespace Ill
             VIRTUAL_METHOD( GRAPHICS_DLL, public, void, DestroyWindow, () );
 
             // Getters & Setters
-            METHOD( GRAPHICS_DLL, public, bool, IsInitialized, () );
-            METHOD( GRAPHICS_DLL, public, uint32, GetWindowWidth, () );
-            METHOD( GRAPHICS_DLL, public, uint32, GetWindowHeight, () );
+            VIRTUAL_METHOD( GRAPHICS_DLL, public, bool, IsInitialized, () );
+            VIRTUAL_METHOD( GRAPHICS_DLL, public, uint32, GetWindowWidth, () );
+            VIRTUAL_METHOD( GRAPHICS_DLL, public, uint32, GetWindowHeight, () );
 
             // Window events
             Ill::Core::Event            InputFocus;
@@ -235,9 +235,6 @@ namespace Ill
 
             // User event was added to the event queue.
             virtual void OnUserEvent( Ill::Core::UserEventArgs& e );
-
-        private:
-            boost::shared_ptr< GraphicsWindowImpl > m_pImplementation;
         };
     }
 }

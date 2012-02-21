@@ -344,6 +344,14 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\includes\Ill\Core\KeyboardKeys.hpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\includes\Ill\Core\MouseDefines.hpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\includes\Ill\Core\NoCopyObject.hpp"
 				>
 			</File>

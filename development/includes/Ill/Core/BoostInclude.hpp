@@ -18,6 +18,14 @@
 // Namespace alias for boost's filesystem
 namespace fs = boost::filesystem;
 
+// Property trees
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/xml_parser.hpp>
+
+#include <boost/foreach.hpp>
+#define foreach BOOST_FOREACH
+#define reverse_foreach BOOST_REVERSE_FOREACH
+
 // Smart pointer handling
 #include <boost/scoped_ptr.hpp>
 #include <boost/scoped_array.hpp>

@@ -18,11 +18,9 @@ namespace Ill
     namespace Graphics
     {
 
-        bool GrapicsSubsystem::Startup( const Ill::Core::PropertyMap& startupOptions )
+        bool GrapicsSubsystem::Startup( const boost::property_tree::ptree& startupOptions )
         {
-            Super::Startup(startupOptions);
-            SetProperties( startupOptions );
-       
+            Super::Startup(startupOptions);       
             return true;
         }
 
@@ -31,11 +29,6 @@ namespace Ill
             Super::Shutdown();
 
             return true;
-        }
-
-        void GrapicsSubsystem::SetProperties(const Ill::Core::PropertyMap& properties)
-        {
-            Super::SetProperties( properties );
         }
     }
 }

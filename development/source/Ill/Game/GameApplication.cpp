@@ -19,8 +19,28 @@ namespace Ill
         GameApplication::GameApplication()
             : m_bIsRunning( false )
             , m_fTotalTime( 0.0f )
-            , m_pRenderWindow( new Ill::Graphics::GraphicsWindow() )
         {
+        }
+
+        void GameApplication::Initialize()
+        {
+            Super::Initialize();
+        }
+
+        bool GameApplication::StartUp(const boost::property_tree::ptree& startupOptions)
+        {
+            // For now, the default window description should do.
+            Ill::Graphics::GraphicsWindow::WindowDescription windowDescription;
+
+            std::string windowClassName = startupOptions.get<std::string>("WindowClass");
+            const Class* windowClass = Class::forName(windowClassName);
+            BOOST_ASSERT_MSG( windowClass != NULL, "Could not find window class");
+
+            m_pRenderWindow = boost::shared_ptr<Ill::Graphics::GraphicsWindow>( (Ill::Graphics::GraphicsWindow*)windowClass->newInstance() );
+            BOOST_ASSERT_MSG( m_pRenderWindow, ("Could not create window instance") );
+
+            m_pRenderWindow->Initialize();
+
             // Window events
             m_pRenderWindow->InputFocus += boost::bind( &GameApplication::OnInputFocus, this, _1 );
             m_pRenderWindow->InputBlur += boost::bind( &GameApplication::OnInputBlur, this, _1 );
@@ -40,25 +60,16 @@ namespace Ill
             m_pRenderWindow->MouseMoved += boost::bind( &GameApplication::OnMouseMoved, this, _1 );
             m_pRenderWindow->MouseButtonPressed += boost::bind( &GameApplication::OnMouseButtonPressed, this, _1 );
             m_pRenderWindow->MouseButtonReleased += boost::bind( &GameApplication::OnMouseButtonReleased, this, _1 );
-            
+
             // User events
             m_pRenderWindow->UserEvent += boost::bind( &GameApplication::OnUserEvent, this, _1 );            
-        }
-
-        void GameApplication::Initialize()
-        {
-            m_pRenderWindow->Initialize();
-            Super::Initialize();
-        }
-
-        bool GameApplication::StartUp(const Ill::Core::PropertyMap& startupOptions)
-        {
-            // TODO: Parse the startup options to find window settings.
-            // For now, the default window description should do.
-            Ill::Graphics::GraphicsWindow::WindowDescription windowDescription;
 
             // Create the render window. This will also create the OpenGL context
             // and associate it with this window.
+            windowDescription.Width = startupOptions.get("WindowDescription.Width", 800 );
+            windowDescription.Height= startupOptions.get("WindowDescription.Height", 600 );
+            windowDescription.Fullscreen = startupOptions.get("WindowDescription.Fullscreen", false );
+
             bool bSuccess = m_pRenderWindow->CreateWindow( windowDescription );
 
             return bSuccess && Super::StartUp( startupOptions );
@@ -103,8 +114,6 @@ namespace Ill
 
         void GameApplication::Terminate()
         {
-            Super::Terminate();
-
             // Destroying the window will actually clean-up the memory allocated
             // by the window object.
             m_pRenderWindow->DestroyWindow();
@@ -112,8 +121,7 @@ namespace Ill
             // to be terminated.
             m_pRenderWindow->Terminate();
 
-            Ill::Core::EventArgs terminatedEventArgs( *this );
-            OnTerminated( terminatedEventArgs );
+            Super::Terminate();
         }
 
         void GameApplication::OnUpdate( Ill::Core::UpdateEventArgs& e )

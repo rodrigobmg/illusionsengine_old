@@ -6,6 +6,8 @@
 #define ILL_CORE_HPP
 
 #include <Ill/Core/CorePlatform.hpp>
+#include <Ill/Core/KeyboardKeys.hpp>
+#include <Ill/Core/MouseDefines.hpp>
 #include <Ill/Core/Events.hpp>
 #include <Ill/Core/CoreUtils.hpp>
 #include <Ill/Core/Singleton.hpp>

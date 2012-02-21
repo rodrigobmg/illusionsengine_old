@@ -11,10 +11,12 @@ namespace Ill
     namespace Core
     {
         Plugin::Plugin()
-        {}
+        {
+        }
 
         Plugin::~Plugin()
-        {}
+        {
+        }
 
         bool Plugin::Initialize()
         {

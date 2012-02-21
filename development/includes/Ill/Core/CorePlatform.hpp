@@ -113,11 +113,18 @@
 typedef unsigned int uint32;
 typedef unsigned short uint16;
 typedef unsigned char uint8;
-// define uint64 type
+
+typedef int int32;
+typedef short int16;
+typedef char int8;
+
+// define 64-bit integer type
 #if ILL_COMPILER == ILL_COMPILER_MSVC
     typedef unsigned __int64 uint64;
+    typedef __int64 int64;
 #else
     typedef unsigned long long uint64;
+    typedef long long int64;
 #endif
 
 // Include the Platform specific headers.

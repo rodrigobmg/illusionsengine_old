@@ -28,7 +28,7 @@ namespace Ill
             /**
             * Startup the graphics subsystem.
             */
-            VIRTUAL_METHOD( GRAPHICS_DLL, public, bool, Startup, ( const Ill::Core::PropertyMap& startupOptions ) );
+            VIRTUAL_METHOD( GRAPHICS_DLL, public, bool, Startup, ( const boost::property_tree::ptree& startupOptions ) );
        
             /**
             * Shutdown
@@ -43,10 +43,6 @@ namespace Ill
             VIRTUAL_METHOD( GRAPHICS_DLL, public, GraphicsRendererPtr, GetGraphicsRenderer, () ) = 0;
 
         protected:
-            /**
-             * Populate my defined properties from the passed-in property map
-             */
-            VIRTUAL_METHOD( GRAPHICS_DLL, public, void, SetProperties, (const Ill::Core::PropertyMap& properties) );
 
         };
     }

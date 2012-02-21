@@ -4,11 +4,6 @@
 // Include the game library.
 #include <Ill/Game/Game.hpp>
 
-#ifdef _DEBUG
-// Testing code..
-#include <TestReflection.h>
-#endif
-
 // We have to do this somewhere in our exec to ensure the 
 // reflection library can register it's types.
 void InstantiateTypes()
@@ -18,72 +13,65 @@ void InstantiateTypes()
     Ill::Game::InstantiateTypes();
 }
 
-void OnKeyPressed( Ill::Graphics::KeyEventArgs& e );
-
 // Globals
-Ill::Game::GameApplicationPtr g_pGameApp;
+Ill::Game::GameApplicationPtr g_pApplication;
+
+void OnKeyPressed( Ill::Graphics::KeyEventArgs& e );
+bool LoadXMLConfiguration( const std::string& fileName, boost::property_tree::ptree& propertyTree );
+void SaveXMLConfiguration( const std::string& fileName, const boost::property_tree::ptree& propertyTree );
 
 int main( int argc, char* argv[] )
 {
     InstantiateTypes();
 
-    // A property map to store the game options.
-    Ill::Core::PropertyMap gameOptions;
+    // A property tree to store the game configuration.
+    boost::property_tree::ptree gameConfiguration;
+    std::string configFile = "../Configuration/configuration.xml";
 
-#ifdef ILL_DEBUG
-    gameOptions.AddValue( "PluginFilename", std::wstring(L"../Configuration/Plugins_Debug.cfg") );
-    gameOptions.AddValue( "GraphicsLibName", std::wstring(L"Ill.OgrePlugin_d.dll") );
-#else
-    gameOptions.AddValue( "PluginFilename", std::wstring(L"../Configuration/Plugins.cfg") );
-    gameOptions.AddValue( "GraphicsLibName", std::wstring(L"Ill.OgrePlugin.dll") );
-#endif
+    LoadXMLConfiguration( configFile, gameConfiguration );
 
-    gameOptions.AddValue( "ConfigFilename", std::wstring(L"../Configuration/ogre.cfg") );
-    gameOptions.AddValue( "ResourceFilename", std::wstring(L"../Configuration/resources.cfg") );
-    gameOptions.AddValue( "LogFilename", std::wstring(L"../Logs/Ogre.log") );
-    gameOptions.AddValue( "DefaultSceneInstanceName", std::wstring(L"MyGameSceneInstance") );
-
+    // TODO: Parse command-line options that should override (or add) configuration options.
 
     // Create the game application class
-    g_pGameApp = boost::make_shared<Ill::Game::GameApplication>(); // Ill::Game::GameApplicationPtr( new Ill::Game::GameApplication() );
+    std::string applicationClassName = gameConfiguration.get( "MyGame.ApplicationClass", "Ill::Game::GameApplication" );
+    const Class* applicationClass = Class::forName(applicationClassName);
+
+    BOOST_ASSERT( applicationClass != NULL && "Failed to load Application class" );
+    g_pApplication = boost::shared_ptr<Ill::Game::GameApplication>( (Ill::Game::GameApplication*)applicationClass->newInstance() );
+
+    g_pApplication->Initialize();
+
+    // Load plug-ins
+#if ILL_DEBUG
+    std::string pluginsConfigurationNodeName = "MyGameDebug.Plugins";
+#else
+    std::string pluginsConfigurationNodeName = "MyGameRelease.Plugins";
+#endif 
+
+    foreach( boost::property_tree::ptree::value_type& pluginName, gameConfiguration.get_child(pluginsConfigurationNodeName) )
+    {
+        fs::path pluginPath( pluginName.second.data() );
+        g_pApplication->LoadPlugin( pluginPath.wstring() );
+    }
 
     // Register the event handlers.
-    g_pGameApp->KeyPressed += &OnKeyPressed;
-
-    g_pGameApp->Initialize();
-
-    // Parse the command-line options
-    g_pGameApp->ParseConfigurations( argc, argv, gameOptions );
-
-    // Register subsystems
-    const Class* pGrapicsSubsystemClass = Class::forName( "class Ill::Graphics::GrapicsSubsystem" );
-    BOOST_ASSERT( pGrapicsSubsystemClass != NULL && "Could not find GraphicsSubsystem class in class registry.");
-
-    g_pGameApp->RegisterSubsystem( *pGrapicsSubsystemClass );
-
-    if ( g_pGameApp->StartUp( gameOptions ) )
+    g_pApplication->KeyPressed += &OnKeyPressed;
+    
+    boost::property_tree::ptree applicationConfiguration = gameConfiguration.get_child("MyGame.GameApplication");
+    g_pApplication->Initialize();
+    if ( g_pApplication->StartUp( applicationConfiguration ) )
 	{
 		// Kick-off the game application
-		g_pGameApp->Run();
+		g_pApplication->Run();
 	}
 	else
 	{
 		std::cerr << "The application failed to start... Shutting down." << std::endl;
 	}
-
-#ifdef _DEBUG
-    // Run a small test to see what classes the reflection system knows about.
-    TestReflection();
-#endif
     
-    g_pGameApp->Shutdown();
-    g_pGameApp->Terminate();
-    g_pGameApp.reset();
-
-#ifdef _DEBUG
-    // Run a small test to see what classes the reflection system knows about.
-    TestReflection();
-#endif
+    g_pApplication->Shutdown();
+    g_pApplication->Terminate();
+    g_pApplication.reset();
 
     return 0;
 }
@@ -93,6 +81,17 @@ void OnKeyPressed( Ill::Graphics::KeyEventArgs& e )
     if ( e.Key == SDLK_ESCAPE )
     {
         // Stop the application
-        g_pGameApp->Stop();
+        g_pApplication->Stop();
     }
+}
+
+bool LoadXMLConfiguration( const std::string& fileName, boost::property_tree::ptree& propertyTree )
+{
+    boost::property_tree::read_xml( fileName, propertyTree );
+    return true;
+}
+
+void SaveXMLConfiguration( const std::string& fileName, const boost::property_tree::ptree& propertyTree )
+{
+    boost::property_tree::write_xml( fileName, propertyTree );
 }

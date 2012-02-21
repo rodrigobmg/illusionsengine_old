@@ -20,7 +20,7 @@ namespace Ill
         {
         }
 
-        bool DynamicLibSubsystem::Startup( const PropertyMap& startupOptions )
+        bool DynamicLibSubsystem::Startup( const boost::property_tree::ptree& startupOptions )
         {
             return Super::Startup( startupOptions );
         }

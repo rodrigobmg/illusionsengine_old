@@ -62,7 +62,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="Ill.Core_d.lib Ill.Graphics_d.lib Horde3D.lib Horde3DUtils.lib"
+				AdditionalDependencies="Ill.Core_d.lib Ill.Graphics_d.lib Horde3D.lib Horde3DUtils.lib SDL.lib"
 				OutputFile="$(OutDir)\$(ProjectName)_d.dll"
 				LinkIncremental="2"
 				AdditionalLibraryDirectories="..\..\..\libs;..\..\..\external\boost_1_46_1\lib;&quot;..\..\..\external\SDL-1.2.14\lib&quot;;..\..\..\external\Horde3D_SDK_1.0.0_Beta5\Horde3D\Binaries\Debug"
@@ -139,7 +139,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="Ill.Core.lib Ill.Graphics.lib Horde3D.lib Horde3DUtils.lib"
+				AdditionalDependencies="Ill.Core.lib Ill.Graphics.lib Horde3D.lib Horde3DUtils.lib SDL.lib"
 				LinkIncremental="1"
 				AdditionalLibraryDirectories="..\..\..\libs;..\..\..\external\boost_1_46_1\lib;&quot;..\..\..\external\SDL-1.2.14\lib&quot;;..\..\..\external\Horde3D_SDK_1.0.0_Beta5\Horde3D\Binaries\Release"
 				GenerateDebugInformation="true"
@@ -211,6 +211,10 @@
 				RelativePath="..\..\..\source\Plugins\Horde3DPlugin\Horde3DPluginSubsystem.cpp"
 				>
 			</File>
+			<File
+				RelativePath="..\..\..\source\Plugins\Horde3DPlugin\Horde3DWindow.cpp"
+				>
+			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -247,6 +251,14 @@
 			</File>
 			<File
 				RelativePath="..\..\..\includes\Plugins\Horde3DPlugin\Horde3DPluginSubsystem.hpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\includes\Plugins\Horde3DPlugin\Horde3DWindow.fwd.hpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\includes\Plugins\Horde3DPlugin\Horde3dWindow.hpp"
 				>
 			</File>
 		</Filter>

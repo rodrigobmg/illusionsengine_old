@@ -19,7 +19,7 @@ namespace Ill
 			/**
 			* Startup
 			*/
-			VIRTUAL_METHOD( PHYSICS_DLL, public, bool, Startup, ( const Ill::Core::PropertyMap& startupOptions ) );
+            VIRTUAL_METHOD( PHYSICS_DLL, public, bool, Startup, ( const boost::property_tree::ptree& startupOptions ) );
 
 			/**
 			* Shutdown

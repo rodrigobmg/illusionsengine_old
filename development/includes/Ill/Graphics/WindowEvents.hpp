@@ -1,6 +1,8 @@
 #ifndef ILL_GRAPHICS_WINDOWEVENTS_HPP
 #define ILL_GRAPHICS_WINDOWEVENTS_HPP
 
+#include <Ill/Core/KeyboardKeys.hpp>
+#include <Ill/Core/MouseDefines.hpp>
 #include <Ill/Core/Events.hpp>
 
 namespace Ill
@@ -11,25 +13,20 @@ namespace Ill
         class KeyEventArgs : public Ill::Core::EventArgs
         {
         public:
-            enum KeyState
-            {
-                KS_Released = 0,
-                KS_Pressed = 1
-            };
 
             typedef Ill::Core::EventArgs base;
-            KeyEventArgs( const Ill::Core::Object& caller, SDLKey key, SDLMod mod, Uint8 state, Uint16 unicode )
+            KeyEventArgs( const Ill::Core::Object& caller, Ill::Core::Keyboard::Key key, Ill::Core::Keyboard::Modifier mod, Ill::Core::Keyboard::KeyState state, uint16 unicode )
                 : base( caller )
                 , Key(key)
                 , Modifier(mod)
-                , State((KeyState)state)
+                , State(state)
                 , Unicode(unicode)
             {}
 
-            SDLKey      Key;
-            SDLMod      Modifier;
-            KeyState    State;
-            Uint16      Unicode;
+            Ill::Core::Keyboard::Key        Key;
+            Ill::Core::Keyboard::Modifier   Modifier;
+            Ill::Core::Keyboard::KeyState   State;
+            uint16                          Unicode;
         };
         typedef Ill::Core::Delegate<KeyEventArgs> KeyboardEvent;
 
@@ -37,7 +34,7 @@ namespace Ill
         {
         public:
             typedef Ill::Core::EventArgs base;
-            MouseMotionEventArgs( const Ill::Core::Object& caller, Uint8 buttonState, Uint16 absX, Uint16 absY, Sint16 relX, Sint16 relY )
+            MouseMotionEventArgs( const Ill::Core::Object& caller, Ill::Core::Mouse::ButtonState buttonState, uint16 absX, uint16 absY, int16 relX, int16 relY )
                 : base( caller )
                 , ButtonState( buttonState )
                 , AbsPosition( absX, absY )
@@ -45,7 +42,7 @@ namespace Ill
             {}
 
             // The current state of the mouse buttons
-            Uint8      ButtonState;
+            Ill::Core::Mouse::ButtonState ButtonState;
 
             // The absolute position of the mouse in screen coordinates?
             glm::ivec2 AbsPosition;
@@ -58,24 +55,18 @@ namespace Ill
         class MouseButtonEventArgs : public Ill::Core::EventArgs
         {
         public:
-            enum ButtonState
-            {
-                BS_Released = 0,
-                BS_Pressed = 1
-            };
-
             typedef Ill::Core::EventArgs base;
-            MouseButtonEventArgs( const Ill::Core::Object& caller, Uint8 buttonID, Uint8 state, Uint16 absX, Uint16 absY )
+            MouseButtonEventArgs( const Ill::Core::Object& caller, uint8 buttonID, Ill::Core::Mouse::ButtonState state, uint16 absX, uint16 absY )
                 : base( caller )
                 , ButtonID( buttonID )
-                , State( (ButtonState)state )
+                , State( state )
                 , AbsPosition( absX, absY )
             {}
 
             // The ID of the button the triggered the event
-            Uint8       ButtonID;
+            uint8       ButtonID;
             // The state (Released, Pressed)
-            ButtonState State;
+            Ill::Core::Mouse::ButtonState State;
             // The absolute position of the mouse when the event was triggered
             glm::ivec2  AbsPosition;
         };

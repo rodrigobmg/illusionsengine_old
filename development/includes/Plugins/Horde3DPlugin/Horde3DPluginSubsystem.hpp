@@ -34,7 +34,7 @@ public:
     * @precondition There is a valid render window to draw to. The default OpenGL context should 
     * be associated with the render window so we can draw to it.
     */
-    VIRTUAL_METHOD( HORDE3DPLUGIN_DLL, public, bool, Startup, ( const Ill::Core::PropertyMap& startupOptions ) );
+    VIRTUAL_METHOD( HORDE3DPLUGIN_DLL, public, bool, Startup, ( const boost::property_tree::ptree& startupOptions ) );
 
     /**
     * Shutdown
@@ -49,10 +49,6 @@ public:
     VIRTUAL_METHOD( HORDE3DPLUGIN_DLL, public, Ill::Graphics::GraphicsRendererPtr, GetGraphicsRenderer, () );
 
 protected:
-    /**
-    * Populate my defined properties from the passed-in property map
-    */
-    VIRTUAL_METHOD( HORDE3DPLUGIN_DLL, public, void, SetProperties, (const Ill::Core::PropertyMap& properties) );
 
 private: 
     Horde3DGraphicsRendererPtr m_pGraphicsRenderer;

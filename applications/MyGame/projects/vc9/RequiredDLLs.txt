@@ -4,6 +4,8 @@
 ..\..\..\..\development\libs\Ill.Graphics_d.dll
 ..\..\..\..\development\libs\Ill.Game.dll
 ..\..\..\..\development\libs\Ill.Game_d.dll
-..\..\..\..\development\libs\Ill.OgrePlugin.dll
-..\..\..\..\development\libs\Ill.OgrePlugin_d.dll
+..\..\..\..\development\libs\Horde3DPlugin.dll
+..\..\..\..\development\libs\Horde3DPlugin_d.dll
+..\..\..\..\development\external\Horde3D_SDK_1.0.0_Beta5\Horde3D\Binaries\Release\Horde3D.dll
+
 

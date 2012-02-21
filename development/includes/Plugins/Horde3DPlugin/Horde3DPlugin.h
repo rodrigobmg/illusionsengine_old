@@ -16,12 +16,12 @@
 #include <Plugins/Horde3DPlugin/Horde3DPluginDefines.hpp>
 #include <Plugins/Horde3DPlugin/Horde3DPlugin.fwd.hpp>
 
-NAMESPACE_H3D_BEGIN
-void HORDE3DPLUGIN_DLL InstantiateTypes();
-NAMESPACE_H3D_END
-
-HORDE3DPLUGIN_DLL Ill::Core::PluginPtr CreatePlugin(void);
-HORDE3DPLUGIN_DLL void DestroyPlugin(void);
+extern "C"
+{
+    HORDE3DPLUGIN_DLL void InstantiateTypes();
+    HORDE3DPLUGIN_DLL Ill::Core::PluginPtr CreatePlugin(void);
+    HORDE3DPLUGIN_DLL void DestroyPlugin(void);
+};
 
 NAMESPACE_H3D_BEGIN
 

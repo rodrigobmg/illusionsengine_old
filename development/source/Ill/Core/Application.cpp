@@ -7,8 +7,8 @@
 #include <Ill/Core/Application.hpp>
 
 // The loaded plug-ins should expose 2 methods:
-// 1) Plugin* CreatePlugin(void) 
-//     This method should create the plug-in instance and return a pointer to it.
+// 1) void CreatePlugin(void) 
+//     This method should initialize the plugin and return a pointer to it.
 // 2) void DestroyPlugin(void) 
 //     This method should destroy the plug-in releasing any dynamically allocated memory.
 typedef Ill::Core::PluginPtr (*CreatePluginFP)(void);
@@ -65,7 +65,7 @@ namespace Ill
             OnTerminated( EventArgs( *this ) );
         }
 
-		bool Application::ParseConfigurations( int argc, char* argv[], PropertyMap& options )
+        bool Application::ParseConfigurations( int argc, char* argv[], boost::property_tree::ptree& options )
 		{
 
 			return true;
@@ -106,9 +106,9 @@ namespace Ill
             
             fs::wpath filePath( filename );
             fs::wpath pluginName = filePath.stem();
-            PluginPtr plugin = GetPluginByName( pluginName.wstring() );
+            PluginPtr pluginPtr = GetPluginByName( pluginName.wstring() );
 
-            if ( !plugin )
+            if ( !pluginPtr )
             {
                 // Try to load the dynamic lib from the provided filename.
                 DynamicLibPtr pluginLib = m_DynamicLibSubsystem->Load( filename );
@@ -117,13 +117,13 @@ namespace Ill
                     CreatePluginFP createPluginFunc = (CreatePluginFP)pluginLib->GetSymbol( "CreatePlugin" );
                     if ( createPluginFunc != NULL )
                     {
-                        plugin = createPluginFunc();
-                        if ( plugin != NULL )
+                        pluginPtr = createPluginFunc();
+                        if ( pluginPtr != NULL )
                         {
-                            plugin->FileName = filePath.wstring();
-                            plugin->PluginName = filePath.stem().wstring();
+                            pluginPtr->FileName = filePath.wstring();
+                            pluginPtr->PluginName = filePath.stem().wstring();
+                            pluginPtr->Initialize();
 
-                            PluginPtr pluginPtr( plugin );
                             AddPlugin( pluginPtr );
                         }
                         else
@@ -143,13 +143,24 @@ namespace Ill
                 }
             }
 
-            return plugin;
+            return pluginPtr;
         }
 
         void Application::UnloadPlugin( PluginPtr plugin )
         {
+            UnloadPlugin( plugin, true );
+        }
+
+        void Application::UnloadPlugin( PluginPtr plugin, bool remove )
+        {
             if ( plugin )
             {
+                if ( remove )
+                {
+                    // Remove the plug-in from the list of known plug-ins.
+                    RemovePlugin( plugin );
+                }
+
                 plugin->Terminiate();
 
                 // Unload the DLL the plugin was loaded from.
@@ -168,7 +179,7 @@ namespace Ill
                         std::wcerr << ptrLib->FileName.get();
                         std::cerr << "\"" << std::endl;
                     }
-                    m_DynamicLibSubsystem->Unload( ptrLib );
+//                    m_DynamicLibSubsystem->Unload( ptrLib );
                 }
                 else
                 {
@@ -177,8 +188,6 @@ namespace Ill
                     std::cerr << "\"" << std::endl;
                 }
 
-                // Remove the plug-in from the list of known plug-ins.
-                RemovePlugin( plugin );
             }
         }
 
@@ -221,7 +230,7 @@ namespace Ill
             }
         }
 
-		bool Application::StartUp( const PropertyMap& options )
+        bool Application::StartUp( const boost::property_tree::ptree& options )
 		{
             m_StartupProperties = options;
 
@@ -263,7 +272,7 @@ namespace Ill
             while ( pluginIter != m_Plugins.end() )
             {
                 PluginPtr plugin = (*pluginIter);
-                UnloadPlugin( plugin );
+                UnloadPlugin( plugin, false );
                 ++pluginIter;
             }
 

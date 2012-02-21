@@ -138,10 +138,15 @@ namespace Ill
              * @precondition The plugin was previously loaded with @see(LoadPlugin).
              *
              * @param plugin The plugin to be unloaded.
+             * @param remove Whether to remove the plugin from the containers. 
+             *   This parameter should be false if we are iterating over the containers.
+             *   (For example if the Application is being destroyed).
+             *
              *
              * @see LoadPlugin
              */
-            VIRTUAL_METHOD( CORE_DLL, public, void, UnloadPlugin, ( PluginPtr plugin ) );
+            VIRTUAL_METHOD( CORE_DLL, public, void, UnloadPlugin, ( PluginPtr plugin, bool remove ) );
+            VIRTUAL_METHOD( CORE_DLL, public, void, UnloadPlugin, ( PluginPtr plugin /* bool remove = true */ ) );
 
             /**
              * Gets the pointer to a plug-in that has previously been loaded using @see(LoadPlugin).
@@ -165,7 +170,7 @@ namespace Ill
 			* @param argv The array of command line arguments passed to the application.
 			* @param options Populate the property map with the parsed configuration options.
 			*/ 
-			VIRTUAL_METHOD( CORE_DLL, public, bool, ParseConfigurations, ( int argc, char* argv[], PropertyMap& options ) );
+            VIRTUAL_METHOD( CORE_DLL, public, bool, ParseConfigurations, ( int argc, char* argv[], boost::property_tree::ptree& options ) );
 
 			/**
 			* Start up the application subsystem.
@@ -174,7 +179,7 @@ namespace Ill
 			* been either, parsed from the application config file, or parsed
 			* on the command line.
 			*/
-			VIRTUAL_METHOD( CORE_DLL, public, bool, StartUp, (const PropertyMap& startupOptions) );
+			VIRTUAL_METHOD( CORE_DLL, public, bool, StartUp, (const boost::property_tree::ptree& startupOptions) );
 
 			/**
 			* Run the application with the options specified application 
@@ -242,7 +247,7 @@ namespace Ill
             PluginNameMap   m_PluginsByName;
             PluginFileMap   m_PluginsByFileName;
 
-            PropertyMap     m_StartupProperties;
+            boost::property_tree::ptree m_StartupProperties;
 
             DynamicLibSubsystemPtr m_DynamicLibSubsystem;
             bool            m_IsInitialized;

@@ -7,7 +7,8 @@
 #include <map>
 
 // SDL
-#include <Ill/Graphics/SDLInclude.hpp>
+#include <SDL.h>
+#include <SDL_opengl.h>
 
 // Boost includes
 #include <Ill/Core/BoostInclude.hpp>

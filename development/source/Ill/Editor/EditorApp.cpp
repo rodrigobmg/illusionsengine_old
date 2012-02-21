@@ -13,7 +13,7 @@ namespace Ill
 		{
             // This seems to be the only place I can call this since wxWidgets doesn't really expose
             // an entry point.
-            // NOTE: It does, but for the sake of platform-independence, I will just all wxWidgets
+            // NOTE: It does, but for the sake of platform-independence, I will just allow wxWidgets
             // to define the entry point.
            
             // Instantiate the core types to allow the reflection system to register the class types.
@@ -25,7 +25,7 @@ namespace Ill
             m_App = Ill::Core::ApplicationPtr( new Ill::Core::Application() );
             m_App->Initialize();
             // TODO: Read configuration data from a file.
-            m_App->StartUp( Ill::Core::PropertyMap() );
+            m_App->StartUp( boost::property_tree::ptree() );
 
 			// TODO: Save the position and size of the frame when it was closed so we 
 			// can restore it when we open the editor again.

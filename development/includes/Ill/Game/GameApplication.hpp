@@ -39,7 +39,7 @@ namespace Ill
 			 * been either, parsed from the application config file, or parsed
 			 * on the command line.
 			 */
-            VIRTUAL_METHOD( GAME_DLL, public, bool, StartUp, (const Ill::Core::PropertyMap& startupOptions) );
+            VIRTUAL_METHOD( GAME_DLL, public, bool, StartUp, (const boost::property_tree::ptree& startupOptions) );
 
 
             /**

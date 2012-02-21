@@ -9,7 +9,7 @@ Horde3DPluginSubsystem::Horde3DPluginSubsystem()
 
 }
 
-bool Horde3DPluginSubsystem::Startup( const Ill::Core::PropertyMap& startupOptions )
+bool Horde3DPluginSubsystem::Startup( const boost::property_tree::ptree& startupOptions )
 {
     bool bSuccess = false;
     bSuccess = Super::Startup( startupOptions );
@@ -29,11 +29,6 @@ bool Horde3DPluginSubsystem::Startup( const Ill::Core::PropertyMap& startupOptio
 bool Horde3DPluginSubsystem::Shutdown()
 {
     return Super::Shutdown();
-}
-
-void Horde3DPluginSubsystem::SetProperties( const Ill::Core::PropertyMap& properties )
-{
-    Super::SetProperties( properties );
 }
 
 Ill::Graphics::GraphicsRendererPtr Horde3DPluginSubsystem::GetGraphicsRenderer()

@@ -18,9 +18,6 @@
 
 #pragma warning( pop )
 
-// SDL
-#include <Ill/Graphics/SDLInclude.hpp>
-
 // Boost includes
 #include <Ill/Core/BoostInclude.hpp>
 // GLM

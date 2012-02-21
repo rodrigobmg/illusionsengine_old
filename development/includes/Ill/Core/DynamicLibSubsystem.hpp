@@ -27,7 +27,7 @@ namespace Ill
             /**
             * Startup
             */
-            VIRTUAL_METHOD( CORE_DLL, public, bool, Startup, ( const PropertyMap& startupOptions ) );
+            VIRTUAL_METHOD( CORE_DLL, public, bool, Startup, ( const boost::property_tree::ptree& startupOptions ) );
 
             /**
             * Shutdown

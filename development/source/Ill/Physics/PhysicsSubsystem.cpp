@@ -15,7 +15,7 @@ namespace Ill
 		PhysicsSubsystem::PhysicsSubsystem()
 		{}
 
-		bool PhysicsSubsystem::Startup( const Ill::Core::PropertyMap& statupOptions )
+		bool PhysicsSubsystem::Startup( const boost::property_tree::ptree& statupOptions )
 		{
 			return true;
 		}

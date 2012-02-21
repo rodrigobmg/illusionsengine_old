@@ -29,7 +29,7 @@ namespace Ill
 			/**
 			* Startup
 			*/
-			VIRTUAL_METHOD( CORE_DLL, public, bool, Startup, ( const PropertyMap& startupOptions ) );
+			VIRTUAL_METHOD( CORE_DLL, public, bool, Startup, ( const boost::property_tree::ptree& startupOptions ) );
 
 			/**
 			* Shutdown
@@ -37,11 +37,6 @@ namespace Ill
 			VIRTUAL_METHOD( CORE_DLL, public, bool, Shutdown, () );
 
         protected:
-            /**
-            * Populate my defined properties from the passed-in property map
-            */
-            VIRTUAL_METHOD( CORE_DLL, public, void, SetProperties, (const PropertyMap& properties) );
-
             ApplicationWeakPtr get_App() const;
             void set_App( ApplicationWeakPtr application );
 
