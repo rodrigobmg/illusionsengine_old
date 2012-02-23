@@ -13,15 +13,10 @@ public:
     CONSTRUCTOR( HORDE3DPLUGIN_DLL, public, Horde3DGraphicsRenderer, () );
 
     /**
-    * Parse the properties map for startup parameters.
-    */
-    VIRTUAL_METHOD( HORDE3DPLUGIN_DLL, public, bool, GetProperties, (const Ill::Core::PropertyMap& properties) );
-
-    /**
     * Initialize the graphics renderer. The "GetProperties" method should be called
     * first to store the startup options, otherwise default options will be used.
     */
-    VIRTUAL_METHOD( HORDE3DPLUGIN_DLL, public, bool, Initialize, () );
+    VIRTUAL_METHOD( HORDE3DPLUGIN_DLL, public, void, Initialize, () );
 
     /**
     * Terminiate the graphics renderer.  Cleanup any memory used by the renderer

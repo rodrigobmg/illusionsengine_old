@@ -9,26 +9,23 @@ Horde3DPluginSubsystem::Horde3DPluginSubsystem()
 
 }
 
-bool Horde3DPluginSubsystem::Startup( const boost::property_tree::ptree& startupOptions )
+void Horde3DPluginSubsystem::Initialize()
 {
-    bool bSuccess = false;
-    bSuccess = Super::Startup( startupOptions );
+    Super::Initialize();
 
-    if ( bSuccess )
-    {
-        // Create the graphics renderer
-        m_pGraphicsRenderer = boost::make_shared<Horde3DGraphicsRenderer>();
-        // Initialize the renderer. This will initialize the Hord3D render system.
-        // The render window should already be initialized at this point.
-        m_pGraphicsRenderer->Initialize();
-    }
-
-    return bSuccess;
+    // Create the graphics renderer
+    m_pGraphicsRenderer = boost::make_shared<Horde3DGraphicsRenderer>();
+    // Initialize the renderer. This will initialize the Hord3D render system.
+    // The render window should already be initialized at this point.
+    m_pGraphicsRenderer->Initialize();
 }
 
-bool Horde3DPluginSubsystem::Shutdown()
+void Horde3DPluginSubsystem::Terminate()
 {
-    return Super::Shutdown();
+    m_pGraphicsRenderer->Terminate();
+    m_pGraphicsRenderer.reset();
+
+    Super::Terminate();
 }
 
 Ill::Graphics::GraphicsRendererPtr Horde3DPluginSubsystem::GetGraphicsRenderer()

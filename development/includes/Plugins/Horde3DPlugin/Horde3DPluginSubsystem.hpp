@@ -29,17 +29,17 @@ public:
     CONSTRUCTOR( HORDE3DPLUGIN_DLL, public, Horde3DPluginSubsystem, () );
 
     /**
-    * Startup the plug-in subsystem. This will cause the graphics renderer to be created.
+    * Initialize the plug-in subsystem. This will cause the graphics renderer to be created.
     *
     * @precondition There is a valid render window to draw to. The default OpenGL context should 
     * be associated with the render window so we can draw to it.
     */
-    VIRTUAL_METHOD( HORDE3DPLUGIN_DLL, public, bool, Startup, ( const boost::property_tree::ptree& startupOptions ) );
+    VIRTUAL_METHOD( HORDE3DPLUGIN_DLL, public, void, Initialize, () );
 
     /**
-    * Shutdown
+    * Destroy the graphics renderer.
     */
-    VIRTUAL_METHOD( HORDE3DPLUGIN_DLL, public, bool, Shutdown, () );
+    VIRTUAL_METHOD( HORDE3DPLUGIN_DLL, public, void, Terminate, () );
 
     /**
     * Retrieve a pointer to the GraphicsRenderer implementation.

@@ -10,19 +10,16 @@ NAMESPACE_H3D_BEGIN
             , m_pIconImage(NULL)
         {}
 
-        bool Horde3DWindow::Initialize()
+        void Horde3DWindow::Initialize()
         {
             if ( !m_bIsInitialized && SDL_Init(SDL_INIT_VIDEO) < 0 )
             {
                 std::cerr << "Horde3DWindow::Initialize: SDL_Init failed (is the video subsystem already initialized?)" << std::endl;
                 const char* sdlError = SDL_GetError();
                 std::cerr << "SDL ERROR: " << sdlError << std::endl;
-
-                return false;
             }
 
             m_bIsInitialized = true;
-            return true;
         }
 
         void Horde3DWindow::SetIcon( const std::string& iconImage )

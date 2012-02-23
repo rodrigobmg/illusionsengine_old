@@ -9,9 +9,8 @@ namespace Ill
         {
         }
 
-        bool GraphicsWindow::Initialize()
+        void GraphicsWindow::Initialize()
         {
-            return false;
         }
 
         bool GraphicsWindow::IsInitialized()

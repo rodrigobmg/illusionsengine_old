@@ -186,6 +186,10 @@
 				>
 			</File>
 			<File
+				RelativePath="..\..\..\source\Ill\Core\Configuration.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\..\..\source\Ill\Core\Core.cpp"
 				>
 			</File>
@@ -238,10 +242,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\..\..\source\Ill\Core\PropertyMap.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\..\..\source\Ill\Core\reflection.cpp"
 				>
 			</File>
@@ -281,6 +281,10 @@
 			</File>
 			<File
 				RelativePath="..\..\..\includes\Ill\Core\Component.hpp"
+				>
+			</File>
+			<File
+				RelativePath="..\..\..\includes\Ill\Core\Configuration.hpp"
 				>
 			</File>
 			<File
@@ -369,14 +373,6 @@
 			</File>
 			<File
 				RelativePath="..\..\..\includes\Ill\Core\Plugin.hpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\includes\Ill\Core\PropertyMap.hpp"
-				>
-			</File>
-			<File
-				RelativePath="..\..\..\includes\Ill\Core\PropertyMap.inl"
 				>
 			</File>
 			<File

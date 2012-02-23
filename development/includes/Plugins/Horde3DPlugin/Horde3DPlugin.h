@@ -36,7 +36,7 @@ public:
      * with the class registry, registering subsystems, and 
      * performing any other initialization steps required by the plug-in.
      */
-    VIRTUAL_METHOD( HORDE3DPLUGIN_DLL, public, bool, Initialize, () );
+    VIRTUAL_METHOD( HORDE3DPLUGIN_DLL, public, void, Initialize, () );
 
     /**
      * Terminate the plug-in including unregistering subsystems that 

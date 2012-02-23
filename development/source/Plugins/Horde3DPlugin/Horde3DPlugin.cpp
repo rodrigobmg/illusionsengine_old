@@ -32,10 +32,10 @@ Horde3DPlugin::Horde3DPlugin()
 
 }
 
-bool Horde3DPlugin::Initialize()
+void Horde3DPlugin::Initialize()
 {
     InstantiateTypes();
-    return Super::Initialize();
+    Super::Initialize();
 }
 
 void Horde3DPlugin::Terminiate()

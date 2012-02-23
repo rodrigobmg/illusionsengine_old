@@ -1,3 +1,5 @@
+#ifndef ILL_CORE_WIN32_HPP
+#define ILL_CORE_WIN32_HPP
 /**
  * @file CoreWin32.hpp
  * @date October 17, 2011
@@ -13,3 +15,5 @@
 // disable: "<type> needs to have dll-interface to be used by clients'
 // Happens on STL member variables which are not public therefore is ok
 #pragma warning (disable : 4251)
+
+#endif // ILL_CORE_WIN32_HPP

@@ -11,7 +11,6 @@
 #ifndef ILL_CORE_SUBSYSTEM_HPP
 #define ILL_CORE_SUBSYSTEM_HPP
 
-#include <Ill/Core/PropertyMap.hpp>
 #include <Ill/Core/Object.hpp>
 #include <Ill/Core/Subsystem.fwd.hpp>
 #include <Ill/Core/Application.fwd.hpp>
@@ -27,26 +26,18 @@ namespace Ill
 			CONSTRUCTOR( CORE_DLL, public, Subsystem, () );
 
 			/**
-			* Startup
+			* Initialize
 			*/
-			VIRTUAL_METHOD( CORE_DLL, public, bool, Startup, ( const boost::property_tree::ptree& startupOptions ) );
+			VIRTUAL_METHOD( CORE_DLL, public, void, Initialize, () );
 
 			/**
-			* Shutdown
+			* Terminate
 			*/
-			VIRTUAL_METHOD( CORE_DLL, public, bool, Shutdown, () );
+			VIRTUAL_METHOD( CORE_DLL, public, void, Terminate, () );
 
         protected:
-            ApplicationWeakPtr get_App() const;
-            void set_App( ApplicationWeakPtr application );
 
         private:
-            // Only store a weak pointer to the application to avoid creating
-            // circular references.
-            ApplicationWeakPtr m_pApplication;
-
-        public:
-            PROPERTY( CORE_DLL, ApplicationWeakPtr, App );
 		};
 	}
 }

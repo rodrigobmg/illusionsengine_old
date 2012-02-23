@@ -25,14 +25,14 @@ namespace Ill
             virtual ~DynamicLibSubsystem();
 
             /**
-            * Startup
+            * Initialize
             */
-            VIRTUAL_METHOD( CORE_DLL, public, bool, Startup, ( const boost::property_tree::ptree& startupOptions ) );
+            VIRTUAL_METHOD( CORE_DLL, public, void, Initialize, () );
 
             /**
-            * Shutdown
+            * Terminate
             */
-            VIRTUAL_METHOD( CORE_DLL, public, bool, Shutdown, () );
+            VIRTUAL_METHOD( CORE_DLL, public, void, Terminate, () );
 
             /**
              * Loads a .DLL or an .SO by filename.
@@ -51,10 +51,22 @@ namespace Ill
              * Unloads a dynamic loaded lib
              */
             VIRTUAL_METHOD( CORE_DLL, public, void, Unload, ( DynamicLibPtr lib ) );
+            
+            /**
+             * Flush all the libraries that have been unloaded.
+             * This will cause any library that was unloaded to be flushed
+             * from the system.  At this point, there shouldn't be any
+             * valid handles to objects created inside the library including
+             * handles to plug-ins that were created in the library.
+             */
+            VIRTUAL_METHOD( CORE_DLL, public, void, Flush, () );
 
         private:
             typedef std::map<std::wstring, DynamicLibPtr > LibraryList;
+            typedef std::vector< DynamicLibPtr > LibraryVector;
+
             LibraryList m_Libs;
+            LibraryVector m_LibsToFlush;
         };
     }
 }

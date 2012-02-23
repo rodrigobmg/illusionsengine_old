@@ -9,18 +9,12 @@ Horde3DGraphicsRenderer::Horde3DGraphicsRenderer()
 
 }
 
-bool Horde3DGraphicsRenderer::GetProperties( const Ill::Core::PropertyMap& properties )
-{
-    return Super::GetProperties( properties );
-}
-
-bool Horde3DGraphicsRenderer::Initialize()
+void Horde3DGraphicsRenderer::Initialize()
 {
     if ( !m_bInitialized )
     {
         m_bInitialized = h3dInit();
     }
-    return m_bInitialized;
 }
 
 void Horde3DGraphicsRenderer::Terminate()

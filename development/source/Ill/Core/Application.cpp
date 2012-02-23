@@ -22,12 +22,18 @@ namespace Ill
 
 		Application::Application()
             : m_IsInitialized(false)
-            , m_IsStarted(false)
+            , m_IsRunning(false)
 		{
+            // Before we can load plug-ins, we need the Dynamic Library subsystem  
+            // to be available.
+            m_DynamicLibSubsystem = boost::make_shared<DynamicLibSubsystem>();
+            m_DynamicLibSubsystem->Initialize();
         }
 
 		Application::~Application()
 		{
+            m_DynamicLibSubsystem->Terminate();
+
 			BOOST_ASSERT( m_Subsystems.empty() );
             BOOST_ASSERT( m_Plugins.empty() );
 		}
@@ -43,14 +49,37 @@ namespace Ill
             return ms_Singleton;
         }
 
+        template<class Archive>
+        void Application::serialize( Archive& ar, const unsigned int version )
+        {
+            ar & boost::serialization::base_object<Super>(*this);
+        }
+
         void Application::Initialize()
         {
-            // Before we can load plug-ins, we need the Dynamic Library subsystem  
-            // to be available.  So register that one by default.
-            RegisterSubsystem( DynamicLibSubsystem::getClassStatic() );
+            BOOST_ASSERT( m_IsInitialized == false );
+            
+            Super::Initialize();
 
-            DynamicLibSubsystemWeakPtr dynamicLibSystem = GetSubsystem<DynamicLibSubsystem>();
-            m_DynamicLibSubsystem = dynamicLibSystem.lock();
+            // Initialize loaded plug-ins
+            PluginList::iterator pluginIter = m_Plugins.begin();
+            while ( pluginIter != m_Plugins.end() )
+            {
+                PluginPtr plugin = (*pluginIter);
+                plugin->Initialize();
+
+                ++pluginIter;
+            }
+
+            // Initialize registered subsystems
+            SubsystemList::iterator subsystemIter = m_Subsystems.begin();
+            while ( subsystemIter != m_Subsystems.end() )
+            {
+                SubsystemPtr subsystem = (*subsystemIter);
+                subsystem->Initialize();
+
+                ++subsystemIter;
+            }
 
             m_IsInitialized = true;
 
@@ -59,51 +88,102 @@ namespace Ill
 
         void Application::Terminate()
         {
-            // Make sure our application has been shutdown.
-            Shutdown();
+            BOOST_ASSERT( m_IsInitialized == true );
+
+            // Terminate the subsystems in the opposite order as they were registered.
+            SubsystemList::reverse_iterator iter = m_Subsystems.rbegin();
+            while ( iter != m_Subsystems.rend() )
+            {
+                SubsystemPtr subsystem = (*iter);
+                subsystem->Terminate();
+
+                ++iter;
+            }
+
+            m_Subsystems.clear();
+
+            // Unload any previously loaded plug-ins
+            PluginList plugins = m_Plugins;
+            PluginList::iterator pluginIter = plugins.begin();
+            while ( pluginIter != plugins.end() )
+            {
+                PluginPtr plugin = (*pluginIter);
+                plugin->Terminate();
+
+                UnloadPlugin( plugin );
+                ++pluginIter;
+            }
+
+            plugins.clear();
+            m_PluginsByName.clear();
+            m_PluginsByFileName.clear();
+            m_Plugins.clear();
+
+            // Flush all the libraries.  At this point
+            // there should be no residual pointers to objects
+            // created in the library.
+            m_DynamicLibSubsystem->Flush();
+
+            m_IsInitialized = false;
 
             OnTerminated( EventArgs( *this ) );
         }
 
-        bool Application::ParseConfigurations( int argc, char* argv[], boost::property_tree::ptree& options )
+		bool Application::RegisterSubsystem( SubsystemPtr subsystem )
 		{
+            BOOST_ASSERT_MSG( subsystem, "Subsystem type is invalid.");
 
-			return true;
-		}
-
-		bool Application::RegisterSubsystem( const Class& subsystemClass )
-		{
-			static const Class& baseClass = Subsystem::getClassStatic();
-
-			// Make sure the class is actually derived from Subsystem.
-			if ( baseClass.isBase( subsystemClass ) )
-			{
-				// Default construct the subsystem.
-                SubsystemPtr subsystem = SubsystemPtr( static_cast<Subsystem*>( subsystemClass.newInstance() ) );
-                BOOST_ASSERT( subsystem != NULL );
-				subsystem->Name = subsystemClass.getFullName();
-                subsystem->App = shared_from_this();
-
-                if ( m_IsStarted )
-                {
-                    subsystem->Startup( m_StartupProperties );
-                }
-
-				m_Subsystems.push_back( subsystem );
-				return true;
-			}
+            if ( m_IsInitialized )
+            {
+                subsystem->Initialize();
+            }
+            if ( std::find( m_Subsystems.begin(), m_Subsystems.end(), subsystem ) == m_Subsystems.end() )
+            {
+    			m_Subsystems.push_back( subsystem );
+	    		return true;
+            }
             else
             {
-                std::cerr << "ERROR: Failed to register type: \"" << subsystemClass.getName() << "\" Application::RegisterSubsystem." << std::endl; 
+                BOOST_ASSERT_MSG( false, "Subsystem already registered." );
             }
-
-			return false;
+            return false;
 		}
 
-        PluginPtr Application::LoadPlugin( const std::wstring& filename )
+        SubsystemPtr Application::GetSubsystem( const Class& classType )
         {
-            BOOST_ASSERT( m_IsInitialized && "The application is not yet initialized." );
-            
+            SubsystemList::iterator iter = m_Subsystems.begin();
+            while ( iter != m_Subsystems.end() )
+            {
+                SubsystemPtr subsystem = (*iter);
+                const Class& subsystemClass = subsystem->getClass();
+                if ( subsystemClass.isRelative(classType) )
+                {
+                    return subsystem;
+                }
+                ++iter;
+            }
+
+            // Return an invalid ptr object
+            return SubsystemPtr();
+        }
+
+        SubsystemPtr Application::GetSubsystem( const std::string& className )
+        {
+            const Class* classType = Class::forName(className);
+            if ( classType != NULL )
+            {
+                return GetSubsystem( *classType );
+            }
+            else
+            {
+                std::cerr << "Class name \"" << className << "\" not found in class registry." << std::endl;
+            }
+
+            return SubsystemPtr();
+        }
+
+        PluginPtr Application::LoadPlugin( const std::wstring& filename )
+        {            
             fs::wpath filePath( filename );
             fs::wpath pluginName = filePath.stem();
             PluginPtr pluginPtr = GetPluginByName( pluginName.wstring() );
@@ -122,7 +202,10 @@ namespace Ill
                         {
                             pluginPtr->FileName = filePath.wstring();
                             pluginPtr->PluginName = filePath.stem().wstring();
-                            pluginPtr->Initialize();
+                            if ( m_IsInitialized )
+                            {
+                                pluginPtr->Initialize();
+                            }
 
                             AddPlugin( pluginPtr );
                         }
@@ -148,20 +231,11 @@ namespace Ill
 
         void Application::UnloadPlugin( PluginPtr plugin )
         {
-            UnloadPlugin( plugin, true );
-        }
-
-        void Application::UnloadPlugin( PluginPtr plugin, bool remove )
-        {
             if ( plugin )
             {
-                if ( remove )
-                {
-                    // Remove the plug-in from the list of known plug-ins.
-                    RemovePlugin( plugin );
-                }
+                RemovePlugin( plugin );
 
-                plugin->Terminiate();
+                plugin->Terminate();
 
                 // Unload the DLL the plugin was loaded from.
                 DynamicLibPtr ptrLib = m_DynamicLibSubsystem->GetLibrary( plugin->FileName );
@@ -179,7 +253,9 @@ namespace Ill
                         std::wcerr << ptrLib->FileName.get();
                         std::cerr << "\"" << std::endl;
                     }
-//                    m_DynamicLibSubsystem->Unload( ptrLib );
+                    // Don't forget to call DynamicLibSubsystem::Flush to actually 
+                    // release the libraries from memory.
+                    m_DynamicLibSubsystem->Unload( ptrLib );
                 }
                 else
                 {
@@ -187,7 +263,6 @@ namespace Ill
                     std::wcerr << plugin->FileName.get();
                     std::cerr << "\"" << std::endl;
                 }
-
             }
         }
 
@@ -230,69 +305,16 @@ namespace Ill
             }
         }
 
-        bool Application::StartUp( const boost::property_tree::ptree& options )
-		{
-            m_StartupProperties = options;
-
-			// Startup our registered subsystems.
-            SubsystemList::iterator iter = m_Subsystems.begin();
-
-			while (iter != m_Subsystems.end() )
-			{
-                SubsystemPtr subsystem = (*iter);
-				BOOST_ASSERT( subsystem != NULL );
-
-				if ( !subsystem->Startup( options ) )
-				{
-					// Our subsystem failed to start...
-					return false;
-				}
-
-				++iter;
-			}
-            m_IsStarted = true;
-
-			return true;
-		}
-
 		int Application::Run()
 		{
+            m_IsRunning = true;
 			return 0;
 		}
 
         void Application::Stop()
         {
-
+            m_IsRunning = false;
         }
-
-		bool Application::Shutdown()
-		{
-            // Unload any previously loaded plug-ins
-            PluginList::iterator pluginIter = m_Plugins.begin();
-            while ( pluginIter != m_Plugins.end() )
-            {
-                PluginPtr plugin = (*pluginIter);
-                UnloadPlugin( plugin, false );
-                ++pluginIter;
-            }
-
-            m_PluginsByName.clear();
-            m_PluginsByFileName.clear();
-            m_Plugins.clear();
-
-			// Shutdown our subsystems in the opposite order as they were registered.
-			SubsystemList::reverse_iterator iter = m_Subsystems.rbegin();
-			while ( iter != m_Subsystems.rend() )
-			{
-                SubsystemPtr subsystem = (*iter);
-				subsystem->Shutdown();
-
-				++iter;
-			}
-            m_IsStarted = false;
-
-			return true;
-		}
 
         void Application::OnInitialized( EventArgs& e )
         {
@@ -301,7 +323,6 @@ namespace Ill
 
         void Application::OnTerminated( EventArgs& e )
         {
-            m_Subsystems.clear();
             Terminated( e );
         }
 

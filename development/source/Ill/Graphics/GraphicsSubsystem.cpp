@@ -18,17 +18,14 @@ namespace Ill
     namespace Graphics
     {
 
-        bool GrapicsSubsystem::Startup( const boost::property_tree::ptree& startupOptions )
+        void GrapicsSubsystem::Initialize()
         {
-            Super::Startup(startupOptions);       
-            return true;
+            Super::Initialize();       
         }
 
-        bool GrapicsSubsystem::Shutdown()
+        void GrapicsSubsystem::Terminate()
         {
-            Super::Shutdown();
-
-            return true;
+            Super::Terminate();
         }
     }
 }

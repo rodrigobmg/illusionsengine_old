@@ -18,13 +18,15 @@ namespace Ill
         {
         }
 
-        bool Plugin::Initialize()
+        void Plugin::Initialize()
         {
-            return true;
+            Super::Initialize();
         }
 
-        void Plugin::Terminiate()
-        {}
+        void Plugin::Terminate()
+        {
+            Super::Terminate();
+        }
 
         const std::wstring& Plugin::get_PluginName() const
         {

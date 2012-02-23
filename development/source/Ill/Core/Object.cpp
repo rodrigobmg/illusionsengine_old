@@ -9,6 +9,19 @@ namespace Ill
             : m_UUID(uuid_generator())
         {}
 
+        template<class Archive>
+        void Object::serialize( Archive& ar, const unsigned int version )
+        {
+            ar & m_Name;
+            ar & m_UUID;
+        }
+
+        void Object::Initialize()
+        {}
+
+        void Object::Terminate()
+        {}
+
         const std::string& Object::get_Name() const
         {
             return m_Name;

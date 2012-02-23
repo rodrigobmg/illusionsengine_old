@@ -7,6 +7,7 @@
 
 #include <Ill/Game/GamePCH.hpp>
 
+#include <Ill/Core/Configuration.hpp>
 #include <Ill/Graphics/GraphicsWindow.hpp>
 
 #include <Ill/Game/ElapsedTime.hpp>
@@ -25,14 +26,15 @@ namespace Ill
         void GameApplication::Initialize()
         {
             Super::Initialize();
-        }
 
-        bool GameApplication::StartUp(const boost::property_tree::ptree& startupOptions)
-        {
+            // Get configuration information
+            const boost::property_tree::ptree& rootConfiguration = Ill::Core::Configuration::GetRootConfiguration();
+            const boost::property_tree::ptree& configurationData = rootConfiguration.get_child("default.GameApplication");
+
             // For now, the default window description should do.
             Ill::Graphics::GraphicsWindow::WindowDescription windowDescription;
 
-            std::string windowClassName = startupOptions.get<std::string>("WindowClass");
+            std::string windowClassName = configurationData.get<std::string>("WindowClass");
             const Class* windowClass = Class::forName(windowClassName);
             BOOST_ASSERT_MSG( windowClass != NULL, "Could not find window class");
 
@@ -40,7 +42,6 @@ namespace Ill
             BOOST_ASSERT_MSG( m_pRenderWindow, ("Could not create window instance") );
 
             m_pRenderWindow->Initialize();
-
             // Window events
             m_pRenderWindow->InputFocus += boost::bind( &GameApplication::OnInputFocus, this, _1 );
             m_pRenderWindow->InputBlur += boost::bind( &GameApplication::OnInputBlur, this, _1 );
@@ -66,13 +67,12 @@ namespace Ill
 
             // Create the render window. This will also create the OpenGL context
             // and associate it with this window.
-            windowDescription.Width = startupOptions.get("WindowDescription.Width", 800 );
-            windowDescription.Height= startupOptions.get("WindowDescription.Height", 600 );
-            windowDescription.Fullscreen = startupOptions.get("WindowDescription.Fullscreen", false );
+            windowDescription.Width = configurationData.get("WindowDescription.Width", 800 );
+            windowDescription.Height= configurationData.get("WindowDescription.Height", 600 );
+            windowDescription.Fullscreen = configurationData.get("WindowDescription.Fullscreen", false );
+            // TODO: Finish parsing the configuration information.
 
-            bool bSuccess = m_pRenderWindow->CreateWindow( windowDescription );
-
-            return bSuccess && Super::StartUp( startupOptions );
+            m_pRenderWindow->CreateWindow( windowDescription );
         }
 
         int GameApplication::Run()
@@ -99,8 +99,6 @@ namespace Ill
                 OnRender( renderArgs );
             }
 
-            Terminate();
-
             return 0;
         }
 
@@ -120,6 +118,8 @@ namespace Ill
             // Terminating the window will cause the windowing subsystem
             // to be terminated.
             m_pRenderWindow->Terminate();
+            // Release the reference to the render window.
+            m_pRenderWindow.reset();
 
             Super::Terminate();
         }

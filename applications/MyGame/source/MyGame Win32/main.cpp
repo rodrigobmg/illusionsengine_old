@@ -17,63 +17,52 @@ void InstantiateTypes()
 Ill::Game::GameApplicationPtr g_pApplication;
 
 void OnKeyPressed( Ill::Graphics::KeyEventArgs& e );
-bool LoadXMLConfiguration( const std::string& fileName, boost::property_tree::ptree& propertyTree );
-void SaveXMLConfiguration( const std::string& fileName, const boost::property_tree::ptree& propertyTree );
 
 int main( int argc, char* argv[] )
 {
     InstantiateTypes();
 
-    // A property tree to store the game configuration.
-    boost::property_tree::ptree gameConfiguration;
-    std::string configFile = "../Configuration/configuration.xml";
+    std::string configFile = "../Configuration/DefaultConfiguration.xml";
+    if ( !Ill::Core::Configuration::LoadXMLConfiguration( configFile ) )
+    {
+        std::cerr << "Failed to load configuration file from \"" << configFile << "\"" << std::endl;
+        return -1;
+    }
 
-    LoadXMLConfiguration( configFile, gameConfiguration );
-
-    // TODO: Parse command-line options that should override (or add) configuration options.
+    boost::property_tree::ptree& configurationData = Ill::Core::Configuration::GetRootConfiguration();
 
     // Create the game application class
-    std::string applicationClassName = gameConfiguration.get( "MyGame.ApplicationClass", "Ill::Game::GameApplication" );
+    std::string applicationClassName = configurationData.get( "default.ApplicationClass", "Ill::Game::GameApplication" );
     const Class* applicationClass = Class::forName(applicationClassName);
 
     BOOST_ASSERT( applicationClass != NULL && "Failed to load Application class" );
-    g_pApplication = boost::shared_ptr<Ill::Game::GameApplication>( (Ill::Game::GameApplication*)applicationClass->newInstance() );
-
-    g_pApplication->Initialize();
+    g_pApplication = Ill::Game::GameApplicationPtr( (Ill::Game::GameApplication*)applicationClass->newInstance() );
 
     // Load plug-ins
 #if ILL_DEBUG
-    std::string pluginsConfigurationNodeName = "MyGameDebug.Plugins";
+    std::string pluginsConfigurationNodeName = "debug.Plugins";
 #else
-    std::string pluginsConfigurationNodeName = "MyGameRelease.Plugins";
+    std::string pluginsConfigurationNodeName = "release.Plugins";
 #endif 
 
-    foreach( boost::property_tree::ptree::value_type& pluginName, gameConfiguration.get_child(pluginsConfigurationNodeName) )
+    foreach( boost::property_tree::ptree::value_type& pluginName, configurationData.get_child(pluginsConfigurationNodeName) )
     {
         fs::path pluginPath( pluginName.second.data() );
         g_pApplication->LoadPlugin( pluginPath.wstring() );
     }
 
+    g_pApplication->Initialize();
+
     // Register the event handlers.
     g_pApplication->KeyPressed += &OnKeyPressed;
     
-    boost::property_tree::ptree applicationConfiguration = gameConfiguration.get_child("MyGame.GameApplication");
-    g_pApplication->Initialize();
-    if ( g_pApplication->StartUp( applicationConfiguration ) )
-	{
-		// Kick-off the game application
-		g_pApplication->Run();
-	}
-	else
-	{
-		std::cerr << "The application failed to start... Shutting down." << std::endl;
-	}
+    // Kick-off the game application
+	int returnValue = g_pApplication->Run();
     
-    g_pApplication->Shutdown();
     g_pApplication->Terminate();
     g_pApplication.reset();
 
-    return 0;
+    return returnValue;
 }
 
 void OnKeyPressed( Ill::Graphics::KeyEventArgs& e )
@@ -83,15 +72,4 @@ void OnKeyPressed( Ill::Graphics::KeyEventArgs& e )
         // Stop the application
         g_pApplication->Stop();
     }
-}
-
-bool LoadXMLConfiguration( const std::string& fileName, boost::property_tree::ptree& propertyTree )
-{
-    boost::property_tree::read_xml( fileName, propertyTree );
-    return true;
-}
-
-void SaveXMLConfiguration( const std::string& fileName, const boost::property_tree::ptree& propertyTree )
-{
-    boost::property_tree::write_xml( fileName, propertyTree );
 }

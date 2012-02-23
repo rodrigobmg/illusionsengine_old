@@ -10,7 +10,6 @@
 #define ILL_GRAPHICS_GRAPHICSRENDERER_HPP
 
 #include <Ill/Core/Object.hpp>
-#include <Ill/Core/PropertyMap.hpp>
 #include <Ill/Graphics/GraphicsRenderer.fwd.hpp>
 
 namespace Ill
@@ -24,15 +23,9 @@ namespace Ill
             // This is an abstract class, no constructor.
 
             /**
-             * Parse the properties map for startup parameters.
+             * Initialize the graphics renderer. 
              */
-            VIRTUAL_METHOD( GRAPHICS_DLL, public, bool, GetProperties, (const Ill::Core::PropertyMap& properties) ) = 0;
-
-            /**
-             * Initialize the graphics renderer. The "GetProperties" method should be called
-             * first to store the startup options, otherwise default options will be used.
-             */
-            VIRTUAL_METHOD( GRAPHICS_DLL, public, bool, Initialize, () ) = 0;
+            VIRTUAL_METHOD( GRAPHICS_DLL, public, void, Initialize, () ) = 0;
 
             /**
              * Terminiate the graphics renderer.  Cleanup any memory used by the renderer

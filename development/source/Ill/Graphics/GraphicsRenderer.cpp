@@ -11,19 +11,14 @@ namespace Ill
 {
     namespace Graphics
     {
-        bool GraphicsRenderer::GetProperties( const Ill::Core::PropertyMap& properties )
+        void GraphicsRenderer::Initialize()
         {
-            return true;
-        }
-
-        bool GraphicsRenderer::Initialize()
-        {
-            return true;
+            Super::Initialize();
         }
 
         void GraphicsRenderer::Terminate()
         {
-
+            Super::Terminate();
         }
     }
 }

@@ -14,8 +14,8 @@
 #include <Ill/Core/NoCopyObject.hpp>
 #include <Ill/Core/RefCountedObject.hpp>
 #include <Ill/Core/Object.hpp>
+#include <Ill/Core/Configuration.hpp>
 #include <Ill/Core/GameObject.hpp>
-#include <Ill/Core/PropertyMap.hpp>
 #include <Ill/Core/Component.hpp>
 #include <Ill/Core/Subsystem.hpp>
 #include <Ill/Core/Application.hpp>

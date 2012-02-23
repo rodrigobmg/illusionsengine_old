@@ -33,16 +33,6 @@ namespace Ill
             VIRTUAL_METHOD( GAME_DLL, public, void, Initialize, () );
 
             /**
- 			 * Start up the application subsystem.
-			 *
-			 * @param options Contains all the startup options that have
-			 * been either, parsed from the application config file, or parsed
-			 * on the command line.
-			 */
-            VIRTUAL_METHOD( GAME_DLL, public, bool, StartUp, (const boost::property_tree::ptree& startupOptions) );
-
-
-            /**
 			 * Run the application with the options specified application 
 			 * options specified in StartUp.
 			 */

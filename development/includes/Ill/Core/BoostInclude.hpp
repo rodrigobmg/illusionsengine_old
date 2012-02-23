@@ -18,6 +18,9 @@
 // Namespace alias for boost's filesystem
 namespace fs = boost::filesystem;
 
+// Serialization
+#include <boost/serialization/serialization.hpp>
+
 // Property trees
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/xml_parser.hpp>

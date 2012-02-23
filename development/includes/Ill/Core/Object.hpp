@@ -29,7 +29,23 @@ namespace Ill
 			CLASS( Object, NoCopyObject );
 			CONSTRUCTOR( CORE_DLL, public, Object, () );
 
-			// TODO: Implement object serialization methods (see boost/Serialization)
+            /**
+            * Initialize any memory needed by this object.
+            * 
+            * @returns true if all memory allocations were successful.
+            */
+            VIRTUAL_METHOD( CORE_DLL, public, void, Initialize, () );
+
+            /**
+            * Deallocate the memory that was allocated in Initialize.
+            * It should be possible to invoke this method many times
+            * without an error or exception being thrown.  This way, 
+            * objects can be recycled without deleting them.
+            * 
+            * @returns true if all memory allocations were successful.
+            */
+            VIRTUAL_METHOD( CORE_DLL, public, void, Terminate, () );
+
 		protected:
             // Getters and setters for properties
             const std::string& get_Name() const;
@@ -39,6 +55,23 @@ namespace Ill
             void set_UUID( const boost::uuids::uuid& uuid );
 
         private:
+            friend class boost::serialization::access;
+            /**
+             * Serialize or de-serialize the properties of an object.
+             * Note: This method must always be declared private.
+             * To allow the archive class access to private members
+             * and methods of base classes, your class must allow
+             * the boost::serialization::access class friend access by declaring 
+             * it as a friend class.  Base classes are serialized by calling 
+             * ar & boost::serialization::base_object<Super>(*this)
+             * inside the serialize method.
+             *
+             * @param ar The archive object to serialize from or to.
+             * @param version The class version when the object was serialized.
+             */
+            template<class Archive>
+            void serialize( Archive& ar, const unsigned int version );
+
             // Data members
             std::string     m_Name;
             // A unique identifier that represents this object.
@@ -52,4 +85,6 @@ namespace Ill
 	}
 }
 
-#endif // __Ill_System_Object_H__
+BOOST_CLASS_VERSION( Ill::Core::Object, 0 )
+
+#endif // ILL_CORE_OBJECT_HPP

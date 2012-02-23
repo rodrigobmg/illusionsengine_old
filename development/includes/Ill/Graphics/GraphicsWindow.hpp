@@ -74,7 +74,7 @@ namespace Ill
              * Initialize the window subsystem.  This must be called before a 
              * window can be created.
              */
-            VIRTUAL_METHOD( GRAPHICS_DLL, public, bool, Initialize, () );
+            VIRTUAL_METHOD( GRAPHICS_DLL, public, void, Initialize, () );
 
             /**
              * Terminate the window subsystem.

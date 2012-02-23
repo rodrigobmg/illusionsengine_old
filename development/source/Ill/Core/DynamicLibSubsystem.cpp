@@ -20,28 +20,29 @@ namespace Ill
         {
         }
 
-        bool DynamicLibSubsystem::Startup( const boost::property_tree::ptree& startupOptions )
+        void DynamicLibSubsystem::Initialize()
         {
-            return Super::Startup( startupOptions );
+            Super::Initialize();
         }
 
-        bool DynamicLibSubsystem::Shutdown()
+        void DynamicLibSubsystem::Terminate()
         {
-            Super::Shutdown();
+            Super::Terminate();
 
             // Unload any libs that may still be loaded.
             LibraryList::iterator iter = m_Libs.begin();
             while( iter != m_Libs.end() )
             {
                 DynamicLibPtr lib = iter->second;
-                lib->Unload();
-
+                Unload( lib );
                 ++iter;
             }
+            
+            BOOST_ASSERT( m_Libs.empty() );
 
-            m_Libs.clear();
-
-            return true;
+            // The Application class must manually flush the dynamic lib subsystem
+            // after all pointers to objects loaded from the library are released.
+            // Flush()
         }
 
         DynamicLibPtr DynamicLibSubsystem::Load( const std::wstring& libPath )
@@ -78,12 +79,23 @@ namespace Ill
                 LibraryList::iterator iter = m_Libs.find( lib->FileName );
                 if ( iter != m_Libs.end() )
 				{
+                    m_LibsToFlush.push_back( lib );
                     m_Libs.erase( iter );
 				}
-
-				lib->Unload();
 			}
         }
 
+        void DynamicLibSubsystem::Flush()
+        {
+            LibraryVector::iterator iter = m_LibsToFlush.begin();
+            while ( iter != m_LibsToFlush.end() )
+            {
+                DynamicLibPtr lib = (*iter);
+                lib->Unload();
+
+                ++iter;
+            }
+            m_LibsToFlush.clear();
+        }
     }
 }

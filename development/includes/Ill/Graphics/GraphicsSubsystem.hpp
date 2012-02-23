@@ -26,14 +26,14 @@ namespace Ill
 //            CONSTRUCTOR( GRAPHICS_DLL, public, GrapicsSubsystem, () );
 
             /**
-            * Startup the graphics subsystem.
+            * Initialize the graphics subsystem.
             */
-            VIRTUAL_METHOD( GRAPHICS_DLL, public, bool, Startup, ( const boost::property_tree::ptree& startupOptions ) );
+            VIRTUAL_METHOD( GRAPHICS_DLL, public, void, Initialize, () );
        
             /**
-            * Shutdown
+            * Terminate the graphics subsystem.
             */
-            VIRTUAL_METHOD( GRAPHICS_DLL, public, bool, Shutdown, () );
+            VIRTUAL_METHOD( GRAPHICS_DLL, public, void, Terminate, () );
 
             /**
              * Retrieve a pointer to the GraphicsRenderer implementation.

@@ -24,7 +24,6 @@
 #include <Ill/Core/Object.hpp>
 #include <Ill/Core/Singleton.hpp>
 #include <Ill/Core/Events.hpp>
-#include <Ill/Core/PropertyMap.hpp>
 #include <Ill/Core/DynamicLibSubsystem.fwd.hpp>
 #include <Ill/Core/Plugin.fwd.hpp>
 #include <Ill/Core/Subsystem.fwd.hpp>
@@ -70,9 +69,7 @@ namespace Ill
             STATIC_METHOD( CORE_DLL, public, Application*, GetPtr, () );
 
             /**
-            * Initialize any memory needed by this component.
-            * 
-            * @returns true if all memory allocations were successful.
+            * Initialize any memory needed by this object.
             */
             VIRTUAL_METHOD( CORE_DLL, public, void, Initialize, () );
 
@@ -80,19 +77,15 @@ namespace Ill
             * Deallocate the memory that was allocated in Initialize.
             * It should be possible to invoke this method many times
             * without an error or exception being thrown.  This way, 
-            * components can be recycled without deleting them.
+            * objects can be recycled without deleting them.
             * 
-            * @returns true if all memory allocations were successful.
             */
             VIRTUAL_METHOD( CORE_DLL, public, void, Terminate, () );
 
             /**
 			* Register a subsystem class that is associated with this application.
-			* An instance of a subsystem will be created and initialized when the
-			* application starts and shut-down when the application is about to close.
 			* After the application has been started, a subsystem can be retrieved from the 
-			* application by calling the @see(GetSubsystem) templated method with the template
-			* argument being the type of the subsystem to retrieve.
+			* application by calling the @see(GetSubsystem).
 			* All subsystems should be accessible throughout the lifetime of the application.
 			* Types of subsystems that will be registered could be:
 			* <ul>
@@ -105,16 +98,12 @@ namespace Ill
 			* If one subsystem has a dependency on another, then it should be registered
 			* after all the subsystems it depends on.  This will ensure the dependent subsystem
 			* is initialized first.
-			* Startup parameters for each subsystem should be passed to the application using the 
-			* property bag parameter.  These properties can be parsed from the command line, or read from 
-			* the applications config file.
 			*
-			* @param subsystemClass an instance of the class that represents the subsystem type.
-			* @returns true if the subsystem was successfully created, or false if either
-			* the passed-in class is NULL or it is not of the correct type, that is, 
-			* not derived from the Subsystem class.
+			* @param subSystem an instance of the subsystem to be registered.
+			* @returns true if the subsystem was successfully added to the list of known 
+            * subsystems, or false if a subsystem with the same type has already been registered.
 			*/
-			VIRTUAL_METHOD( CORE_DLL, public, bool, RegisterSubsystem, (const Class& subsystemClass) );
+			VIRTUAL_METHOD( CORE_DLL, public, bool, RegisterSubsystem, (SubsystemPtr subsystem) );
 
             /**
              * Load a plug-in that is to be used by the application.
@@ -138,15 +127,10 @@ namespace Ill
              * @precondition The plugin was previously loaded with @see(LoadPlugin).
              *
              * @param plugin The plugin to be unloaded.
-             * @param remove Whether to remove the plugin from the containers. 
-             *   This parameter should be false if we are iterating over the containers.
-             *   (For example if the Application is being destroyed).
-             *
              *
              * @see LoadPlugin
              */
-            VIRTUAL_METHOD( CORE_DLL, public, void, UnloadPlugin, ( PluginPtr plugin, bool remove ) );
-            VIRTUAL_METHOD( CORE_DLL, public, void, UnloadPlugin, ( PluginPtr plugin /* bool remove = true */ ) );
+            VIRTUAL_METHOD( CORE_DLL, public, void, UnloadPlugin, ( PluginPtr plugin ) );
 
             /**
              * Gets the pointer to a plug-in that has previously been loaded using @see(LoadPlugin).
@@ -163,25 +147,6 @@ namespace Ill
             VIRTUAL_METHOD( CORE_DLL, public, PluginPtr, GetPluginByName, ( const std::wstring& pluginName ) );
 
 			/**
-			* Parse the command line options and configuration options and store them
-			* in the PropertyMap passed to the function.
-			* 
-			* @param argc The number of entries in the argc array.
-			* @param argv The array of command line arguments passed to the application.
-			* @param options Populate the property map with the parsed configuration options.
-			*/ 
-            VIRTUAL_METHOD( CORE_DLL, public, bool, ParseConfigurations, ( int argc, char* argv[], boost::property_tree::ptree& options ) );
-
-			/**
-			* Start up the application subsystem.
-			*
-			* @param options Contains all the startup options that have
-			* been either, parsed from the application config file, or parsed
-			* on the command line.
-			*/
-			VIRTUAL_METHOD( CORE_DLL, public, bool, StartUp, (const boost::property_tree::ptree& startupOptions) );
-
-			/**
 			* Run the application with the options specified application 
 			* options specified in StartUp.
 			*/
@@ -193,25 +158,30 @@ namespace Ill
              */
             VIRTUAL_METHOD( CORE_DLL, public, void, Stop, () );
 
-			/**
-			* Shutdown the subsystems used by this application.
-			*/
-			VIRTUAL_METHOD( CORE_DLL, public, bool, Shutdown, () );
-
             /**
              * Check to see if the application has been initialized.
              */
             bool IsInitialized() const;
 
 			/**
-			* Retrieve a pointer to the subsystem that matches
-			* the template parameter type.
-			* @return A valid weak pointer object of the subsystem, otherwise
+			* Retrieve a pointer to the subsystem that matches the class type.
+			* @return A valid pointer object of the subsystem, otherwise
 			* an invalid pointer object if the subsystem does not exist (the type
 			* was never registered).
+            *
+            * @param subsystemClass The class type of the subsystem to retrieve.
 			*/
-			template<class T>
-			boost::weak_ptr<T> GetSubsystem();
+			SubsystemPtr GetSubsystem( const Class& classType );
+
+			/**
+			* Retrieve a pointer to the subsystem that matches the class name.
+			* @return A valid pointer object of the subsystem, otherwise
+			* an invalid pointer object if the subsystem does not exist (the type
+			* was never registered).
+            *
+            * @param subsystemClass The class name of the subsystem to retrieve.
+			*/
+            SubsystemPtr GetSubsystem( const std::string& className );
 
             /** 
              * Events supported by the application class
@@ -223,7 +193,7 @@ namespace Ill
             /** 
              * Derived classes should override these methods to handle 
              * specific events.  Don't forget to call the super class's implementation
-             * otherwise the event will not be called.
+             * otherwise the event will not be triggered.
              */
             virtual void OnInitialized( EventArgs& e );
             // The application instance has been terminated.
@@ -236,6 +206,22 @@ namespace Ill
 
 
 		private:
+            friend class boost::serialization::access;
+            /**
+             * Serialize or de-serialize the properties of an object.
+             * Note: This method must always be declared private.
+             * To allow the archive class access to private members
+             * and methods of base classes, your class must allow
+             * the boost::serialization::access class friend access by declaring 
+             * it as a friend class.  Base classes are serialized by calling 
+             * ar & boost::serialization::base_object<Super>(*this)
+             * inside the serialize method.
+             *
+             * @param ar The archive object to serialize from or to.
+             * @param version The class version when the object was serialized.
+             */
+            template<class Archive>
+            void serialize( Archive& ar, const unsigned int version );
 
             // A sorted list of plug-ins by plug-in name.
             typedef std::map< std::wstring, PluginPtr > PluginNameMap;
@@ -247,11 +233,9 @@ namespace Ill
             PluginNameMap   m_PluginsByName;
             PluginFileMap   m_PluginsByFileName;
 
-            boost::property_tree::ptree m_StartupProperties;
-
             DynamicLibSubsystemPtr m_DynamicLibSubsystem;
             bool            m_IsInitialized;
-            bool            m_IsStarted;
+            bool            m_IsRunning;
 
 		};
 

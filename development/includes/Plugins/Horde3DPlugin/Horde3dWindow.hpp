@@ -23,7 +23,7 @@ public:
     *
     * @return true if the window subsystem was successfully initialized.
     */
-    bool Initialize();
+    void Initialize();
 
     /**
     * Set an icon for the window.  This should be called 

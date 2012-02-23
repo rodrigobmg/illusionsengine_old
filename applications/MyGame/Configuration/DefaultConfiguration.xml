@@ -1,0 +1,30 @@
+<default>
+	<ApplicationClass>class Ill::Game::GameApplication</ApplicationClass>
+	<GameApplication>
+		<WindowClass>class Ill::Plugins::Horde3D::Horde3DWindow</WindowClass>
+		<WindowDescription>
+			<Width>1280</Width>
+			<Height>720</Height>
+			<Fullscreen>false</Fullscreen>
+			<RedBits>8</RedBits>
+			<GreenBits>8</GreenBits>
+			<BlueBits>8</BlueBits>
+			<AlphaBits>8</AlphaBits>
+			<DepthBits>16</DepthBits>
+			<MultiSampleBuffers>2</MultiSampleBuffers>
+			<MultiSamples>2</MultiSamples>
+		</WindowDescription>	
+	</GameApplication>
+</default>
+
+<release>
+	<Plugins>
+		<Plugin>Horde3DPlugin</Plugin>
+	</Plugins>
+</release>
+
+<debug>
+	<Plugins>
+		<Plugin>Horde3DPlugin_d</Plugin>
+	</Plugins>
+</debug>

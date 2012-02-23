@@ -16,12 +16,12 @@ namespace Ill
 			NoCopyObject();
 			RefCountedObject();
 			Object();
+            Configuration();
             GameObject();
 			Component();
 			Subsystem();
 			DynamicLibSubsystem();
 			Application();
-			PropertyMap();
 		}
 
         boost::uuids::random_generator uuid_generator;
